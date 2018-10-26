@@ -8,7 +8,7 @@ get_header(); ?>
 <!-- header image -->
 
 	<div class="landing-image">
-		<img src="http://localhost:8888/wordpress/wp-content/uploads/2018/09/stock-photo-web-design-development-style-ideas-interface-concept-324633638.jpg">
+		<img src="http://lauramottram.com/wp-content/uploads/2018/10/shutterstock_324633638-1.jpg">
 	</div>
 
 
