@@ -1,0 +1,10 @@
+2019-03-18T17:48:32+00:00 CRITICAL Uncaught Error: Call to undefined function wp_get_ready_cron_jobs() in /Users/lauramottram/Sites/wordpress/wp-cron.php:74
+Stack trace:
+#0 {main}
+  thrown in /Users/lauramottram/Sites/wordpress/wp-cron.php on line 74
+
+2019-03-18T17:48:35+00:00 CRITICAL Uncaught Error: Call to undefined function wp_check_php_version() in /Users/lauramottram/Sites/wordpress/wp-admin/about.php:88
+Stack trace:
+#0 {main}
+  thrown in /Users/lauramottram/Sites/wordpress/wp-admin/about.php on line 88
+

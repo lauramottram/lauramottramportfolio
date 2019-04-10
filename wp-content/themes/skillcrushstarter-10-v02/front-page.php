@@ -18,13 +18,9 @@ get_header(); ?>
 			</div>
 			<div class="mobile-content">
 				<h1><?php the_title(); ?></h1>
-				<p>I have over <strong>15 years of marketing and communication</strong> experience in the <strong>not-for-profit</strong> sector, and spend my days building <strong>awesome WordPress websites</strong>.</p>
+				<p>I am a <strong>freelance web designer and WordPress front-end developer </strong>with over 15 years experience working with <strong>not-for-profit</strong> organizations.</strong>.</p>
 				<p>In a previous life, I worked in <strong>international development</strong> in Kenya, bungee jumped off Victoria Falls, <strong>cycled 15,000 miles around South America</strong>, and published a <strong>book about cycle touring</strong>.</p>
 			</div>
-				<div class="social-btns">  <!-- populate or remove as many of these as you want -->
-					<a href="https://www.linkedin.com/in/laura-mottram/" target="_blank" class="soc-icon ln"></a>
-					<a href="https://github.com/lauramottram" target="_blank" class="soc-icon gh"></a>
-				</div>
 				<a href="<?php echo site_url('/home/'); ?>" class="btn">Work With Me</a>
 				<?php endwhile; ?>
 		</div>

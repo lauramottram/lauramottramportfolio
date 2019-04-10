@@ -532,12 +532,6 @@ body {
 /* media queries */
 
 
-@media (min-width: 2000px) {
-	.home .content {
-		width: 40%;
-	}
-}
-
 @media screen and (min-width: 1400px) and (max-width: 1999px) {
 	.home .content {
 		width: 60%;
@@ -780,7 +774,7 @@ body {
 	color: white;
 }
 
-.services-button-style:visited {
+.services-button-style a:visited {
 	color: white;
 }
 
@@ -919,6 +913,11 @@ input {
 		font-size: 1em;
 	}
 
+	input[type="button"],
+	input[type="submit"]{
+		font-size: 1em;
+	}
+
 	.services-content {
 		text-align: left;
 		display: block;
@@ -958,130 +957,6 @@ input {
 }
 
 /* Landing page end */
-
-/* Case Studies */
-
-aside.case-study-sidebar {
-  float: left;
-  width: 45%;
-	margin-right: 5%;
-}
-
-div.case-study-images {
-  float: left;
-  width: 40%;
-	margin-bottom: 50px;
-}
-
-div.case-study-images img {
-	margin-top: 50px;
-
-  border: 1px solid #dddddd;
-}
-
-.case-study h2 {
-	font-size: 2em;
-	color: black;
-	margin-top: 25px;
-}
-
-.case-study h2 a {
-	color: black;
-}
-
-.case-study h4 {
-  font-size: 1.2em;
-	color: black;
-	font-weight: 400;
-}
-
-.case-study p {
-	color: #3b3b3b;
-	line-height: 1.5;
-	font-weight: 400;
-}
-
-.case-study h2 a:visited {
-	color: black;
-}
-
-.case-study h3,
-.case-study h4 {
-  margin: 0;
-  margin-bottom: .5rem;
-}
-
-.back-to-work .left {
-	margin: 25px auto 25px auto;
-}
-
-
-@media (max-width: 1400px) {
-
-	.tablepress-id-2 tr,
-	.tablepress-id-2 td.column-1 {
-		border: 0;
-	}
-
-	.tablepress-id-2 td.column-1 img {
-		margin-bottom: 40px;
-	}
-
-	.tablepress-id-2 td.column-1 p {
-		margin-top: 25px;
-	}
-
-}
-
-
-@media (min-width: 1024px) {
-
-	.tablepress-id-2 .column-1 h3 {
-		padding: .2em;
-	}
-
-}
-
-@media (max-width: 1023px) {
-
-	h4.about-intro {
-		margin: 0;
-		margin-bottom: 25px;
-		font-size: 1em !important;
-		color: red;
-	}
-
-	.page .entry-title {
-		font-size: 1.5em;
-		font-weight: 700;
-	}
-
-	.tablepress-id-2 td {
-		padding: 0;
-	}
-
-	.tablepress-id-2 h3 {
-		margin: 0;
-		text-align: center;
-	}
-
-	.tablepress-id-2 .row-1 .column-1 h3,
-	.tablepress-id-2 .row-3 .column-1 h3 {
-		margin-left: 0;
-	}
-
-	.tablepress-id-2 .column-1 h3 {
-		font-size: 1.2em;
-	}
-
-	.tablepress-id-2 .column-1 p {
-		font-size: 1em;
-		line-height: 1.8em;
-		margin: 0;
-	}
-
-}
-
 
 /* Case Studies on minimal-landing-page */
 
@@ -1126,6 +1001,74 @@ figure, img {
 	height: 300px;
 }
 
+/* Case Studies */
+
+aside.case-study-sidebar {
+  float: left;
+  width: 45%;
+	margin-right: 5%;
+}
+
+div.case-study-images {
+  float: left;
+  width: 40%;
+	margin-bottom: 50px;
+}
+
+div.case-study-images img {
+	margin-top: 50px;
+  border: 1px solid #dddddd;
+}
+
+.case-study h2 {
+	font-size: 2em;
+	color: black;
+	margin-top: 25px;
+}
+
+.case-study h2 a {
+	color: black;
+}
+
+.case-study h4 {
+  font-size: 1.2em;
+	color: black;
+	font-weight: 400;
+}
+
+.case-study p {
+	color: #3b3b3b;
+	line-height: 1.5;
+	font-weight: 400;
+}
+
+.case-study h2 a:visited {
+	color: black;
+}
+
+.case-study h3,
+.case-study h4 {
+  margin: 0;
+  margin-bottom: .5rem;
+}
+
+.back-to-work .left {
+	margin: 25px auto 25px auto;
+}
+
+@media (max-width: 678px) {
+
+	aside.case-study-sidebar {
+	  width: 100%;
+
+	}
+
+	div.case-study-images {
+	  width: 100%;
+		margin-bottom: 50px;
+	}
+}
+
 /*Case Study Archive Page */
 
 .page-intro {
@@ -1168,6 +1111,8 @@ div.case-study-images img {
     text-align: center;
     margin-right: 10px;
 }
+
+@media (max-width: 678px)
 
 /*About page*/
 
@@ -1243,6 +1188,71 @@ div.case-study-images img {
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
+}
+
+@media (max-width: 1400px) {
+
+	.tablepress-id-2 tr,
+	.tablepress-id-2 td.column-1 {
+		border: 0;
+	}
+
+	.tablepress-id-2 td.column-1 img {
+		margin-bottom: 40px;
+	}
+
+	.tablepress-id-2 td.column-1 p {
+		margin-top: 25px;
+	}
+}
+
+
+@media (min-width: 1024px) {
+
+	.tablepress-id-2 .column-1 h3 {
+		padding: .2em;
+	}
+
+}
+
+@media (max-width: 1023px) {
+
+	h4.about-intro {
+		margin: 0;
+		margin-bottom: 25px;
+		font-size: 1em !important;
+		color: red;
+	}
+
+	.page .entry-title {
+		font-size: 1.5em;
+		font-weight: 700;
+	}
+
+	.tablepress-id-2 td {
+		padding: 0;
+	}
+
+	.tablepress-id-2 h3 {
+		margin: 0;
+		text-align: center;
+	}
+
+	.tablepress-id-2 .row-1 .column-1 h3,
+	.tablepress-id-2 .row-3 .column-1 h3 {
+		margin-left: 0;
+	}
+
+	.tablepress-id-2 .column-1 h3 {
+		font-size: 1.2em;
+	}
+
+	.tablepress-id-2 .column-1 p {
+		font-size: 1em;
+		line-height: 1.8em;
+		margin: 0;
+	}
+
 }
 
 /*404 page*/

@@ -1,0 +1,64 @@
+/*
+Theme Name: Jevelin Child
+Description: Child theme for Jevelin theme
+Author: Shufflehound
+Author URI: http://shufflehound.com
+Template: jevelin
+*/
+
+
+
+/* Add your custom CSS below */
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+</style>
+
+h2 {
+  font-family: 'Gloria Hallelujah', cursive !important;
+}
+
+.sh-titlebar .titlebar-title h2 {
+  font-size: 50px !important;
+}
+
+.profile-img img,
+.about-me-img img {
+  border-radius: 50%;
+}
+
+span {
+  font-size: 16px !important;
+}
+
+.vc_column_shadow1 {
+    box-shadow: 0 0 0 0 rgba(0,0,0,0);
+  }
+
+.sh-titlebar .title-level .breadcrumbs {
+    display: none;
+}
+
+#content ul li {
+  color: rgb(141, 141, 141, 141) !important;
+}
+
+.svg-icon img {
+  width: 300px !important;
+  height: 300px;
+}
+
+.vc_column_mobile_element_alignment_left .wpb_single_image {
+  text-align: center !important;
+}
+
+.lost-page {
+  text-align: center;
+}
+
+
+@media only screen and (max-width: 1024px) {
+
+
+
+}

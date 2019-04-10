@@ -29,13 +29,13 @@ get_header(); ?>
 		<h2>About Me</h2>
 		<div class="about-me-content">
 			<div class="headshot">
-				<img src="http://localhost:8888/wordpress/wp-content/uploads/2018/05/IMG_2363.jpg">
+				<img src="https://lauramottram.com/wp-content/uploads/2018/05/IMG_2363-copy.jpg">
 			</div>
-			<p>I have been <strong>designing and developing websites</strong> for not-for-profit organizations for over 15 years, and have worked for organizations including the <strong>Red Cross, Tourettes Action and Leonard Cheshire Disability Kenya</strong>.<p>
-			<p>My experience as a <strong>successful fundraiser and communicator</strong> means I understand what your organization needs. I build in Wordpress as it offers easy-to-maintain sites, and a wealth of options for fundraising and communicating with supporters and members.</p>
-			<p>I also love building websites for <strong>adventures</strong> - just like the one I made for my <strong>15,000 mile cycle ride around South America</strong> in 2011. If you are planning your own trip or have a passion you want to share with others, I would love to work with you on it.</p>
+			<p>I am a <strong>freelance web designer and WordPress front-end developer </strong>with over 15 years experience working with <strong>not-for-profit</strong> organizations, including the British Red Cross Society, Tourettes Action and Leonard Cheshire Disability Kenya.</p>
+			<p>My experience as a successful fundraiser and communicator means <strong>I understand what your organization needs</strong>. I build in Wordpress as it offers easy-to-maintain sites, and a wealth of options for fundraising and communicating with supporters.</p>
+			<p>I also love building websites for adventures - just like the one I made for my <strong>15,000 mile trip around South America by bike</strong>. If you are planning your own trip or have a passion you want to share, I would love to work with you on it.</p>
 			<div class="about-me-button">
-				<button class=about-me-button-style type="button"><a href="http://localhost:8888/wordpress/about/">More about me</a></button>
+				<button class=about-me-button-style type="button"><a href="https://lauramottram.com/about/">More about me</a></button>
 			</div>
 		</div>
 	</div>
@@ -83,7 +83,7 @@ get_header(); ?>
 			</div>
 		</div>
 		<div class="services-button">
-			<button class=services-button-style type="button">Find out more</button>
+			<button class=services-button-style type="button"><a href="https://lauramottram.com/services/">Find out more</a></button>
 		</div>
 	</div>
 
