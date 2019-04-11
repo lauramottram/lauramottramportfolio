@@ -31,6 +31,12 @@ span {
   font-size: 16px !important;
 }
 
+
+/** titlebar heading **/
+.sh-titlebar .titlebar-title h2 {
+  font-size: 50px !important;
+}
+
 .vc_column_shadow1 {
     box-shadow: 0 0 0 0 rgba(0,0,0,0);
   }
@@ -52,9 +58,35 @@ span {
   text-align: center !important;
 }
 
+
+/** 404 page **/
 .lost-page {
   text-align: center;
 }
+
+/** portfolios **/
+
+.sh-table-cell-top,
+.sh-portfolio-single-share {
+	display: none;
+}
+
+.sh-portfolio-overlay {
+	display: none;
+}
+
+.sh-portfolio-single-related {
+	display: none;
+}
+
+.sh-filter-container {
+	display: none;
+}
+
+.sh-filter-item-content {
+	display: none;
+}
+
 
 
 @media only screen and (max-width: 1024px) {
