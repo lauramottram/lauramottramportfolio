@@ -3,7 +3,7 @@
  * Build the URL to load the chosen Google Fonts.
  *
  * @package   olympus-google-fonts
- * @copyright Copyright (c) 2019, Danny Cooper
+ * @copyright Copyright (c) 2019, Fonts Plugin
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
@@ -105,11 +105,17 @@ class OGF_Fonts {
 	 */
 	public function has_custom_fonts() {
 
-		if ( ! empty( $this->choices ) ) {
-			return true;
-		} else {
+		if ( empty( $this->choices ) ) {
 			return false;
 		}
+
+		foreach ( $this->choices as $choice ) {
+			if ( ! ogf_is_system_font( $choice ) ) {
+				return true;
+			}
+		}
+
+		return false;
 
 	}
 
@@ -174,8 +180,9 @@ class OGF_Fonts {
 		}
 
 			$query_args = array(
-				'family' => implode( '|', $families ),
-				'subset' => implode( ',', $subsets ),
+				'family'  => implode( '|', $families ),
+				'subset'  => implode( ',', $subsets ),
+				'display' => 'swap',
 			);
 
 			return add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );

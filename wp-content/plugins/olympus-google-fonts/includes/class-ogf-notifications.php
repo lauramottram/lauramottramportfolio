@@ -4,7 +4,7 @@
  * Prompts users to give a review of the plugin on WordPress.org after a period of usage.
  *
  * @package   olympus-google-fonts
- * @copyright Copyright (c) 2019, Danny Cooper
+ * @copyright Copyright (c) 2019, Fonts Plugin
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
@@ -121,6 +121,9 @@ if ( ! class_exists( 'OGF_Notifications' ) ) :
 		 * Display the admin notice.
 		 */
 		public function display_admin_notice() {
+			if ( is_plugin_active( 'google-fonts-pro/google-fonts-pro.php' ) ) {
+				return;
+			}
 			?>
 
 			<style>
@@ -208,7 +211,7 @@ if ( ! class_exists( 'OGF_Notifications' ) ) :
 			<?php
 			if ( $this->type === 'review' ) {
 				$this->review();
-			} elseif( $this->type === 'addon' ) {
+			} elseif ( $this->type === 'addon' ) {
 				$this->addon();
 			}
 		}
@@ -261,8 +264,7 @@ if ( ! class_exists( 'OGF_Notifications' ) ) :
 						<h3><?php echo esc_html__( 'Speed Up Your Website!', 'olympus-google-fonts' ); ?></h3>
 						<p>
 							<?php
-							/* translators: 1. Name, 2. Time */
-							printf( __( 'Our latest <strong>free</strong> addon allows you to host Google Fonts locally.<br>This removes the requests to Google\'s servers and can equal faster load times.', 'olympus-google-fonts' ), esc_html( $this->name ), esc_html( $time ) );
+							_e( 'Our latest <strong>free</strong> addon allows you to host Google Fonts locally.<br>This removes the requests to Google\'s servers and can improve page speed.', 'olympus-google-fonts' );
 							?>
 						</p>
 					</div>
@@ -298,14 +300,5 @@ new OGF_Notifications(
 		'name'       => __( 'Google Fonts for WordPress', 'olympus-google-fonts' ),
 		'time_limit' => WEEK_IN_SECONDS,
 		'type'       => 'review',
-	)
-);
-
-new OGF_Notifications(
-	array(
-		'slug'       => 'ogf_addon',
-		'name'       => __( 'Host Google Fonts Locally', 'olympus-google-fonts' ),
-		'time_limit' => DAY_IN_SECONDS,
-		'type'       => 'addon',
 	)
 );

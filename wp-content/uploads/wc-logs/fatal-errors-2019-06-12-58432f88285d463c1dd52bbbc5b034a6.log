@@ -1,0 +1,13 @@
+2019-06-12T18:00:27+00:00 CRITICAL Uncaught Error: Class 'ThemeIsle_SDK_Loader' not found in /Users/lauramottram/Sites/wordpress/wp-content/plugins/menu-icons/vendor/codeinwp/themeisle-sdk/start.php:37
+Stack trace:
+#0 /Users/lauramottram/Sites/wordpress/wp-content/plugins/menu-icons/vendor/codeinwp/themeisle-sdk/load.php(32): require_once()
+#1 /Users/lauramottram/Sites/wordpress/wp-includes/class-wp-hook.php(286): themeisle_sdk_load_latest('')
+#2 /Users/lauramottram/Sites/wordpress/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters(NULL, Array)
+#3 /Users/lauramottram/Sites/wordpress/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#4 /Users/lauramottram/Sites/wordpress/wp-settings.php(505): do_action('init')
+#5 /Users/lauramottram/Sites/wordpress/wp-config.php(92): require_once('/Users/lauramot...')
+#6 /Users/lauramottram/Sites/wordpress/wp-load.php(37): require_once('/Users/lauramot...')
+#7 /Users/lauramottram/Sites/wordpress/wp-admin/admin-ajax.php(22): require_once('/Users/lauramot...')
+#8 {main}
+  thrown in /Users/lauramottram/Sites/wordpress/wp-content/plugins/menu-icons/vendor/codeinwp/themeisle-sdk/start.php on line 37
+

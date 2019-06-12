@@ -1,11 +1,11 @@
 === Google Fonts for WordPress ===
 Contributors: DannyCooper, googlefonts
-Tags: google, fonts, google fonts, google fonts for wordpress, gutenberg
+Tags: google, fonts, google fonts, google fonts for wordpress, typography
 Donate link: https://fontsplugin.com/#pricing
 Requires at least: 4.0
-Tested up to: 5.1
+Tested up to: 5.2
 License: GPLv2 or later
-Stable tag: 1.6.1
+Stable tag: 1.7.6
 
 The easiest to use Google Fonts Plugin. No coding required. 870+ font choices.
 
@@ -33,8 +33,10 @@ The full Google Fonts library can be found here - [Google Fonts](https://fonts.g
 * Tested with **PHP7**
 * Selective Font Loading
 * Preconnect Resource Hints
+* Host Google Fonts Locally
+* Font Size, Weight, Color and Line Height Typography Settings
 
-> Note: some features are Premium. Which means you need to upgrade to unlock those features. You can upgrade here: [Google Fonts Pro](https://fontsplugin.com/upgrade/?utm_source=wporg&utm_campaign=upgrade)
+> Note: some features are Premium. Which means you need to upgrade to unlock those features. You can upgrade here: [Google Fonts Pro](https://fontsplugin.com/pro-upgrade/?utm_source=wporg&utm_campaign=upgrade)
 
 = Plugin Compatibility =
 
@@ -50,12 +52,12 @@ The Google Fonts for WordPress plugin will work with all WordPress themes and ha
 
 For more info on Google Fonts for Wordpress, check out the following:
 
-* [Documentation](https://fontsplugin.com/docs/)
-* [Font Combinations](https://fontsplugin.com/font-combinations/)
-* [How to Use Google Fonts in WordPress](https://fontsplugin.com/wordpress-google-fonts/)
+* [Documentation](https://fontsplugin.com/docs/?utm_source=wporg)
+* [Font Combinations](https://fontsplugin.com/font-combinations/?utm_source=wporg)
+* [How to Use Google Fonts in WordPress](https://fontsplugin.com/wordpress-google-fonts/?utm_source=wporg)
 
 = Bugs =
-If you find an issue with Google Fonts for WordPress, let us know [here](https://github.com/DannyCooper/olympus-google-fonts/issues)!
+If you find an issue with Google Fonts for WordPress, let us know [here](https://wordpress.org/support/plugin/olympus-google-fonts#new-post)!
 
 = Google Fonts Gutenberg Block =
 Add some flair to your content with our new Gutenberg block.
@@ -69,10 +71,9 @@ Anyone is welcome to contribute to the 'Google Fonts for WordPress' plugin.
 
 There are various ways you can contribute:
 
-1. Raise an [Issue](https://github.com/DannyCooper/olympus-google-fonts/issues) on GitHub
-2. Send us a Pull Request with your bug fixes and/or new features
-3. Translate the Google Fonts for WordPress plugin into [different languages](https://translate.wordpress.org/projects/wp-plugins/olympus-google-fonts/)
-4. Provide feedback and suggestions on [enhancements](https://github.com/DannyCooper/olympus-google-fonts/issues?direction=desc&labels=Enhancement&page=1&sort=created&state=open)
+1. Raise an [Issue](https://wordpress.org/support/plugin/olympus-google-fonts#new-post)
+2. Translate the Google Fonts for WordPress plugin into [different languages](https://translate.wordpress.org/projects/wp-plugins/olympus-google-fonts/)
+3. Provide feedback and suggestions on [enhancements](https://wordpress.org/support/plugin/olympus-google-fonts#new-post)
 
 == Installation ==
 Upload 'Google Fonts for WordPress', activate it, and you're done!
@@ -83,14 +84,14 @@ Navigate to wp-admin -> Appearance -> Customize and you will see a new tab named
 
 = Will my theme work with Google Fonts for WordPress? =
 
-We are 99.99% certain it will, if it doesn't then please create a [support ticket](https://wordpress.org/support/plugin/olympus-google-fonts).
+We are 99.99% certain it will, if it doesn't then please create a [support ticket](https://wordpress.org/support/plugin/olympus-google-fonts#new-post).
 
 == Screenshots ==
 
 1. Instant Live Preview - Google Fonts for WordPress
 2. Customizer Settings Search - Google Fonts for WordPress
-3. Customizer Settings Font Weight and Style - Google Fonts for WordPress
+3. Customizer Settings Font Weight and Style Typography Settings
 
 == Changelog ==
 
-See changelog.txt
+[See changelog.txt for the complete changelog.](https://raw.githubusercontent.com/dannycooper/olympus-google-fonts/master/changelog.txt)
