@@ -6,6 +6,166 @@ if ( ! defined( 'ABSPATH' ) ) { die( 'Direct access forbidden.' ); }
 
 
  /**
+ * Element Inline Option
+ */
+if ( ! function_exists( 'jevelin_element_lazy_option' ) ) :
+    function jevelin_element_lazy_option( $atts ) {
+        if( !isset( $atts['lazy'] ) || ( isset( $atts['lazy'] ) && $atts['lazy'] == 'default' ) ) :
+        	$lazy = ( jevelin_option('lazy_loading') == 'enabled' ) ? 1 : 0;
+        else :
+        	$lazy = ( isset( $atts['lazy'] ) && $atts['lazy'] == 'enabled' ) ? 1 : 0;
+        endif;
+
+        return $lazy;
+    }
+endif;
+
+
+/**
+* Element Inline Option
+*/
+if ( ! function_exists( 'jevelin_element_inline_option' ) ) :
+    function jevelin_element_inline_option() {
+        return array(
+            'label' => esc_html__('Inline Element', 'jevelin'),
+            'desc'  => esc_html__('Enable for multiple elements to add them in one line Doesnt work in WPbakery page builder front-end mode', 'jevelin'),
+            'type'  => 'radio',
+            'value' => 'disabled',
+            'choices' => array(
+                'disabled' => esc_html__( 'Disabled', 'jevelin' ),
+                'enabled' => esc_html__( 'Enabled', 'jevelin' ),
+            )
+        );
+    }
+endif;
+
+
+/**
+* Element Margin Option
+*/
+if ( ! function_exists( 'jevelin_element_margin_option' ) ) :
+    function jevelin_element_margin_option() {
+        return array(
+            'label' => esc_html__( 'Margin', 'jevelin' ),
+            'desc'  => wp_kses( __( 'Enter your custom margin (<b>top right bottom left</b>)', 'jevelin' ), jevelin_allowed_html() ),
+            'type'  => 'text',
+            'value' => '0px 0px 15px 0px',
+            'help'  => esc_html__( 'Example: 0px 0px 15px 0px', 'jevelin' ),
+        );
+    }
+endif;
+
+
+/**
+ * Check If Gutenberg is being used
+*/
+if ( ! function_exists( 'jevelin_is_gutenberg_page' ) ) :
+    function jevelin_is_gutenberg_page() {
+        if ( function_exists( 'is_gutenberg_page' ) && is_gutenberg_page() ) {
+            // The Gutenberg plugin is on.
+            return true;
+        }
+
+        if( function_exists( 'get_current_screen' ) ) :
+            $current_screen = get_current_screen();
+            if ( method_exists( $current_screen, 'is_block_editor' ) && $current_screen->is_block_editor() ) :
+                // Gutenberg page on 5+.
+                return true;
+            endif;
+        endif;
+
+        return false;
+    }
+endif;
+
+
+/**
+* If is URL
+*/
+function jevelin_is_url( $url = '' ) {
+    if( $url && !is_array( $url ) ) :
+        if( esc_url_raw( $url ) === $url ) :
+            return true;
+        endif;
+    endif;
+
+    return false;
+}
+
+
+/**
+ * Load header items
+ */
+function jevelin_get_headers() {
+    $header_layout_choices = array(
+    	'1' => esc_html__( 'Header 1', 'jevelin' ),
+    	'2' => esc_html__( 'Header 2', 'jevelin' ),
+    	'3' => esc_html__( 'Header 3', 'jevelin' ),
+    	'4' => esc_html__( 'Header 4', 'jevelin' ),
+    	'5' => esc_html__( 'Header 5', 'jevelin' ),
+    	'6' => esc_html__( 'Header 6 (side navigation)', 'jevelin' ),
+    	'7' => esc_html__( 'Header 7 (side navigation)', 'jevelin' ),
+    	'8' => esc_html__( 'Header 8', 'jevelin' ),
+    	'9' => esc_html__( 'Header 9', 'jevelin' ),
+    	'10' => esc_html__( 'Header 10', 'jevelin' ),
+    	'left-1' => esc_html__( 'Left Header 11', 'jevelin' ),
+    	'left-2' => esc_html__( 'Left Header 12', 'jevelin' ),
+    );
+
+    global $post;
+    $post2 = $post;
+    $headers = new WP_Query( array(
+        'post_type' => 'shufflehound_header',
+        'post_status' => 'publish',
+        'posts_per_page' => 20
+    ));
+    if( $headers->have_posts() ) :
+        while( $headers->have_posts() ) : $headers->the_post();
+
+		    $header_id = 'header-'.get_the_ID();
+            $header_layout_choices[ $header_id ] = html_entity_decode( get_the_title() ).' (from WPbakery page builder)';
+
+        endwhile;
+    endif;
+
+    wp_reset_postdata();
+    $post = $post2;
+    return $header_layout_choices;
+}
+
+
+/**
+ * Load footer items
+ */
+function jevelin_get_footers() {
+    $layout_choices = array(
+    	'default' => esc_html__( 'Default (from theme settings)', 'jevelin' ),
+    );
+
+    global $post;
+    $post2 = $post;
+    $footers = new WP_Query( array(
+        'post_type' => 'shufflehound_footer',
+        'post_status' => 'publish',
+        'posts_per_page' => 20
+    ));
+    if( $footers->have_posts() ) :
+        while( $footers->have_posts() ) : $footers->the_post();
+
+    		$footer_id = get_the_ID();
+            $layout_choices[ $footer_id ] = get_the_title().' (from WPbakery page builder)';
+
+        endwhile;
+    endif;
+
+    wp_reset_postdata();
+    $post = $post2;
+    return $layout_choices;
+}
+
+
+
+ /**
   * Create Custom Random Function
   */
  function jevelin_rand( $length = 10 ) {
@@ -89,7 +249,7 @@ function jevelin_page_id() {
 endif;
 
 
-/* Load image ratio */
+/* Load image ratio - By Post ID */
 if ( ! function_exists( 'jevelin_image_ratio' ) ) :
 	function jevelin_image_ratio( $id = '', $size = '', $ratio = '') {
         $load_ratio = '';
@@ -106,10 +266,48 @@ if ( ! function_exists( 'jevelin_image_ratio' ) ) :
 	}
 endif;
 
+
+/* Load image ratio - By Thumbnail ID */
+if ( ! function_exists( 'jevelin_image_ratio_by_thumbnail' ) ) :
+	function jevelin_image_ratio_by_thumbnail( $id = '', $size = '', $ratio = '') {
+        $load_ratio = '';
+        if( $ratio == '') :
+            $load_ratio = ' sh-ratio-container-square';
+        elseif( $ratio == 'landscape') :
+            $load_ratio = '';
+        endif;
+
+        return '
+        <div class="sh-ratio">
+            <div class="sh-ratio-container'.$load_ratio.'">
+                <div class="sh-ratio-content" style="background-image: url('. jevelin_get_small_thumb( $id, $size ) .');"></div>
+            </div>
+        </div>';
+	}
+endif;
+
+
+/**
+ * Get post options
+ */
+if ( ! function_exists( 'jevelin_post_option' ) ) :
+    function jevelin_post_option( $id = NULL, $name = NULL, $default = NULL) {
+
+        if( function_exists('fw_get_db_post_option') && $id > 0 && $name ) :
+            return fw_get_db_post_option( $id, $name, $default );
+        elseif( !empty( $default ) ) :
+            return $default;
+        else :
+            return false;
+        endif;
+
+    }
+endif;
+
+
 /**
  * Get theme options
  */
-
 if ( ! function_exists( 'jevelin_option' ) ) :
     if ( is_customize_preview() ) {
 
@@ -133,6 +331,10 @@ if ( ! function_exists( 'jevelin_option' ) ) :
 
         function jevelin_option( $id = NULL, $default = NULL) {
 
+            if( $id == 'lazy' && function_exists('shufflehound_lazy_loading_enabled_all_sites') ) :
+                return 1;
+            endif;
+
             if( function_exists('fw_get_db_settings_option') ) :
 
                 if( in_array( $id, array( 'accent_color', 'accent_hover_color', 'header_nav_active_color', 'footer_hover_color') ) ) :
@@ -152,13 +354,10 @@ if ( ! function_exists( 'jevelin_option' ) ) :
                 else :
 
                     $option = fw_get_db_settings_option( $id );
-                    if( !empty( $option ) ) :
+
+                    if( !empty( $option ) || $option === false ) :
                         return $option;
-                    elseif( $option === false ) :
-                        return $option;
-                    elseif( !empty( $default ) ) :
-                        return $default;
-                    elseif( $default === false ) :
+                    elseif( !empty( $default ) || $default === false ) :
                         return $default;
                     else :
                         return false;
@@ -250,24 +449,6 @@ if ( ! function_exists( 'jevelin_get_small_thumb' ) ) :
         else :
             return false;
         endif;
-    }
-endif;
-
-
-/**
- * Get post options
- */
-if ( ! function_exists( 'jevelin_post_option' ) ) :
-    function jevelin_post_option( $id = NULL, $name = NULL, $default = NULL) {
-
-        if( function_exists('fw_get_db_post_option') && $id > 0 && $name ) :
-            return fw_get_db_post_option( $id, $name, $default );
-        elseif( !empty( $default ) ) :
-            return $default;
-        else :
-            return false;
-        endif;
-
     }
 endif;
 
@@ -747,11 +928,11 @@ endif;
 /**
  * Set excerpt lenght
  */
-if ( ! function_exists( 'jevelin_new_excerpt_length' ) ) :
-	function jevelin_new_excerpt_length($length) {
+if ( ! function_exists( 'jevelin_new_excerpt_word_length' ) ) :
+	function jevelin_new_excerpt_word_length($length) {
 	    return jevelin_option( 'post_desc', 45 );
 	}
-    add_filter('excerpt_length', 'jevelin_new_excerpt_length', 9999 );
+    add_filter('excerpt_length', 'jevelin_new_excerpt_word_length', 9999 );
 endif;
 
 
@@ -775,7 +956,7 @@ if ( ! function_exists( 'jevelin_asign_menu' ) ) :
             <ul class="sh-nav">
                 <li class="menu-item">
                     <a href="<?php echo admin_url('nav-menus.php?action=edit'); ?>">
-                        <?php esc_html_e('Asign menu','jevelin'); ?>
+                        <?php esc_html_e('Assign menu','jevelin'); ?>
                     </a>
                 </li>
             </ul>
@@ -1944,3 +2125,68 @@ if ( !function_exists( 'jevelin_breadcrumbs' ) ) {
         return wp_kses_post( $html );
     }
 }
+
+
+/*
+ * Search Page Results - Posts Only
+ */
+if( is_search() ) :
+    function jevelin_search_results_postsonly( $query ) {
+        if( jevelin_option( 'header_search_results', 'posts' ) == 'onlyposts' && $query->is_search) :
+            $query->set('post_type', 'post');
+        endif;
+        return $query;
+    }
+    add_filter( 'pre_get_posts', 'jevelin_search_results_postsonly' );
+endif;
+
+
+/*
+ * WordPress 5.0 compatibility
+ */
+if( is_admin() ) :
+    if( !function_exists('jevelin_disable_block_editor_pt') &&
+        isset( $_GET['post'] ) && $_GET['post'] > 0 &&
+        isset( $_GET['action'] ) && $_GET['action'] == 'edit' &&
+        !isset( $_GET['vcv-gutenberg-editor'] )
+    ) :
+        function jevelin_disable_block_editor_pt( $use_block_editor, $post_type ) {
+
+            $use_block_editor = true;
+            if( function_exists( 'is_plugin_active' ) && !is_plugin_active( 'classic-editor/classic-editor.php' ) ) :
+                $id = ( isset( $_GET['post'] ) && $_GET['post'] > 0 ) ? intval( $_GET['post'] ) : 0;
+                if( $id ) :
+                    $data = get_post_meta( $id, 'fw:opt:ext:pb:page-builder:json', 1 );
+
+                    if( $data && $data != '[]' ) :
+                        $use_block_editor = false;
+                    endif;
+                endif;
+
+                if( isset( $_GET['classic-editor'] ) ) :
+                    $use_block_editor = false;
+                endif;
+
+                if( $use_block_editor == true ) :
+                    $post = get_post( $id );
+                    if( $post && preg_match( '/vc_row/', $post->post_content ) ) :
+                        $use_block_editor = false;
+                    endif;
+                endif;
+            endif;
+
+            return $use_block_editor;
+        }
+        add_filter('use_block_editor_for_post_type', 'jevelin_disable_block_editor_pt', 10, 2);
+    endif;
+
+
+    if( !function_exists('jevelin_fix_unyson_color_picker_issue') ) :
+        function jevelin_fix_unyson_color_picker_issue() {
+            if( function_exists( 'is_plugin_active' ) && !is_plugin_active( 'classic-editor/classic-editor.php' ) ) :
+            	wp_enqueue_script( 'wp-color-picker' );
+        	endif;
+        }
+    endif;
+    add_action( 'admin_enqueue_scripts', 'jevelin_fix_unyson_color_picker_issue' );
+endif;

@@ -2,27 +2,6 @@
 	die( 'Forbidden' );
 }
 
-/* Get footers */
-$layout_choices = array(
-	'default' => esc_html__( 'Default (from theme settings)', 'jevelin' ),
-);
-
-$footers = new WP_Query( array(
-    'post_type' => 'shufflehound_footer',
-    'post_status' => 'publish',
-    'posts_per_page' => 20
-));
-if( $footers->have_posts() ) :
-    while( $footers->have_posts() ) : $footers->the_post();
-
-		$footer_id = get_the_ID();
-        $layout_choices[ $footer_id ] = get_the_title().' (from WPbakery page builder)';
-
-    endwhile;
-endif;
-wp_reset_postdata();
-
-
 $footer_options = array(
 
 	'footer_template' => array(
@@ -30,7 +9,7 @@ $footer_options = array(
 	    'value' => 'default',
 	    'label' => esc_html__('Footer Template', 'jevelin'),
 	    'desc'  => esc_html__('Select footer template', 'jevelin'),
-	    'choices' => $layout_choices
+	    'choices' => jevelin_get_footers()
 	),
 
 
@@ -224,6 +203,21 @@ $footer_options = array(
 		'type' => 'switch',
 		'label' => esc_html__( 'Developer Copyrights', 'jevelin' ),
 		'desc' => esc_html__( 'Enable or disable theme developer copyrights', 'jevelin' ),
+		'value' => true,
+		'left-choice' => array(
+			'value' => false,
+			'label' => esc_html__('Off', 'jevelin'),
+		),
+		'right-choice' => array(
+			'value' => true,
+			'label' => esc_html__('On', 'jevelin'),
+		),
+	),
+
+	'copyright_deveveloper_all' => array(
+		'type' => 'switch',
+		'label' => esc_html__( 'Invisible Developer Copyrights', 'jevelin' ),
+		'desc' => esc_html__( 'Enable or disable invisible developer copyrights. Say thanks by leaving invisible developer copyrights on', 'jevelin' ),
 		'value' => true,
 		'left-choice' => array(
 			'value' => false,

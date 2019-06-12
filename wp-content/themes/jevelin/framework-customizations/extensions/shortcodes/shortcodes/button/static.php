@@ -13,6 +13,8 @@ if( !function_exists( 'jevelin_shortcode_button_css' ) ) :
 		$image = ( isset( $atts['image'] ) ) ? $atts['image'] : '';
 		$shadow = ( isset( $atts['shadow'] ) ) ? $atts['shadow'] : 'none';
 		$full = ( isset( $atts['full'] ) ) ? $atts['full'] : '';
+		$height = ( isset( $atts['height'] ) ) ? $atts['height'] : '';
+		$leftright_padding = ( isset( $atts['leftright_padding'] ) ) ? $atts['leftright_padding'] : '';
 		$alignment = ( isset( $atts['alignment'] ) ) ? $atts['alignment'] : 'left';
 		$margin = ( isset( $atts['margin'] ) ) ? $atts['margin'] : '';
 		$background_hover_color = ( isset( $atts['background_hover_color'] ) ) ? $atts['background_hover_color'] : '';
@@ -24,6 +26,18 @@ if( !function_exists( 'jevelin_shortcode_button_css' ) ) :
 
 
 			#button-<?php echo esc_attr( $id ); ?> .sh-button {
+				<?php if( $height ) : ?>
+					line-height: <?php echo jevelin_addpx( $height ); ?>;
+					height: <?php echo jevelin_addpx( $height ); ?>;
+					padding-top: 0;
+				    padding-bottom: 0;
+				<?php endif; ?>
+
+				<?php if( $leftright_padding ) : ?>
+					padding-left: <?php echo jevelin_addpx( $leftright_padding ); ?>;
+				    padding-right: <?php echo jevelin_addpx( $leftright_padding ); ?>;
+				<?php endif; ?>
+
 				<?php if( $font_size ) : ?>
 					font-size: <?php echo jevelin_addpx( $font_size ); ?>;
 				<?php endif; ?>
@@ -69,16 +83,18 @@ if( !function_exists( 'jevelin_shortcode_button_css' ) ) :
 			}
 
 			#button-<?php echo esc_attr( $id ); ?>  {
-				<?php if( $margin ) : ?>
-					margin: <?php echo esc_attr( $margin ); ?>;
-				<?php endif; ?>
-
 				<?php if( $alignment == 'center' ) : ?>
 					text-align: center;
 				<?php elseif( $alignment == 'right' ) : ?>
 					text-align: right;
 				<?php endif; ?>
 			}
+
+			<?php if( $margin ) : ?>
+				#button-<?php echo esc_attr( $id ); ?> .sh-element-margin {
+					margin: <?php echo esc_attr( $margin ); ?>;
+				}
+			<?php endif; ?>
 
 			#button-<?php echo esc_attr( $id ); ?>:not(.sh-button-style-2) .sh-button:hover {
 				<?php if( $background_hover_color ) : ?>

@@ -11,7 +11,7 @@ $columns = ( isset( $atts['columns'] ) ) ? $atts['columns'] : '3';
 		<?php
 		$categories_type = 'include';
 		$categories_query = array();
-		if( isset( $atts['categories'] ) && count( $atts['categories'] ) > 0 ) :
+		if( isset( $atts['categories'] ) && isset( $atts['categories'][0] ) ) :
 			if( !isset( $atts['id'] ) ) :
 				$categories_type = 'name';
 				$categories_query = explode( ',', $atts['categories'] );
@@ -22,7 +22,7 @@ $columns = ( isset( $atts['columns'] ) ) ? $atts['columns'] : '3';
 		$order = ( isset( $atts['order'] ) && $atts['order'] ) ? esc_attr( $atts['order'] ) : 'desc';
 
 		$class_columns = 'col-md-6 col-sm-6';
-		if( ( $columns == 3 && count( $categories_query ) ) == 0 || ( $columns == 3 && count( $categories_query ) > 2 ) ) :
+		if( ( $columns == 3 && !isset( $atts['categories'][0] ) ) || ( $columns == 3 && count( $categories_query ) > 2 ) ) :
 			$class_columns = 'col-md-4 col-sm-4';
 		endif;
 		$categories = get_categories( array( 'taxonomy' => 'product_cat', $categories_type => $categories_query, 'empty' => 1 ) );
@@ -47,7 +47,7 @@ $columns = ( isset( $atts['columns'] ) ) ? $atts['columns'] : '3';
 
 		/* Display categories */
 		foreach( $categories as $cat ) :
-			$thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
+			$thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
 			$image = wp_get_attachment_url( $thumbnail_id ); ?>
 
 			<div class="<?php echo esc_attr( $class_columns ); ?> sh-woocommerce-categories-item">

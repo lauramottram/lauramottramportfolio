@@ -75,14 +75,22 @@ if ( ! empty( $el_id ) ) {
 $shadow = ( isset( $shadow ) ) ? $shadow : 'disabled';
 $shadow_hover = ( isset( $shadow_hover ) ) ? $shadow_hover : 'disabled';
 $padding = ( isset( $padding_tablet ) ) ? $padding_tablet : '';
+$margin_large = ( isset( $margin_tablet_large ) ) ? $margin_tablet_large : '';
+$margin = ( isset( $margin_tablet ) ) ? $margin_tablet : '';
 $column_order = ( isset( $column_order ) ) ? $column_order : '';
 $zindex = ( isset( $zindex ) ) ? $zindex : '';
 $max_width = ( isset( $max_width ) ) ? $max_width : '';
 $max_width = ( is_numeric( $max_width ) ) ? $max_width.'px' : $max_width;
 $max_width_alignment = ( isset( $max_width_alignment ) && $max_width_alignment && in_array( $max_width_alignment, array( 'left', 'center', 'right' ) ) ) ? $max_width_alignment : 'center';
 $faster_parallax = ( isset( $faster_parallax ) ) ? $faster_parallax : '';
+$background_image_mobile = ( isset( $background_image_mobile ) ) ? $background_image_mobile : '';
+$background_position = ( isset( $background_position ) ) ? $background_position : 'default';
+$overflow = ( isset( $overflow ) ) ? $overflow : 'default';
+$full_width = ( isset( $full_width ) ) ? $full_width : '';
 $style_element = '';
 $element_css = '';
+$element_id = 'vc_row_'.rand();
+$css_classes[] = $element_id;
 
 if( $shadow && $shadow != 'disabled' ) :
 	$css_classes[] = 'vc_row_'.esc_attr( $shadow );
@@ -109,9 +117,29 @@ if( $style_element ) :
 endif;
 
 if( $padding ) :
-	$element_id = 'vc_row_'.rand();
-	$css_classes[] = $element_id;
-	$element_css = '@media (max-width: 800px) {.'.$element_id.' { padding: '.$padding.'!important;}}';
+	$element_css.= '@media (max-width: 800px) { #content .'.$element_id.' { padding: '.$padding.'!important;}}';
+endif;
+
+if( $margin_large ) :
+	$element_css.= '@media (max-width: 1025px) { #content .'.$element_id.' { margin: '.$margin_large.'!important;}}';
+endif;
+
+
+if( $margin ) :
+	$element_css.= '@media (max-width: 800px) { #content .'.$element_id.' { margin: '.$margin.'!important;}}';
+endif;
+
+if( is_numeric( $background_image_mobile ) ) :
+	$css_classes[] = 'vc_element_responsive_background_image';
+	$element_css.= '@media (max-width: 800px) {.'.$element_id.' { background-image: url( "'.jevelin_get_small_thumb( $background_image_mobile ).'" )!important;}}';
+endif;
+
+if( $background_position != 'default' ) :
+	$element_css.= ' .'.$element_id.' { background-position: '.$background_position.'!important; }';
+endif;
+
+if( $overflow != 'default' ) :
+	$element_css.= ' .'.$element_id.':not(.vc_parallax):not(.jarallax) { overflow: '.$overflow.'!important; position: relative; }';
 endif;
 
 if( $zindex ) :

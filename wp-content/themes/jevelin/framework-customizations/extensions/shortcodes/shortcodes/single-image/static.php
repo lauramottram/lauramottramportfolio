@@ -3,8 +3,8 @@ if( !function_exists( 'jevelin_shortcode_single_image_css' ) ) :
 	function jevelin_shortcode_single_image_css( $data, $id_rand = '' ) {
 		$atts = ( $id_rand ) ? $data : jevelin_shortcode_options( $data,'single-image' );
 		$id = ( $id_rand ) ? $id_rand : $atts['id'];
+		$margin = ( isset( $atts['margin'] ) ) ? $atts['margin'] : '';
 	ob_start(); ?>
-
 
 			#single-image-<?php echo esc_attr( $id ); ?> {
 				<?php if( isset($atts['alignment']) && $atts['alignment'] == 'center' ) : ?>
@@ -34,6 +34,11 @@ if( !function_exists( 'jevelin_shortcode_single_image_css' ) ) :
 				}
 			<?php endif; ?>
 
+			<?php if( $margin ) : ?>
+				#single-image-<?php echo esc_attr( $id ); ?> .sh-element-margin {
+					margin: <?php echo esc_attr( $margin ); ?>;
+				}
+			<?php endif; ?>
 
 		<?php $css = ob_get_contents(); ob_end_clean();
 		if( $id_rand ) : echo jevelin_echo_style( $css ); else : wp_add_inline_style( 'jevelin-responsive', jevelin_compress( $css ) ); endif;

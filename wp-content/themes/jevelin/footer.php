@@ -5,17 +5,27 @@
 wp_reset_postdata();
 $footer_template = ( jevelin_option( 'footer_template' ) != 'default' ) ? jevelin_option( 'footer_template' ) : 'default';
 $footer_template_id = intval( str_replace( 'footer-', '', $footer_template ) );
+
+if( is_singular( 'fw-portfolio' ) ) :
+	$page_layout = jevelin_option( 'portfolio_single_page_layout', 'default' );
+elseif( jevelin_post_option( jevelin_page_id(), 'page_layout', 'default' ) != 'global_default' ) :
+	$page_layout = jevelin_post_option( jevelin_page_id(), 'page_layout', 'default' );
+else :
+	$page_layout = jevelin_option( 'page_layout', 'default' );
+endif;
 ?>
 
-	<?php if( jevelin_post_option( get_the_ID(), 'page_layout' ) != 'full' ) : ?>
+	<?php if( $page_layout != 'full' ) : ?>
 		</div>
 	<?php endif; ?>
 	</div>
 
 		<?php if( !in_array( get_post_type( get_the_ID() ), array( 'shufflehound_header', 'shufflehound_footer' ) ) ) : ?>
-			<?php if( is_numeric( $footer_template ) && get_post_status( $footer_template ) == 'publish' ) : ?>
+			<?php if( is_numeric( $footer_template ) && get_post_status( $footer_template ) == 'publish' ) :
+				$footer_template = ( function_exists( 'pll_get_post' ) ) ? pll_get_post( $footer_template ) : $footer_template;
+			?>
 
-				<div class="sh-footer-template">
+				<footer class="sh-footer-template">
 					<div class="container">
 						<?php if( current_user_can( 'manage_options' ) ) : ?>
 							<a target="_blank" href="<?php echo admin_url( 'post.php?vc_action=vc_inline&post_id='.intval( $footer_template_id ).'&post_type=shufflehound_footer' ); ?>" class="sh-header-builder-edit">
@@ -24,12 +34,31 @@ $footer_template_id = intval( str_replace( 'footer-', '', $footer_template ) );
 							</a>
 						<?php endif; ?>
 						<?php
-							Vc_Manager::getInstance()->vc()->addShortcodesCustomCss( $footer_template );
-						    $the_post = get_post( $footer_template );
-							echo do_shortcode(  apply_filters( 'the_content', $the_post->post_content ) );
+							/* Footer Builder Output */
+							if( class_exists( 'Vc_Manager' ) ) :
+								ob_start();
+
+								Vc_Manager::getInstance()->vc()->addShortcodesCustomCss( $footer_template );
+								$footer_css = ob_get_contents();
+								ob_end_clean();
+
+								if( $footer_css ) :
+									echo $footer_css;
+								else :
+									$footer_custom_css = get_post_meta( $footer_template, '_wpb_shortcodes_custom_css', true );
+							        if( !empty( $footer_custom_css ) ) :
+							            echo '<style type="text/css">';
+							            echo $footer_custom_css;
+							            echo '</style>';
+							        endif;
+								endif;
+
+							    $the_post = get_post( $footer_template );
+								echo do_shortcode(  apply_filters( 'the_content', $the_post->post_content ) );
+							endif;
 						?>
 					</div>
-				</div>
+				</footer>
 
 			<?php else : ?>
 

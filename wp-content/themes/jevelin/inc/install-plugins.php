@@ -18,7 +18,7 @@ if( is_admin() && !function_exists('jevelin_register_required_plugins') ) :
                 'slug'      => 'js_composer',
                 'source'    => 'https://cdn.shufflehound.com/theme-plugins/visual-composer-OL6A44.zip',
                 'required'  => true,
-                'version'   => '5.6',
+                'version'   => '6.0.2',
             ),
 
             array(
@@ -32,7 +32,7 @@ if( is_admin() && !function_exists('jevelin_register_required_plugins') ) :
                 'slug'      => 'revslider',
                 'source'    => 'https://cdn.shufflehound.com/theme-plugins/slider-revolution-QB4L22.zip',
                 'required'  => false,
-                'version'   => '5.4.7.2',
+                'version'   => '5.4.8.3',
             ),
 
             array(
@@ -40,7 +40,7 @@ if( is_admin() && !function_exists('jevelin_register_required_plugins') ) :
                 'slug'      => 'waspthemes-yellow-pencil',
                 'source'    => 'https://cdn.shufflehound.com/theme-plugins/yellow-pencil-AX5N33.zip',
                 'required'  => false,
-                'version'   => '7.1.3',
+                'version'   => '7.2.1',
             ),
 
             array(

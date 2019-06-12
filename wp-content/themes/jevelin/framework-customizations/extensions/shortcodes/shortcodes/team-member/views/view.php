@@ -78,8 +78,42 @@ else :
 endif;
 
 if( $image ) :
-	$image_lightbox = ( $image && !is_array( $image ) ) ? jevelin_get_small_thumb( $image, 'large' ) : jevelin_get_small_thumb( $image['attachment_id'], 'large' );
-	$image = ( $image && !is_array( $image ) ) ? jevelin_get_small_thumb( $image, $image_ratio ) : jevelin_get_small_thumb( $image['attachment_id'], $image_ratio );
+	if( jevelin_is_url( $image ) ) :
+		$image_lightbox = $image;
+		$image = $image;
+	else :
+		$image_lightbox = ( $image && !is_array( $image ) ) ? jevelin_get_small_thumb( $image, 'large' ) : jevelin_get_small_thumb( $image['attachment_id'], 'large' );
+		$image = ( $image && !is_array( $image ) ) ? jevelin_get_small_thumb( $image, $image_ratio ) : jevelin_get_small_thumb( $image['attachment_id'], $image_ratio );
+	endif;
+endif;
+
+
+/* Lazy Loading */
+$lazy = jevelin_element_lazy_option( $atts );
+if( $lazy ) :
+	if( isset( $atts['image']['attachment_id'] ) ) :
+		$attachment_id = $atts['image']['attachment_id'];
+	elseif( isset( $atts['image'] ) && is_numeric( $atts['image'] ) ) :
+		$attachment_id = $atts['image'];
+	endif;
+
+	if( $attachment_id ) :
+		$image_media = wp_get_attachment_metadata( $attachment_id );
+
+		if( $image_ratio ) :
+			$image_width = ( isset( $image_media['sizes'][$image_ratio]['width'] ) ) ? $image_media['sizes'][$image_ratio]['width'] : 0;
+			$image_height = ( isset( $image_media['sizes'][$image_ratio]['height'] ) ) ? $image_media['sizes'][$image_ratio]['height'] : 0;
+		endif;
+		if( !isset( $image_width ) || !$image_width ) :
+			$image_width = ( isset( $image_media['width'] ) ) ? $image_media['width'] : 0;
+			$image_height = ( isset( $image_media['height'] ) ) ? $image_media['height'] : 0;
+		endif;
+
+		$ratio = 0;
+		if( $image_width ) :
+			$ratio = ( $image_height / $image_width ) * 100;
+		endif;
+	endif;
 endif;
 ?>
 
@@ -89,7 +123,15 @@ endif;
 		<div class="sh-team-image-container">
 			<div class="sh-team-image">
 				<a href="<?php echo esc_url( $image_lightbox ); ?>" class="<?php echo esc_attr( $image_position ); ?>" rel="lightbox">
-					<img src="<?php echo esc_url( $image ); ?>" alt="" />
+					<?php if( $lazy && $image_width > 0 && $ratio ) :?>
+						<div class="ratio-container" style="padding-top: <?php echo esc_attr( $ratio ); ?>%;">
+							<div class="ratio-content">
+								<img class="sh-image-url lazy" data-src="<?php echo esc_url( $image ); ?>" alt="" />
+							</div>
+						</div>
+					<?php else : ?>
+						<img src="<?php echo esc_url( $image ); ?>" alt="" />
+					<?php endif; ?>
 				</a>
 
 				<?php if( $icon_style == 'overlay' ) : ?>
@@ -130,7 +172,15 @@ endif;
 
 		<div class="sh-team-image">
 			<a href="<?php echo esc_url( $image_lightbox ); ?>" class="<?php echo esc_attr( $image_position ); ?>" rel="lightbox">
-				<img src="<?php echo esc_url( $image ); ?>" alt="" />
+				<?php if( $lazy && $image_width > 0 && $ratio ) :?>
+					<div class="ratio-container" style="padding-top: <?php echo esc_attr( $ratio ); ?>%;">
+						<div class="ratio-content">
+							<img class="sh-image-url lazy" data-src="<?php echo esc_url( $image ); ?>" alt="" />
+						</div>
+					</div>
+				<?php else : ?>
+					<img src="<?php echo esc_url( $image ); ?>" alt="" />
+				<?php endif; ?>
 			</a>
 
 			<?php if( $icon_style == 'overlay' ) : ?>
@@ -155,7 +205,15 @@ endif;
 
 		<div class="sh-team-image">
 			<a href="<?php echo esc_url( $image_lightbox ); ?>" class="<?php echo esc_attr( $image_position ); ?>" rel="lightbox">
-				<img src="<?php echo esc_url( $image ); ?>" alt="" />
+				<?php if( $lazy && $image_width > 0 && $ratio ) :?>
+					<div class="ratio-container" style="padding-top: <?php echo esc_attr( $ratio ); ?>%;">
+						<div class="ratio-content">
+							<img class="sh-image-url lazy" data-src="<?php echo esc_url( $image ); ?>" alt="" />
+						</div>
+					</div>
+				<?php else : ?>
+					<img src="<?php echo esc_url( $image ); ?>" alt="" />
+				<?php endif; ?>
 			</a>
 
 			<?php if( $icon_style == 'overlay' ) : ?>

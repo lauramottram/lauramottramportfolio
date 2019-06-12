@@ -11,6 +11,7 @@ if ( is_customize_preview() || ( is_admin() && defined( 'DOING_AJAX' ) && DOING_
     include get_template_directory() . '/framework-customizations/theme/options/blog.php';
     include get_template_directory() . '/framework-customizations/theme/options/portfolio.php';
     include get_template_directory() . '/framework-customizations/theme/options/lightbox.php';
+    include get_template_directory() . '/framework-customizations/theme/options/carousel.php';
     include get_template_directory() . '/framework-customizations/theme/options/woocommerce.php';
     include get_template_directory() . '/framework-customizations/theme/options/lazy_loading.php';
     include get_template_directory() . '/framework-customizations/theme/options/page_loader.php';
@@ -71,6 +72,12 @@ if ( is_customize_preview() || ( is_admin() && defined( 'DOING_AJAX' ) && DOING_
             'title' => esc_html__('Lightbox', 'gillion'),
             'options' => $lightbox_options
         ),
+
+        'customizer_carousel' => array(
+             'type' => 'box',
+             'title' => esc_html__('Carousel', 'gillion'),
+             'options' => $carousel_options
+         ),
 
         'customizer_woocommerce' => array(
              'type' => 'box',

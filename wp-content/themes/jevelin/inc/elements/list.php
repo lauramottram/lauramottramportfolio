@@ -20,7 +20,7 @@ class vcj_list extends WPBakeryShortCode {
                 'base' => 'vcj_list',
                 'description' => __('Simple list element', 'jevelin'),
                 'category' => __('Jevelin Elements', 'jevelin'),
-                'icon' => get_template_directory_uri().'/img/VC_ES_icon.svg',
+                'icon' => get_template_directory_uri().'/img/builder-icon.png',
                 'params' => array(
 
                     array(
@@ -67,26 +67,46 @@ class vcj_list extends WPBakeryShortCode {
                         'group' => '',
                     ),
 
+                    array(
+                        'param_name' => 'url',
+                        'heading' => __( 'URL', 'gillion' ),
+                        'type' => 'vc_link',
+                    ),
+
                     array (
                         'param_name' => 'text_color',
                         'heading' => 'Text Color',
                         'description' => 'Select text color',
-                        'value' => '',
+                        'edit_field_class' => 'vc_col-xs-6',
                         'type' => 'colorpicker',
-                        'class' => '',
-                        'std' => '',
-                        'group' => '',
+                        'group' => 'Styling',
                     ),
 
                     array (
                         'param_name' => 'icon_color',
                         'heading' => 'Icon Color',
                         'description' => 'Select icon color',
-                        'value' => '',
+                        'edit_field_class' => 'vc_col-xs-6',
                         'type' => 'colorpicker',
-                        'class' => '',
-                        'std' => '',
-                        'group' => '',
+                        'group' => 'Styling',
+                    ),
+
+                    array (
+                        'param_name' => 'text_font_size',
+                        'heading' => __( 'Text Font Size', 'jevelin' ),
+                        'description' => __( 'Enter text font size in PX', 'jevelin' ),
+                        'edit_field_class' => 'vc_col-xs-6',
+                        'type' => 'textfield',
+                        'group' => 'Styling',
+                    ),
+
+                    array (
+                        'param_name' => 'icon_font_size',
+                        'heading' => __( 'Icon Font Size', 'jevelin' ),
+                        'description' => __( 'Enter icon font size in PX', 'jevelin' ),
+                        'edit_field_class' => 'vc_col-xs-6',
+                        'type' => 'textfield',
+                        'group' => 'Styling',
                     ),
 
                 ),
@@ -102,12 +122,22 @@ class vcj_list extends WPBakeryShortCode {
             'list_content' => 'I am list',
             'icon' => 'icon-arrow-right-circle',
             'style' => 'style1',
+            'url' => '',
             'text_color' => '',
-            'icon_color' => ''
+            'icon_color' => '',
+            'text_font_size' => '',
+            'icon_font_size' => '',
         ), $atts ) );
 
         // HTML
         $id = jevelin_rand();
+
+        // Link construct
+        $url = ( $url == '||' ) ? '' : $url;
+        $url = vc_build_link( $url );
+        $a_link = ( isset( $url['url'] ) ) ? $url['url'] : '';
+        $a_title = ( isset( $url['title'] ) && $url['title'] == '' ) ? '' : 'title="'.$url['title'].'"';
+        $a_target = ( isset( $url['target'] ) && $url['target'] == '' ) ? '' : 'target="'.$url['target'].'"';
         ob_start(); ?>
 
             <?php if( $text_color || $icon_color ) : ?>
@@ -123,16 +153,38 @@ class vcj_list extends WPBakeryShortCode {
         					color: <?php echo esc_attr( $icon_color ); ?>!important;
         				}
         			<?php endif; ?>
+
+                    <?php if( $text_font_size ) : ?>
+        				#list-<?php echo esc_attr( $id ); ?> .sh-list-content {
+        					font-size: <?php echo esc_attr( $text_font_size ); ?>!important;
+        				}
+        			<?php endif; ?>
+
+                    <?php if( $icon_font_size ) : ?>
+        				#list-<?php echo esc_attr( $id ); ?> .sh-list-icon i {
+        					font-size: <?php echo esc_attr( $icon_font_size ); ?>!important;
+        				}
+        			<?php endif; ?>
                 </style>
             <?php endif; ?>
 
             <ul class="sh-list sh-list-vc sh-list-<?php echo esc_attr( $style ); ?>" id="list-<?php echo esc_attr( $id ); ?>">
             	<?php if( $list_content ) : ?>
             		<li class="sh-list-item">
-            			<span class="sh-list-icon">
-            				<i class="<?php echo esc_attr( $icon ); ?>"></i>
-            			</span>
-            			<?php echo esc_attr( $list_content ); ?>
+                        <?php if( $a_link ) : ?>
+                            <a href="<?php echo esc_attr( $a_link ); ?>" <?php echo esc_attr( $a_title ); ?> <?php echo esc_attr( $a_target ); ?>>
+                        <?php endif; ?>
+
+                			<span class="sh-list-icon">
+                				<i class="<?php echo esc_attr( $icon ); ?>"></i>
+                			</span>
+                			<span class="sh-list-content">
+                                <?php echo esc_attr( $list_content ); ?>
+                            </span>
+
+                        <?php if( $a_link ) : ?>
+                            </a>
+                        <?php endif; ?>
             		</li>
             	<?php endif; ?>
             </ul>

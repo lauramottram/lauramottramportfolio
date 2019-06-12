@@ -8,7 +8,14 @@ if( is_admin() && function_exists( 'shufflehound_theme' ) && in_array( shuffleho
     	add_menu_page( shufflehound_theme( 1 ).' - Dashboard', shufflehound_theme( 1 ), 'manage_options', 'shufflehound_dashboard', 'shufflehound_dashboard_page', get_template_directory_uri().'/inc/core/assets/'.shufflehound_theme().'.png', 2  );
     	add_submenu_page( 'shufflehound_dashboard', shufflehound_theme( 1 ).' - Dashboard', 'Dashboard ', 'manage_options', 'shufflehound_dashboard', 'shufflehound_dashboard_page' );
         add_submenu_page( 'shufflehound_dashboard', shufflehound_theme( 1 ).' - Theme Settings', 'Theme Settings', 'manage_options', 'themes.php?page=fw-settings' );
-        add_submenu_page( 'shufflehound_dashboard', shufflehound_theme( 1 ).' - Install Demo', 'One Click Install', 'manage_options', 'themes.php?page=pt-one-click-demo-import' );
+
+        $phpversion = phpversion();
+        if( class_exists( 'OCDI_Plugin' ) && version_compare( (float)$phpversion, '5.3.2', '>' ) ) :
+            add_submenu_page( 'shufflehound_dashboard', shufflehound_theme( 1 ).' - Install Demo', 'One Click Install', 'manage_options', 'themes.php?page=pt-one-click-demo-import' );
+        else :
+            add_submenu_page( 'shufflehound_dashboard', shufflehound_theme( 1 ).' - Install Demo', 'One Click Install (install before use)', 'manage_options', 'themes.php?page=tgmpa-install-plugins' );
+        endif;
+
         add_submenu_page( 'shufflehound_dashboard', shufflehound_theme( 1 ).' - Documentation', 'Documentation', 'manage_options', 'shufflehound_documentation', 'shufflehound_documentation_page' );
         add_submenu_page( 'shufflehound_dashboard', shufflehound_theme( 1 ).' - Support Center', 'Support Center', 'manage_options', 'shufflehound_support', 'shufflehound_support_page' );
     }
@@ -56,7 +63,9 @@ if( is_admin() && function_exists( 'shufflehound_theme' ) && in_array( shuffleho
                         </div>
                         <a href="<?php echo admin_url( 'themes.php?page=fw-settings' ); ?>" class="shufflehound-dashboard-item-content">
                             <h3>Theme Settings</h3>
-                            <p>Customize theme colors, sizes, paddings and much more</p>
+                            <p>
+                                <?php esc_html_e( 'Customize theme colors, sizes, paddings and much more', 'jevelin' ); ?>
+                            </p>
                         </a>
                     </div>
                 </div>
@@ -146,7 +155,7 @@ if( is_admin() && function_exists( 'shufflehound_theme' ) && in_array( shuffleho
 
                     <div class="shufflehound-dashboard-title" style="margin-top: 45px;">
                         <h3>Technical Information</h3>
-                        <p>Copy this information when creating a topic in our support forum to shorten resolving time</p>
+                        <p>Copy this information when creating a topic in our <a href="https://support.shufflehound.com/forums/forum/<?php echo esc_attr( shufflehound_theme() ); ?>/" target="_blank">support forum</a> to shorten resolving time</p>
                     </div>
                     <div class="shufflehound-dashboard-item shufflehound-dashboard-item-data">
                         <p>
@@ -161,7 +170,9 @@ if( is_admin() && function_exists( 'shufflehound_theme' ) && in_array( shuffleho
                 <div class="col-md-6">
                     <div class="shufflehound-dashboard-title">
                         <h3>What's New</h3>
-                        <p>Copy this information when creating a topic in our support forum to shorten resolving time</p>
+                        <p>
+                            <?php esc_html_e( 'Latest theme version improvements/changes', 'jevelin' ); ?>
+                        </p>
                     </div>
                     <div class="shufflehound-dashboard-item shufflehound-dashboard-item-data" style="overflow-y: auto; max-height: 355px;">
                         <p style="margin-top: 0;">

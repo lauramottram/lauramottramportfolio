@@ -179,6 +179,17 @@ class vcj_accordion extends WPBakeryShortCode {
     ),
     8 => 
     array (
+      'param_name' => 'border_radius',
+      'heading' => 'Border Radius',
+      'description' => 'Enter border radius in px',
+      'value' => '',
+      'type' => 'textfield',
+      'class' => '',
+      'std' => '',
+      'group' => 'Styling',
+    ),
+    9 => 
+    array (
       'param_name' => 'icon_color',
       'heading' => 'Icon Color',
       'description' => 'Select icon color (not expanded)',
@@ -188,7 +199,7 @@ class vcj_accordion extends WPBakeryShortCode {
       'std' => '#505050',
       'group' => 'Styling',
     ),
-    9 => 
+    10 => 
     array (
       'param_name' => 'text_color',
       'heading' => 'Heading Text Color',
@@ -199,7 +210,7 @@ class vcj_accordion extends WPBakeryShortCode {
       'std' => '#505050',
       'group' => 'Styling',
     ),
-    10 => 
+    11 => 
     array (
       'param_name' => 'background_color',
       'heading' => 'Heading Background Color',
@@ -210,7 +221,7 @@ class vcj_accordion extends WPBakeryShortCode {
       'std' => '#f4f4f4',
       'group' => 'Styling',
     ),
-    11 => 
+    12 => 
     array (
       'param_name' => 'expanded_text_color',
       'heading' => 'Expanded Heading Text Color',
@@ -221,7 +232,7 @@ class vcj_accordion extends WPBakeryShortCode {
       'std' => '#ffffff',
       'group' => 'Styling',
     ),
-    12 => 
+    13 => 
     array (
       'param_name' => 'expanded_background_color',
       'heading' => 'Expanded Heading Background Color',

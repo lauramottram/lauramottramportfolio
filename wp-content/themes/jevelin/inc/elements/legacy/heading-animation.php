@@ -20,10 +20,10 @@ class vcj_heading_animation extends WPBakeryShortCode {
       'param_name' => 'content2',
       'heading' => 'Content',
       'description' => 'Enter content',
-      'value' => 0,
+      'value' => '0px 0px 15px 0px',
       'type' => 'param_group',
       'class' => '',
-      'std' => 0,
+      'std' => '0px 0px 0px 0px',
       'group' => 'General',
       'params' => 
       array (

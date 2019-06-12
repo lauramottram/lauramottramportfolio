@@ -67,6 +67,10 @@
     color: #7b7b7b;
 }
 
+.shufflehound-dashboard-title p a {
+    color: #7b7b7b;
+}
+
 
 /**
  * Item Boxes
@@ -198,6 +202,11 @@
 .shufflehound-notice p {
     margin-bottom: 0px;
     margin-top: 5px;
+}
+
+.shufflehound-notice-important {
+    background-color: #f8ddd3;
+    border: 1px solid #e4bba8;
 }
 
 

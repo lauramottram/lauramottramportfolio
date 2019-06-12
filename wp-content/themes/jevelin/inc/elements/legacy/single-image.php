@@ -283,6 +283,32 @@ class vcj_single_image extends WPBakeryShortCode {
       'std' => 0,
       'group' => 'Animation',
     ),
+    16 => 
+    array (
+      'param_name' => 'inline_element',
+      'heading' => 'Inline Element',
+      'description' => 'Enable for multiple elements to add them in one line Doesnt work in WPbakery page builder front-end mode',
+      'value' => 
+      array (
+        'Disabled' => 'disabled',
+        'Enabled' => 'enabled',
+      ),
+      'type' => 'dropdown',
+      'class' => '',
+      'std' => 'disabled',
+      'group' => 'Position',
+    ),
+    17 => 
+    array (
+      'param_name' => 'margin',
+      'heading' => 'Margin',
+      'description' => 'Enter your custom margin (<b>top right bottom left</b>)',
+      'value' => '0px 0px 15px 0px',
+      'type' => 'textfield',
+      'class' => '',
+      'std' => '0px 0px 0px 0px',
+      'group' => 'Position',
+    ),
   ),
 ) );
     }

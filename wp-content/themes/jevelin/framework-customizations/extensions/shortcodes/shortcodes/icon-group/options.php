@@ -49,16 +49,24 @@ $options = array(
         'desc'    => esc_html__('Choose icon style', 'jevelin'),
         'type'    => 'radio',
         'choices' => array(
-            'style1' => esc_html__('Style 1', 'jevelin'),
-            'style2' => esc_html__('Style 2', 'jevelin'),
-			'style3' => esc_html__('Style 3', 'jevelin'),
+            'style1' => esc_html__('Style 1 (background on hover)', 'jevelin'),
+            'style2' => esc_html__('Style 2 (with line)', 'jevelin'),
+			'style3' => esc_html__('Style 3 (without background color)', 'jevelin'),
+			'style4' => esc_html__('Style 4 (without padding)', 'jevelin'),
         ),
         'value' => 'style1'
     ),
 
 	'icon_color' => array(
 	    'type'  => 'rgba-color-picker',
-	    'label' => esc_html__('Color', 'jevelin'),
+	    'label' => esc_html__('Icon Color', 'jevelin'),
+	    'desc'  => esc_html__('Select icon color or leave blank for default body color', 'jevelin'),
+	    'value' => '',
+	),
+
+	'icon_hover_color' => array(
+	    'type'  => 'rgba-color-picker',
+	    'label' => esc_html__('Icon Hover Color', 'jevelin'),
 	    'desc'  => esc_html__('Select icon color or leave blank for default body color', 'jevelin'),
 	    'value' => '',
 	),

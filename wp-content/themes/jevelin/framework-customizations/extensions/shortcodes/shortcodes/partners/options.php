@@ -103,6 +103,36 @@ $options = array(
 				),
 			),
 
+			'padding'   => array(
+				'type' => 'switch',
+				'label' => esc_html__( 'Vertical Additional padding', 'jevelin' ),
+				'desc'  => esc_html__( 'Enable or disable additional vertical padding', 'jevelin' ),
+				'value' => false,
+				'left-choice' => array(
+					'value' => false,
+					'label' => esc_html__('Off', 'jevelin'),
+				),
+				'right-choice' => array(
+					'value' => true,
+					'label' => esc_html__('On', 'jevelin'),
+				),
+			),
+
+			'padding_horizontal'   => array(
+				'type' => 'switch',
+				'label' => esc_html__( 'Horizontal Additional padding', 'jevelin' ),
+				'desc'  => esc_html__( 'Enable or disable additional horizontal padding', 'jevelin' ),
+				'value' => true,
+				'left-choice' => array(
+					'value' => false,
+					'label' => esc_html__('Off', 'jevelin'),
+				),
+				'right-choice' => array(
+					'value' => true,
+					'label' => esc_html__('On', 'jevelin'),
+				),
+			),
+
 		),
 	),
 

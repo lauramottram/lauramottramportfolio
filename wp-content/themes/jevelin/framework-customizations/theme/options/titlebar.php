@@ -108,6 +108,13 @@ $titlebar_options = array(
 		'value' => 'Blog Post',
 	),
 
+	'titlebar-portfolio-title' => array(
+		'type'  => 'text',
+		'label' => esc_html__('Portfolio Title', 'jevelin'),
+		'desc'  => esc_html__('Enter main title of Portfolio pages', 'jevelin'),
+		'value' => 'Portfolio',
+	),
+
 	'titlebar-blog-woocommerce' => array(
 		'type'  => 'text',
 		'label' => esc_html__('WooCommerce Title', 'jevelin'),
@@ -121,6 +128,40 @@ $titlebar_options = array(
 		'desc'  => esc_html__('Enter main title of 404 page', 'jevelin'),
 		'value' => 'Page could not be found',
 	),
+
+
+
+
+	'titlebar_title1' => array( 'type'  => 'html-full', 'value' => '', 'label' => false, 'html'  =>
+		'<h3 class="hndle sh-custom-group-divder"><span>'.esc_html__('Titlebar Responsive', 'jevelin').'</span></h3>',
+	),
+
+	'titlebar_mobile_spacing' => array(
+	    'type'  => 'radio',
+	    'label' => esc_html__('Mobile Spacing', 'jevelin'),
+	    'desc'  => esc_html__('Choose titlebar mobile spacing', 'jevelin'),
+	    'choices' => array(
+	    	'default' => esc_html__( 'Default', 'jevelin' ),
+	        'compact' => esc_html__( 'Compact', 'jevelin' ),
+	    ),
+	    'value' => 'compact',
+	),
+
+	'titlebar_mobile_title' => array(
+        'type' => 'switch',
+        'label' => esc_html__( 'Mobile Layout Main Title', 'jevelin' ),
+        'desc' => esc_html__( 'Enable or disable main title', 'jevelin' ),
+        'value' => 'on',
+        'left-choice' => array(
+            'value' => 'off',
+            'label' => esc_html__('Off', 'jevelin'),
+        ),
+        'right-choice' => array(
+            'value' => 'on',
+            'label' => esc_html__('On', 'jevelin'),
+        ),
+    ),
+
 );
 
 

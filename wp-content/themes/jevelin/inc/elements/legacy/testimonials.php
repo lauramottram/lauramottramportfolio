@@ -59,6 +59,14 @@ class vcj_testimonials extends WPBakeryShortCode {
           'param_name' => 'avatar',
           'value' => '',
         ),
+        4 => 
+        array (
+          'type' => 'attach_image',
+          'heading' => 'Avater (for Style 4)',
+          'description' => 'Upload avatar',
+          'param_name' => 'avatar2',
+          'value' => '',
+        ),
       ),
     ),
     1 => 

@@ -50,9 +50,41 @@ $max_width_alignment = ( isset( $max_width_alignment ) && $max_width_alignment &
 $max_width_alignment_mobile = ( isset( $max_width_alignment_mobile ) && $max_width_alignment_mobile && in_array( $max_width_alignment, array( 'left', 'center', 'right' ) ) ) ? $max_width_alignment_mobile : '';
 $responsive_border = ( isset( $responsive_border ) ) ? $responsive_border : '';
 $mobile_element_alignment = ( isset( $mobile_element_alignment ) ) ? $mobile_element_alignment : '';
+$css_animation = ( isset( $css_animation ) ) ? $css_animation : '';
+$css_animation_delay = ( isset( $css_animation_delay ) ) ? $css_animation_delay : '';
+$css_animation_speed = ( isset( $css_animation_speed ) ) ? $css_animation_speed : '';
+$overflow = ( isset( $overflow ) ) ? $overflow : 'default';
 $element_id = 'vc_column_'.rand();
 $style_element = '';
 $element_css = '';
+$wrapper_attributes = array();
+$wrapper_attributes_style = '';
+
+/* CSS Animation Style */
+if( $css_animation ) :
+	$css_classes[] = $this->getCSSAnimation( $css_animation );
+endif;
+
+/* CSS Animation Speed */
+if( $css_animation_speed ) :
+	$wrapper_attributes_style.= 'animation-duration: '.floatval( $css_animation_speed ).'s;';
+endif;
+
+/* CSS Animation Custom Delay System */
+if( $css_animation_delay ) :
+	$wrapper_attributes_style.= 'animation-delay: '.floatval( $css_animation_delay ).'s;';
+	$css_classes[] = 'sh-animated';
+
+	$wrapper_attributes[] = 'data-wow-delay="'. $css_animation_delay .'s"';
+	$wrapper_attributes[] = 'data-wow-duration="'. $css_animation_speed .'s"';
+
+	foreach( $css_classes as $key=>$item ) :
+		if( is_numeric( strpos( $item, 'wpb_animate_when_almost_visible') ) ) :
+			$css_classes[$key] = str_replace( 'wpb_animate_when_almost_visible ', '', $css_classes[$key] );
+		endif;
+	endforeach;
+endif;
+
 
 if( $mobile_element_alignment && $mobile_element_alignment != 'disabled' ) :
 	$css_classes[] = 'vc_column_mobile_element_alignment_'.esc_attr( $mobile_element_alignment );
@@ -92,8 +124,12 @@ if( $max_width ) :
 	endif;
 endif;
 
+if( $overflow != 'default' ) :
+	$element_css.= ' .'.$element_id.':not(.vc_parallax):not(.jarallax) { overflow: '.$overflow.'!important; position: relative; }';
+endif;
+
 if( $zindex ) :
-	$wrapper_attributes[] = 'style="z-index: '.$zindex.';"';
+	$wrapper_attributes_style = 'z-index: '.$zindex.';';
 endif;
 
 if( $style_element ) :
@@ -101,22 +137,28 @@ if( $style_element ) :
 endif;
 
 if( $padding ) :
-	$element_css.= '@media (max-width: 800px) {.'.$element_id.' > .vc_column-inner { padding: '.$padding.'!important;}}';
+	$element_css.= '@media (max-width: 800px) { .'.$element_id.' > .vc_column-inner { padding: '.$padding.'!important;}}';
 endif;
 
+
+// Custom Mobile Background Image
 if( $background_image_hover ) :
 	$element_css.= '.'.$element_id.':hover > .vc_column-inner { background-image: url( '.jevelin_get_small_thumb( $background_image_hover, 'large' ).' )!important; } ';
 	$element_css.= '.'.$element_id.' > .vc_column-inner { transition: 0.3s all ease-in-out; }.';
+	$css_classes[] = 'vc_element_responsive_background_image';
 endif;
 
 if( $element_css ) :
 	$element_css = '<style type="text/css">'.$element_css.'</style>';
 	$css_classes[] = $element_id;
 endif;
+
+
+if( $wrapper_attributes_style ) :
+	$wrapper_attributes[] = 'style="'.$wrapper_attributes_style.'"';
+endif;
 /* Jevelin Custom Changes - Ends */
 
-
-$wrapper_attributes = array();
 
 $css_class = preg_replace( '/\s+/', ' ', apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, implode( ' ', array_filter( $css_classes ) ), $this->settings['base'], $atts ) );
 $wrapper_attributes[] = 'class="' . esc_attr( trim( $css_class ) ) . '"';

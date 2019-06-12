@@ -30,6 +30,132 @@ function jevelin_ocdi_import_files() {
             'categories' => array( 'Basic', 'WPbakery' ),
             'revslider' => true,
         ),
+
+
+
+
+
+        array(
+            'name' => 'Event (WPbakery Page Builder)',
+            'slug' => 'event',
+            'image_url' => 'event',
+            'preview_url' => 'home/home-event/',
+            'categories' => array( 'Basic', 'WPbakery', 'Event' ),
+            'revslider' => true,
+        ),
+
+        array(
+            'name' => 'Nature (WPbakery Page Builder)',
+            'slug' => 'nature',
+            'image_url' => 'nature',
+            'preview_url' => 'home/home-nature/',
+            'categories' => array( 'Basic', 'WPbakery', 'Nature' ),
+            'revslider' => true,
+        ),
+
+        array(
+            'name' => 'Fitness (WPbakery Page Builder)',
+            'slug' => 'fitness',
+            'image_url' => 'fitness',
+            'preview_url' => 'home/home-fitness/',
+            'categories' => array( 'Basic', 'WPbakery', 'Fitness' ),
+            'revslider' => true,
+        ),
+
+        array(
+            'name' => 'Corporate (WPbakery Page Builder)',
+            'slug' => 'corporate',
+            'image_url' => 'corporate',
+            'preview_url' => 'corporate/',
+            'categories' => array( 'WPbakery', 'Corporate' ),
+            'revslider' => true,
+        ),
+
+        array(
+            'name' => 'Landing (WPbakery Page Builder)',
+            'slug' => 'landing',
+            'image_url' => 'landing',
+            'preview_url' => 'landing/',
+            'categories' => array( 'WPbakery', 'Landing' ),
+            'revslider' => false,
+        ),
+
+        array(
+            'name' => 'Landing 2 (WPbakery Page Builder)',
+            'slug' => 'landing2',
+            'image_url' => 'landing2',
+            'preview_url' => 'landing2/',
+            'categories' => array( 'WPbakery', 'Landing' ),
+            'revslider' => false,
+        ),
+
+        array(
+            'name' => 'Shop (WPbakery Page Builder)',
+            'slug' => 'shop',
+            'image_url' => 'shop',
+            'preview_url' => 'shop1/',
+            'categories' => array( 'WPbakery', 'Shop' ),
+            'revslider' => true,
+        ),
+
+        array(
+            'name' => 'Autospot (WPbakery Page Builder)',
+            'slug' => 'autospot',
+            'image_url' => 'autospot',
+            'preview_url' => 'autospot/',
+            'categories' => array( 'WPbakery', 'Autospot' ),
+            'revslider' => true,
+        ),
+
+        array(
+            'name' => 'Startup (WPbakery Page Builder)',
+            'slug' => 'startup',
+            'image_url' => 'startup',
+            'preview_url' => 'startup/',
+            'categories' => array( 'WPbakery', 'Startup' ),
+            'revslider' => true,
+        ),
+
+        array(
+            'name' => 'Beauty (WPbakery Page Builder)',
+            'slug' => 'beauty',
+            'image_url' => 'beauty',
+            'preview_url' => 'beauty/',
+            'categories' => array( 'WPbakery', 'Beauty' ),
+            'revslider' => true,
+        ),
+
+
+
+
+
+
+        array(
+            'name' => 'Medical (WPbakery Page Builder)',
+            'slug' => 'medical',
+            'image_url' => 'medical',
+            'preview_url' => '',
+            'categories' => array( 'Medical' ),
+            'revslider' => false,
+        ),
+
+        array(
+            'name' => 'Creative Agency (WPbakery Page Builder)',
+            'slug' => 'creative_agency',
+            'image_url' => 'creative_agency',
+            'preview_url' => 'creative-agency/',
+            'categories' => array( 'Agency' ),
+            'revslider' => true,
+        ),
+
+        array(
+            'name' => 'Digital Media Agency (WPbakery Page Builder)',
+            'slug' => 'digital_agency',
+            'image_url' => 'digital_agency',
+            'preview_url' => 'digital-agency/',
+            'categories' => array( 'Agency' ),
+            'revslider' => true,
+        ),
         /*array(
             'name' => 'Fitness (WPbakery Page Builder)',
             'slug' => 'fitness_home',
@@ -680,10 +806,13 @@ function jevelin_ocdi_after_import_setup( $selected_import ) {
 
 
     // Assign menus to their locations.
+    $demo_name_clean = str_replace('(WPbakery)', '', $demo_name);
+
     $main_menu1 = get_term_by( 'name', 'Header - '.$demo_name, 'nav_menu' );
-    $main_menu2 = get_term_by( 'name', 'Menu 1', 'nav_menu' );
-    $main_menu3 = get_term_by( 'name', 'Header Navigation', 'nav_menu' );
-    $main_menu4 = get_term_by( 'name', 'Header', 'nav_menu' );
+    $main_menu2 = get_term_by( 'name', 'Header - '.$demo_name_clean, 'nav_menu' );
+    $main_menu3 = get_term_by( 'name', 'Menu 1', 'nav_menu' );
+    $main_menu4 = get_term_by( 'name', 'Header Navigation', 'nav_menu' );
+    $main_menu5 = get_term_by( 'name', 'Header', 'nav_menu' );
     if( isset( $main_menu1->term_id ) && $main_menu1->term_id > 0 ) :
         set_theme_mod( 'nav_menu_locations', array( 'header' => $main_menu1->term_id, ));
     elseif( isset( $main_menu2->term_id ) && $main_menu2->term_id > 0 ) :
@@ -692,16 +821,19 @@ function jevelin_ocdi_after_import_setup( $selected_import ) {
         set_theme_mod( 'nav_menu_locations', array( 'header' => $main_menu3->term_id, ));
     elseif( isset( $main_menu4->term_id ) && $main_menu4->term_id > 0 ) :
         set_theme_mod( 'nav_menu_locations', array( 'header' => $main_menu4->term_id, ));
+    elseif( isset( $main_menu5->term_id ) && $main_menu5->term_id > 0 ) :
+        set_theme_mod( 'nav_menu_locations', array( 'header' => $main_menu5->term_id, ));
     endif;
 
 
     // Assign front page
     update_option( 'show_on_front', 'page' );
-    $front_page_id1 = get_page_by_title( 'Home - '.$demo_name );
-    $front_page_id2 = get_page_by_title( 'Home '.$demo_name );
-    $front_page_id3 = get_page_by_title( 'Home Basic' );
-    $front_page_id4 = get_page_by_title( 'Your ocean of posts' );
-    $front_page_id5 = get_page_by_title( 'Home' );
+    $front_page_id1 = get_page_by_title( 'Home - '.$demo_name_clean );
+    $front_page_id2 = get_page_by_title( 'Home - '.$demo_name );
+    $front_page_id3 = get_page_by_title( 'Home '.$demo_name );
+    $front_page_id4 = get_page_by_title( 'Home Basic' );
+    $front_page_id5 = get_page_by_title( 'Your ocean of posts' );
+    $front_page_id6 = get_page_by_title( 'Home' );
     if( isset( $front_page_id1->ID ) && $front_page_id1->ID > 0 ) :
         update_option( 'page_on_front', $front_page_id1->ID );
     elseif( isset( $front_page_id2->ID ) && $front_page_id2->ID > 0 ) :
@@ -712,6 +844,8 @@ function jevelin_ocdi_after_import_setup( $selected_import ) {
         update_option( 'page_on_front', $front_page_id4->ID );
     elseif( isset( $front_page_id5->ID ) && $front_page_id5->ID > 0 ) :
         update_option( 'page_on_front', $front_page_id5->ID );
+    elseif( isset( $front_page_id6->ID ) && $front_page_id6->ID > 0 ) :
+        update_option( 'page_on_front', $front_page_id6->ID );
     endif;
 
 
@@ -746,6 +880,14 @@ function jevelin_ocdi_after_import_setup( $selected_import ) {
                 );
 
                 $i++;
+            endif;
+
+            if( is_numeric( strpos( $item->url, "[SH-NAV-LINK]") ) ) :
+                update_post_meta(
+                    $item->ID,
+                    '_menu_item_url',
+                    str_replace( '[SH-NAV-LINK]', get_home_url().'/#', $item->url )
+                );
             endif;
         endforeach;
 
@@ -811,3 +953,10 @@ if ( ! function_exists( 'jevelin_prefix_after_content_import_execution' ) ) {
   }
   add_action('pt-ocdi/after_content_import_execution', 'jevelin_prefix_after_content_import_execution', 3, 99 );
 }
+
+
+/* Add custom notices */
+function jevelin_ocdi_plugin_intro_text( $default_text ) {
+	return $default_text.shufflehound_ocdi_demo_notice();
+}
+add_filter( 'pt-ocdi/plugin_intro_text', 'jevelin_ocdi_plugin_intro_text' );

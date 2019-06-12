@@ -104,16 +104,31 @@ class vcj_heading_simple extends WPBakeryShortCode {
     ),
     6 => 
     array (
-      'param_name' => 'margin',
-      'heading' => 'Margin',
-      'description' => 'Enter your custom margin (<b>top right bottom left</b>)',
-      'value' => '0px 0px 15px 0px',
+      'param_name' => 'link',
+      'heading' => 'Link',
+      'description' => 'Enter heading link',
+      'value' => '',
       'type' => 'textfield',
       'class' => '',
-      'std' => '0px 0px 0px 0px',
-      'group' => 'General',
+      'std' => '',
+      'group' => 'Link',
     ),
     7 => 
+    array (
+      'param_name' => 'link_target',
+      'heading' => 'Link Target',
+      'description' => 'Enter heading link',
+      'value' => 
+      array (
+        'Open in current window' => '_self',
+        'Open in new tab' => '_blank',
+      ),
+      'type' => 'dropdown',
+      'class' => '',
+      'std' => '_self',
+      'group' => 'Link',
+    ),
+    8 => 
     array (
       'param_name' => 'font',
       'heading' => 'Font Famility',
@@ -130,7 +145,7 @@ class vcj_heading_simple extends WPBakeryShortCode {
       'std' => 'heading',
       'group' => 'Typography',
     ),
-    8 => 
+    9 => 
     array (
       'param_name' => 'weight',
       'heading' => 'Font Weight',
@@ -150,7 +165,7 @@ class vcj_heading_simple extends WPBakeryShortCode {
       'std' => '700',
       'group' => 'Typography',
     ),
-    9 => 
+    10 => 
     array (
       'param_name' => 'italic',
       'heading' => 'Font Style Italic',
@@ -165,7 +180,7 @@ class vcj_heading_simple extends WPBakeryShortCode {
       'std' => false,
       'group' => 'Typography',
     ),
-    10 => 
+    11 => 
     array (
       'param_name' => 'size',
       'heading' => 'Font Size',
@@ -188,7 +203,7 @@ class vcj_heading_simple extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Typography',
     ),
-    11 => 
+    12 => 
     array (
       'param_name' => 'desktop_size',
       'heading' => 'Font Size (desktop)',
@@ -204,7 +219,7 @@ class vcj_heading_simple extends WPBakeryShortCode {
         'value' => 'custom',
       ),
     ),
-    12 => 
+    13 => 
     array (
       'param_name' => 'responsive_size',
       'heading' => 'Font Size (mobile and tablet)',
@@ -220,7 +235,7 @@ class vcj_heading_simple extends WPBakeryShortCode {
         'value' => 'custom',
       ),
     ),
-    13 => 
+    14 => 
     array (
       'param_name' => 'line_height',
       'heading' => 'Line height',
@@ -231,7 +246,7 @@ class vcj_heading_simple extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Typography',
     ),
-    14 => 
+    15 => 
     array (
       'param_name' => 'letter_spacing',
       'heading' => 'Letter spacing',
@@ -242,7 +257,7 @@ class vcj_heading_simple extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Typography',
     ),
-    15 => 
+    16 => 
     array (
       'param_name' => 'animation',
       'heading' => 'Animation',
@@ -299,7 +314,7 @@ class vcj_heading_simple extends WPBakeryShortCode {
       'std' => 'none',
       'group' => 'Animation',
     ),
-    16 => 
+    17 => 
     array (
       'param_name' => 'animation_speed',
       'heading' => 'Animation Speed',
@@ -310,7 +325,7 @@ class vcj_heading_simple extends WPBakeryShortCode {
       'std' => 2,
       'group' => 'Animation',
     ),
-    17 => 
+    18 => 
     array (
       'param_name' => 'animation_delay',
       'heading' => 'Animation Delay',
@@ -320,6 +335,32 @@ class vcj_heading_simple extends WPBakeryShortCode {
       'class' => '',
       'std' => 0,
       'group' => 'Animation',
+    ),
+    19 => 
+    array (
+      'param_name' => 'inline_element',
+      'heading' => 'Inline Element',
+      'description' => 'Enable for multiple elements to add them in one line Doesnt work in WPbakery page builder front-end mode',
+      'value' => 
+      array (
+        'Disabled' => 'disabled',
+        'Enabled' => 'enabled',
+      ),
+      'type' => 'dropdown',
+      'class' => '',
+      'std' => 'disabled',
+      'group' => 'Position',
+    ),
+    20 => 
+    array (
+      'param_name' => 'margin',
+      'heading' => 'Margin',
+      'description' => 'Enter your custom margin (<b>top right bottom left</b>)',
+      'value' => '0px 0px 15px 0px',
+      'type' => 'textfield',
+      'class' => '',
+      'std' => '0px 0px 0px 0px',
+      'group' => 'Position',
     ),
   ),
 ) );

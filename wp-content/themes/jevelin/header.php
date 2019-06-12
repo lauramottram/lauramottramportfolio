@@ -2,6 +2,7 @@
 /**
  * Header
  */
+
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -54,29 +55,40 @@
 			endif;
 
 			/* Header Template */
-			$header_template = ( jevelin_option( 'header_layout' ) != '1' ) ? jevelin_option( 'header_layout' ) : '1';
-			$header_template_id = intval( str_replace( 'header-', '', $header_template ) );
+			$header_builder_id = 0;
+			$header_page_template = ( jevelin_post_option( jevelin_page_id(), 'header_layout', 'default' ) != 'default' ) ? jevelin_post_option( jevelin_page_id(), 'header_layout', 'default' ) : 'default';
+			$header_page_template_id = intval( str_replace( 'header-', '', $header_page_template ) );
+			if( $header_page_template != 'default' && is_numeric( strpos( $header_page_template, 'header-' ) ) && $header_page_template_id && get_post_status( $header_page_template_id ) == 'publish' ) :
+				$header_builder_id = $header_page_template_id;
+			else :
+				$header_template = ( jevelin_option( 'header_layout' ) != '1' ) ? jevelin_option( 'header_layout' ) : '1';
+				$header_template_id = intval( str_replace( 'header-', '', $header_template ) );
+
+				if( $header_template != 'default' && is_numeric( strpos( $header_template, 'header-' ) ) && $header_template_id && get_post_status( $header_template_id ) == 'publish' ) :
+					$header_builder_id = $header_template_id;
+				endif;
+			endif;
 		?>
 
 
 		<?php if( !in_array( get_post_type( get_the_ID() ), array( 'shufflehound_header', 'shufflehound_footer' ) ) ) : ?>
 			<?php if( jevelin_post_option( jevelin_page_id(), 'header', 'on' ) != 'off' ) : ?>
-				<?php if( strpos( $header_template, 'header-' ) !== false && get_post_status( $header_template_id ) == 'publish' ) : ?>
+				<?php if( $header_builder_id > 0 ) : ?>
 
 					<div class="sh-header-template">
-						<div class="container">
-							<?php if( current_user_can( 'manage_options' ) ) : ?>
-			                    <a target="_blank" href="<?php echo admin_url( 'post.php?vc_action=vc_inline&post_id='.intval( $header_template_id ).'&post_type=shufflehound_header' ); ?>" class="sh-header-builder-edit">
-			                        <i class="ti-pencil"></i>
-			                        <?php esc_html_e( 'Edit Header', 'jevelin' ); ?>
-			                    </a>
-			                <?php endif; ?>
-							<?php
-								Vc_Manager::getInstance()->vc()->addShortcodesCustomCss( $header_template_id );
-							    $the_post = get_post( $header_template_id );
-							    echo do_shortcode( apply_filters( 'the_content', $the_post->post_content ) );
-							?>
-						</div>
+						<?php if( current_user_can( 'manage_options' ) ) : ?>
+		                    <a target="_blank" href="<?php echo admin_url( 'post.php?vc_action=vc_inline&post_id='.intval( $header_builder_id ).'&post_type=shufflehound_header' ); ?>" class="sh-header-builder-edit">
+		                        <i class="ti-pencil"></i>
+		                        <?php esc_html_e( 'Edit Header', 'jevelin' ); ?>
+		                    </a>
+		                <?php endif;
+							if( class_exists( 'Vc_Manager' ) ) :
+								Vc_Manager::getInstance()->vc()->addShortcodesCustomCss( $header_builder_id );
+								$header_builder_id = ( function_exists( 'pll_get_post' ) ) ? pll_get_post( $header_builder_id ) : $header_builder_id;
+							    $the_post = get_post( $header_builder_id );
+							    echo do_shortcode( $the_post->post_content );
+							endif;
+						?>
 					</div>
 
 				<?php else : ?>
@@ -105,15 +117,16 @@
 
 
 		<?php
-			$class = '';
-			if( jevelin_post_option( jevelin_page_id(), 'page_layout', 'default' ) != 'full' ) {
+			if( is_search() ) {
+				$class = ' sh-page-layout-default';
+			} else if( jevelin_post_option( jevelin_page_id(), 'page_layout', 'default' ) != 'full' ) {
 				$class = ' sh-page-layout-default';
 			} else if( jevelin_post_option( jevelin_page_id(), 'page_layout', 'default' ) == 'full' ) {
 				$class = ' sh-page-layout-full';
 			}
 
-			if ( jevelin_post_option( jevelin_page_id(), 'page_layout', 'default' ) == 'default' ||
-			   ( jevelin_post_option( jevelin_page_id(), 'page_layout', 'default' ) == 'global_default' && jevelin_option( 'global_page_layout' ) == 'default' ) ) :
+			if( !is_search() && ( jevelin_post_option( jevelin_page_id(), 'page_layout', 'default' ) == 'default' ||
+			   ( jevelin_post_option( jevelin_page_id(), 'page_layout', 'default' ) == 'global_default' && jevelin_option( 'global_page_layout' ) == 'default' ) ) ) :
 				$post = get_post();
 				if( $post && preg_match( '/vc_row/', $post->post_content ) ) :
 				    $class = '';
@@ -150,10 +163,18 @@
 
 
 				<div class="content-container<?php echo esc_attr( $class ); ?>">
-				<?php if( jevelin_post_option( jevelin_page_id(), 'page_layout', 'default' ) != 'full' ) : ?>
+				<?php
+				if( is_singular( 'fw-portfolio' ) ) :
+					$page_layout = jevelin_option( 'portfolio_single_page_layout', 'default' );
+				elseif( jevelin_post_option( jevelin_page_id(), 'page_layout', 'default' ) != 'global_default' ) :
+					$page_layout = jevelin_post_option( jevelin_page_id(), 'page_layout', 'default' );
+				else :
+					$page_layout = jevelin_option( 'page_layout', 'default' );
+				endif;
+
+				if( $page_layout != 'full' ) : ?>
 					<div class="container entry-content">
 				<?php endif; ?>
-
 
 				<?php
 					/* Inlcude white borders option HTML */

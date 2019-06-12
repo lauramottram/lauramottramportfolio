@@ -5,6 +5,7 @@
 $id = ( isset( $atts['id'] ) ) ? $atts['id'] : $id_rand;
 $class = '';
 $class.= ( isset( $atts['padding'] ) && $atts['padding'] == true ) ? ' sh-partners-carousel-additional-padding' : '';
+$class.= ( isset( $atts['padding_horizontal'] ) && $atts['padding_horizontal'] == false ) ? ' sh-partners-carousel-additional-horizontal-padding-remove' : '';
 $autoplay = ( isset( $atts['autoplay'] ) && $atts['autoplay'] > 0 ) ? ( $atts['autoplay'] * 1000 ) : 5000;
 $partners = ( isset( $atts['partners'] ) ) ? $atts['partners'] : '';
 $columns = ( isset( $atts['columns'] ) ) ? $atts['columns'] : '5';

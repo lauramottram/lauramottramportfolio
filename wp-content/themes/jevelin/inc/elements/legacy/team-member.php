@@ -243,6 +243,22 @@ class vcj_team_member extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Styling',
     ),
+    19 => 
+    array (
+      'param_name' => 'lazy',
+      'heading' => 'Lazy Loading',
+      'description' => 'Choose to enable to disable lazy loading',
+      'value' => 
+      array (
+        'Default (from theme settings)' => 'default',
+        'Disabled' => 'disabled',
+        'Enabled' => 'enabled',
+      ),
+      'type' => 'dropdown',
+      'class' => '',
+      'std' => 'default',
+      'group' => 'Lazy Loading',
+    ),
   ),
 ) );
     }

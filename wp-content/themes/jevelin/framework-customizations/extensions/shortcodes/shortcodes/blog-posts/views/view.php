@@ -6,6 +6,8 @@ if ( ! defined( 'FW' ) ) { die( 'Forbidden' ); }
 $id = ( isset( $atts['id'] ) ) ? $atts['id'] : $id_rand;
 $style = ( isset( $atts['style'] ) ) ? $atts['style'] : 'masonry';
 $columns = ( isset( $atts['columns'] ) ) ? $atts['columns'] : '3';
+$pagination = ( isset( $atts['pagination'] ) &&  $atts['pagination'] == 'on' ) ? true : false;
+$categories_switch = ( isset( $atts['categories_switch'] ) &&  $atts['categories_switch'] == 'on' ) ? true : false;
 $elements = jevelin_option( 'post_elements' );
 $class = '';
 $class2 = '';
@@ -13,6 +15,7 @@ $categories_type = 'category__in';
 $categories_query = array();
 $tags_type = 'tag__in';
 $tags_query = array();
+$this_category = ( isset($_GET['category']) && $_GET['category'] ) ? esc_attr($_GET['category']) : '';
 
 
 /* Get Categories */
@@ -112,6 +115,39 @@ endif;
 
 
 <div class="sh-recent-posts<?php echo esc_attr( $class ); ?>" id="recent-posts-<?php echo esc_attr( $id ); ?>" data-id="<?php echo intval( $columns ); ?>">
+
+	<?php /* Categories Switch */ ?>
+	<?php if( $categories_switch ) :
+			$categories_tabs = get_terms( array(
+			    'taxonomy' => 'category',
+			    'hide_empty' => false,
+				'fields' => 'ids'
+			));
+		?>
+
+		<div class="sh-filter-blog sh-filter-container sh-portfolio-filter-style3 sh-portfolio-filter-style4">
+			<div class="sh-filter">
+				<span class="sh-filter-item<?php echo ( !$this_category ) ? ' active' : ''; ?>">
+					<a href="<?php echo esc_url( get_the_permalink() )?>" class="sh-filter-item-content">
+						<?php esc_attr_e( 'All', 'jevelin' ); ?>
+					</a>
+				</span>
+
+				<?php foreach( $categories_tabs as $category_id ) :
+					$category = get_term_by('id', $category_id, 'category');
+					if( $category->count > 0 ) : ?>
+
+					<span class="sh-filter-item<?php echo ( $this_category == $category->slug ) ? ' active' : ''; ?>">
+						<a href="<?php echo esc_url( add_query_arg( 'category', esc_attr( $category->slug ), get_the_permalink() ) ); ?>" class="sh-filter-item-content">
+							<?php echo esc_attr( $category->name ); ?>
+						</a>
+					</span>
+
+				<?php endif; endforeach; ?>
+			</div>
+		</div>
+	<?php endif; ?>
+
 	<div class="sh-group blog-list blog-style-<?php echo ( $style != 'minimalistic' ) ? esc_attr( $style ) : 'grid minimalistic'; echo esc_attr( $class2 ); ?>">
 		<?php
 			set_query_var( 'style', $style );
@@ -124,10 +160,50 @@ endif;
 			$orderby = ( isset($atts['order_by']) && $atts['order_by'] ) ? esc_attr( $atts['order_by'] ) : 'post_date';
 			$order = ( isset($atts['order']) && $atts['order'] ) ? esc_attr( $atts['order'] ) : 'desc';
 
-			$posts = new WP_Query( array( 'post_type' => 'post', 'posts_per_page' => $limit, $categories_type => $categories_query, $tags_type => $tags_query, 'orderby' => $orderby, 'order' => $order ) );
+
+			// Pagination
+			if( $pagination ) :
+				if( is_front_page() ) :
+					$page = (get_query_var('page')) ? get_query_var('page') : 1;
+				else :
+					$page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+				endif;
+
+
+				// Category Page
+				if( $this_category ) {
+					$categories_type = 'category_name';
+					$categories_query = esc_attr( $this_category );
+				}
+
+
+				// Pagination Select
+				$posts = new WP_Query( array(
+					'post_type' => 'post',
+					'posts_per_page' => $limit,
+					$categories_type => $categories_query,
+					$tags_type => $tags_query,
+					'orderby' => $orderby,
+					'order' => $order,
+
+					// Page
+					'paged' => $page
+				));
+			else :
+				$posts = new WP_Query( array(
+					'post_type' => 'post',
+					'posts_per_page' => $limit,
+					$categories_type => $categories_query,
+					$tags_type => $tags_query,
+					'orderby' => $orderby,
+					'order' => $order
+				));
+			endif;
+
+
 			if( $posts->have_posts() ) :
 				while ( $posts->have_posts() ) : $posts->the_post();
-					if( $style == 'grid' || $style == 'masonry' || $style == 'masonry masonry-shadow' || $style == 'masonry masonry2' || $style == 'minimalistic' ) :
+					if( in_array( $style, array( 'masonry masonry2', 'masonry masonry-shadow', 'masonry', 'grid', 'mix masonry2', 'large', 'medium', 'small', 'minimalistic' ) ) ) :
 
 						if( get_post_format() ) :
 							get_template_part( 'content', 'format-'.get_post_format() );
@@ -299,4 +375,8 @@ endif;
 			endif;
 		?>
 	</div>
+
+	<?php if( $pagination ) : ?>
+		<?php jevelin_pagination( $posts ); ?>
+	<?php endif; ?>
 </div>

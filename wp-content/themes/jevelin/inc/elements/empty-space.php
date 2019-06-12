@@ -20,7 +20,7 @@ class vcj_empty_space extends WPBakeryShortCode {
                 'base' => 'vcj_empty_space',
                 'description' => __('Blank space with custom height', 'jevelin'),
                 'category' => __('Jevelin Elements', 'jevelin'),
-                'icon' => get_template_directory_uri().'/img/VC_ES_icon.svg',
+                'icon' => get_template_directory_uri().'/img/builder-icon.png',
                 'params' => array(
 
                     array(
@@ -39,9 +39,6 @@ class vcj_empty_space extends WPBakeryShortCode {
                         'heading' => __( 'Height (tablet and mobile)', 'jevelin' ),
                         'description' => __( 'Enter empty space height in tablet and mobile (Note: CSS measurement units allowed).', 'jevelin' ),
                         'type' => 'textfield',
-                        'holder' => 'div',
-                        'class' => '',
-                        'admin_label' => true,
                     ),
 
                     array(
@@ -49,9 +46,6 @@ class vcj_empty_space extends WPBakeryShortCode {
                         'heading' => __( 'Element ID', 'jevelin' ),
                         'description' => __( 'Enter element ID (Note: make sure it is unique and valid according to <a href="https://www.w3schools.com/tags/att_global_id.asp" target="_blank">w3c specification</a>).', 'jevelin' ),
                         'type' => 'textfield',
-                        'holder' => 'div',
-                        'class' => '',
-                        'admin_label' => true,
                     ),
 
                     array(
@@ -59,9 +53,6 @@ class vcj_empty_space extends WPBakeryShortCode {
                         'heading' => __( 'Extra class name', 'jevelin' ),
                         'description' => __( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'jevelin' ),
                         'type' => 'textfield',
-                        'holder' => 'div',
-                        'class' => '',
-                        'admin_label' => true,
                     ),
 
             		array(
@@ -89,6 +80,7 @@ class vcj_empty_space extends WPBakeryShortCode {
         ), $atts ) );
 
         // HTML
+        $element_id = $id;
         $id = 'sh-empty-space-'.jevelin_rand();
         $element_class = array();
         $element_class[] = $id;
@@ -106,7 +98,7 @@ class vcj_empty_space extends WPBakeryShortCode {
                 </style>
             <?php endif; ?>
 
-            <div <?php echo $id ? 'id="'.$id.'" ' : ''; ?>class="sh-empty-space vc_empty_space <?php echo implode( ' ', $element_class ); ?>" style="height: <?php echo ( is_numeric( $height ) ) ? $height.'px' : $height; ?>">
+            <div <?php echo $element_id ? 'id="'.$element_id.'" ' : ''; ?>class="sh-empty-space vc_empty_space <?php echo implode( ' ', $element_class ); ?>" style="height: <?php echo ( is_numeric( $height ) ) ? $height.'px' : $height; ?>">
                 <span class="vc_empty_space_inner"></span>
             </div>
 

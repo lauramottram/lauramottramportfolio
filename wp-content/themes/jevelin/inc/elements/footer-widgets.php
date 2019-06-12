@@ -20,7 +20,7 @@ class vcj_footer_widgets extends WPBakeryShortCode {
                 'base' => 'vcj_footer_widgets',
                 'description' => __('Add widgets in WPbakery based footer', 'jevelin'),
                 'category' => __('Jevelin Elements', 'jevelin'),
-                'icon' => get_template_directory_uri().'/img/VC_ES_icon.svg',
+                'icon' => get_template_directory_uri().'/img/builder-icon.png',
                 'params' => array(
 
                     array (
@@ -66,6 +66,36 @@ class vcj_footer_widgets extends WPBakeryShortCode {
                         'description' => __( 'Enter heading size (Note: CSS measurement units allowed).', 'jevelin' ),
                         'type' => 'textfield',
                         'std' => '',
+                    ),
+
+                    array (
+                        'param_name' => 'heading_font_weight',
+                        'heading' => 'Heading Font Weight',
+                        'description' => 'Choose heading font weight',
+                        'value' => array (
+                            'Default' => 'default',
+                            'Extra Light' => 200,
+                            'Light' => 300,
+                            'Regular' => 400,
+                            'Semi-Bold' => 600,
+                            'Bold' => 700,
+                            'Extra Bold' => 900,
+                        ),
+                        'type' => 'dropdown',
+                        'class' => '',
+                        'std' => '700',
+                    ),
+
+                    array (
+                        'param_name' => 'headings_status',
+                        'heading' => 'Show Headings',
+                        'description' => __( 'Enable or disable footer headings', 'jevelin' ),
+                        'value' => array (
+                            'Disabled' => 'disabled',
+                            'Enabled' => 'enabled',
+                        ),
+                        'type' => 'dropdown',
+                        'std' => 'enabled',
                     ),
 
                     array(
@@ -162,6 +192,8 @@ class vcj_footer_widgets extends WPBakeryShortCode {
             'css' => 'none',
             'text_size' => '',
             'heading_size' => '',
+            'heading_font_weight' => 'default',
+            'headings_status' => 'enabled',
             'line_height' => '',
             'source' => 'footer_widgets',
             'preset' => 'dark',
@@ -231,6 +263,12 @@ class vcj_footer_widgets extends WPBakeryShortCode {
         ob_start(); ?>
 
             <style media="screen">
+                <?php if( $headings_status == 'disabled' ) : ?>
+                #<?php echo esc_attr( $id ); ?> .widget-title {
+                    display: none;
+                }
+                <?php endif; ?>
+
                 <?php if( $text_size ) : ?>
                     #<?php echo esc_attr( $id ); ?> {
                         font-size: <?php echo esc_attr( $text_size ); ?>;
@@ -247,6 +285,13 @@ class vcj_footer_widgets extends WPBakeryShortCode {
                     #<?php echo esc_attr( $id ); ?> h3,
                     #<?php echo esc_attr( $id ); ?> h3.widget-title {
                         font-size: <?php echo esc_attr( $heading_size ); ?>;
+                    }
+                <?php endif; ?>
+
+                <?php if( $heading_font_weight != 'default' ) : ?>
+                    #<?php echo esc_attr( $id ); ?> h3,
+                    #<?php echo esc_attr( $id ); ?> h3.widget-title {
+                        font-weight: <?php echo esc_attr( $heading_font_weight ); ?>;
                     }
                 <?php endif; ?>
 
@@ -288,6 +333,8 @@ class vcj_footer_widgets extends WPBakeryShortCode {
                 .sh-footer-builder-widgets {
                     position: relative;
                     margin-bottom: -25px;
+                    margin-left: -15px;
+                    margin-right: -15px;
                 }
 
                 .sh-footer-builder-widgets > div {
@@ -299,20 +346,32 @@ class vcj_footer_widgets extends WPBakeryShortCode {
                     margin-right: -4px;
                 }
 
-                .sh-footer-builder-widgets-2columns > div {
-                    width: 50%;
+                @media (min-width: 800px) {
+                    .sh-footer-builder-widgets-2columns > div {
+                        width: 50%;
+                    }
+
+                    .sh-footer-builder-widgets-3columns > div {
+                        width: 33.3%;
+                    }
+
+                    .sh-footer-builder-widgets-4columns > div {
+                        width: 25%;
+                    }
+
+                    .sh-footer-builder-widgets-5columns > div {
+                        width: 20%;
+                    }
                 }
 
-                .sh-footer-builder-widgets-3columns > div {
-                    width: 33.3%;
-                }
+                @media (max-width: 800px) {
+                    .sh-footer-builder-widgets > div:not(:last-child) {
+                        margin-bottom: 40px;
+                    }
 
-                .sh-footer-builder-widgets-4columns > div {
-                    width: 25%;
-                }
-
-                .sh-footer-builder-widgets-5columns > div {
-                    width: 20%;
+                    .sh-footer-builder-widgets > div:last-child {
+                        margin-bottom: 0px;
+                    }
                 }
             </style>
 

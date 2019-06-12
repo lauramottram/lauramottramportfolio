@@ -70,22 +70,26 @@ $options = array(
                         'value' => 'default',
                         'label' => esc_html__('Header Layout', 'jevelin'),
                         'desc'  => esc_html__('Choose main header layout', 'jevelin'),
-                        'choices' => array(
-                            'default' => esc_html__( 'Default (from theme options)', 'jevelin' ),
-                            '1' => esc_html__( 'Header 1', 'jevelin' ),
-                            '2' => esc_html__( 'Header 2', 'jevelin' ),
-                            '3' => esc_html__( 'Header 3', 'jevelin' ),
-                            '4' => esc_html__( 'Header 4', 'jevelin' ),
-                            '5' => esc_html__( 'Header 5', 'jevelin' ),
-                            '6' => esc_html__( 'Header 6 (side navigation)', 'jevelin' ),
-                            '7' => esc_html__( 'Header 7 (side navigation)', 'jevelin' ),
-							'8' => esc_html__( 'Header 8', 'jevelin' ),
-							'9' => esc_html__( 'Header 9', 'jevelin' ),
-							'10' => esc_html__( 'Header 10', 'jevelin' ),
-                            'left-1' => esc_html__( 'Left Header 1', 'jevelin' ),
-                            'left-2' => esc_html__( 'Left Header 2', 'jevelin' ),
-                        ),
+                        'choices' => array_merge( array( 'default' => esc_html__( 'Default (from theme options)', 'jevelin' ) ), jevelin_get_headers() ),
                     ),
+
+
+					'page_title1' => array( 'type' => 'html-full', 'value' => '', 'label' => false, 'html'  =>
+						'<h3><span>
+							'.esc_html__( 'Header Builder (beta)', 'gillion' ).'
+						</span></h3>',
+					),
+
+					'header_above_content' => array(
+						'type' => 'select',
+						'label' => esc_html__( 'Above Content', 'jevelin' ),
+						'desc' => esc_html__( 'Can be useful when using transparent background to place it above content like a slider (will be applied only when viewing actual pages)', 'jevelin' ),
+						'value' => 'disabled',
+						'choices' => array(
+                            'disabled' => esc_html__( 'Disabled', 'jevelin' ),
+                            'enabled' => esc_html__( 'Enabled', 'jevelin' ),
+                        ),
+					),
 
                     /*'header_style' => array(
                         'type'  => 'select',
@@ -97,6 +101,13 @@ $options = array(
                             'light' => esc_html__( 'Light (Header + Titlebar)', 'jevelin' ),
                         ),
                     ),*/
+
+
+					'page_title2' => array( 'type' => 'html-full', 'value' => '', 'label' => false, 'html'  =>
+						'<h3><span>
+							'.esc_html__( 'Header Classic (from Theme Settings)', 'gillion' ).'
+						</span></h3>',
+					),
 
                     'header_style' => array(
                         'type'  => 'multi-picker',

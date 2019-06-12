@@ -183,9 +183,9 @@ class vcj_heading extends WPBakeryShortCode {
     ),
     11 => 
     array (
-      'param_name' => 'font',
-      'heading' => 'Font Famility',
-      'description' => 'Select font famility',
+      'param_name' => 'font_bold',
+      'heading' => 'Font Famility (headings and bold)',
+      'description' => 'Select font famility for bold tags',
       'value' => 
       array (
         'Heading' => 'heading',
@@ -200,9 +200,29 @@ class vcj_heading extends WPBakeryShortCode {
     ),
     12 => 
     array (
-      'param_name' => 'font_bold',
-      'heading' => 'Font Famility (bold tags)',
-      'description' => 'Select font famility for bold tags',
+      'param_name' => 'font_bold_weight',
+      'heading' => 'Font Weight (headings and bold)',
+      'description' => 'Select font weight',
+      'value' => 
+      array (
+        'Default (from theme settings)' => 'default',
+        'Extra Light' => 200,
+        'Light' => 300,
+        'Normal' => 400,
+        'Semi-bold' => 600,
+        'Bold' => 700,
+        'Extra Bold' => 900,
+      ),
+      'type' => 'dropdown',
+      'class' => '',
+      'std' => 'default',
+      'group' => 'Typography',
+    ),
+    13 => 
+    array (
+      'param_name' => 'font',
+      'heading' => 'Font Famility (regular text)',
+      'description' => 'Select font famility',
       'value' => 
       array (
         'Heading' => 'heading',
@@ -215,10 +235,10 @@ class vcj_heading extends WPBakeryShortCode {
       'std' => 'heading',
       'group' => 'Typography',
     ),
-    13 => 
+    14 => 
     array (
       'param_name' => 'weight',
-      'heading' => 'Font Weight',
+      'heading' => 'Font Weight (regular text)',
       'description' => 'Select font weight',
       'value' => 
       array (
@@ -235,7 +255,7 @@ class vcj_heading extends WPBakeryShortCode {
       'std' => '400',
       'group' => 'Typography',
     ),
-    14 => 
+    15 => 
     array (
       'param_name' => 'size',
       'heading' => 'Font Size',
@@ -258,7 +278,7 @@ class vcj_heading extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Typography',
     ),
-    15 => 
+    16 => 
     array (
       'param_name' => 'desktop_size',
       'heading' => 'Font Size (desktop)',
@@ -274,7 +294,7 @@ class vcj_heading extends WPBakeryShortCode {
         'value' => 'custom',
       ),
     ),
-    16 => 
+    17 => 
     array (
       'param_name' => 'responsive_size',
       'heading' => 'Font Size (mobile and tablet)',
@@ -290,7 +310,7 @@ class vcj_heading extends WPBakeryShortCode {
         'value' => 'custom',
       ),
     ),
-    17 => 
+    18 => 
     array (
       'param_name' => 'line_height',
       'heading' => 'Line height',
@@ -301,7 +321,7 @@ class vcj_heading extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Typography',
     ),
-    18 => 
+    19 => 
     array (
       'param_name' => 'letter_spacing',
       'heading' => 'Letter spacing',
@@ -312,7 +332,7 @@ class vcj_heading extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Typography',
     ),
-    19 => 
+    20 => 
     array (
       'param_name' => 'animation',
       'heading' => 'Animation',
@@ -369,7 +389,7 @@ class vcj_heading extends WPBakeryShortCode {
       'std' => 'none',
       'group' => 'Animation',
     ),
-    20 => 
+    21 => 
     array (
       'param_name' => 'animation_speed',
       'heading' => 'Animation Speed',
@@ -380,7 +400,7 @@ class vcj_heading extends WPBakeryShortCode {
       'std' => 2,
       'group' => 'Animation',
     ),
-    21 => 
+    22 => 
     array (
       'param_name' => 'animation_delay',
       'heading' => 'Animation Delay',

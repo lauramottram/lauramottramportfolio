@@ -5,10 +5,11 @@ if( !function_exists( 'jevelin_shortcode_heading_css' ) ) :
 		$id = ( $id_rand ) ? $id_rand : $atts['id'];
 		$margin = ( isset( $atts['margin'] ) ) ? $atts['margin'] : '';
 		$line_height = ( isset( $atts['line_height'] ) ) ? $atts['line_height'] : '';
-		$weight = ( isset( $atts['weight'] ) ) ? $atts['weight'] : '700';
+		$weight = ( isset( $atts['weight'] ) ) ? $atts['weight'] : '400';
+		$font_bold_weight = ( isset( $atts['font_bold_weight'] ) ) ? $atts['font_bold_weight'] : 'default';
 		$letter_spacing = ( isset( $atts['letter_spacing'] ) ) ? $atts['letter_spacing'] : '';
 		$font = ( isset( $atts['font'] ) ) ? $atts['font'] : 'heading';
-		$font_bold = ( isset( $atts['font_bold'] ) ) ? $atts['font_bold'] : 'body';
+		$font_bold = ( isset( $atts['font_bold'] ) ) ? $atts['font_bold'] : 'heading';
 		$hover_color = ( isset( $atts['hover_color'] ) ) ? $atts['hover_color'] : '';
 		$hover_element = ( isset( $atts['hover_element'] ) ) ? $atts['hover_element'] : '';
 		$text_color = ( isset( $atts['text_color'] ) ) ? $atts['text_color'] : '';
@@ -50,6 +51,15 @@ if( !function_exists( 'jevelin_shortcode_heading_css' ) ) :
 				}
 			<?php endif; ?>
 
+
+			<?php if( $font_bold_weight != 'default' ) : ?>
+				#heading-<?php echo esc_attr( $id ); ?> .sh-heading-content strong,
+				#heading-<?php echo esc_attr( $id ); ?> .sh-heading-additional-text strong {
+					font-weight: <?php echo esc_attr( $font_bold_weight ); ?>!important;
+				}
+			<?php endif; ?>
+
+
 			#heading-<?php echo esc_attr( $id ); ?> .sh-heading-content {
 				<?php if( $size_atts['desktop_size'] ) : ?>
 					font-size: <?php echo jevelin_addpx( $size_atts['desktop_size'] ); ?>;
@@ -85,7 +95,7 @@ if( !function_exists( 'jevelin_shortcode_heading_css' ) ) :
 					.vc_row:hover #heading-<?php echo esc_attr( $id ); ?> .sh-heading-content,
 					.sh-section:hover #heading-<?php echo esc_attr( $id ); ?> .sh-heading-content {
 				<?php elseif( $hover_element == 'column') : ?>
-					.vc_column_container:hover #heading-<?php echo esc_attr( $id ); ?> .sh-heading-content,
+					.vc_column_container:hover > div > div > #heading-<?php echo esc_attr( $id ); ?> .sh-heading-content,
 					.sh-column:hover #heading-<?php echo esc_attr( $id ); ?> .sh-heading-content {
 				<?php else : ?>
 					#heading-<?php echo esc_attr( $id ); ?>:hover .sh-heading-content {
@@ -113,13 +123,13 @@ if( !function_exists( 'jevelin_shortcode_heading_css' ) ) :
 			<?php if( $font_bold == 'additional1' || $font_bold == 'additional2' || $font_bold == 'body' ) : ?>
 				#heading-<?php echo esc_attr( $id ); ?> .sh-heading-content strong,
 				#heading-<?php echo esc_attr( $id ); ?> .sh-heading-additional-text strong {
-
 					<?php if( $font_bold == 'additional1' ) : ?>
 						font-family: '<?php echo jevelin_option_value('additional_font1','family'); ?>'!important;
 					<?php elseif( $font_bold == 'additional2' ) : ?>
 						font-family: '<?php echo jevelin_option_value('additional_font2','family'); ?>'!important;
 					<?php elseif( $font_bold == 'body' ) : ?>
 						font-family: '<?php echo jevelin_option_value('styling_body','family'); ?>'!important;
+					<?php else : ?>
 					<?php endif; ?>
 
 				}

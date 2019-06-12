@@ -3,7 +3,7 @@
  * Notice option HTML
  */
 
-if( defined('FW') && jevelin_option( 'notice_status', true ) == true ) :
+if( defined('FW') && jevelin_option( 'notice_status', false ) == true ) :
 ?>
 
 	<div class="sh-page-notice">

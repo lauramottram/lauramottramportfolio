@@ -8,17 +8,19 @@ $style = ( isset($atts['placeholder_icon_style']) && $atts['placeholder_icon_sty
 $class = ( isset($atts['custom_class']) && $atts['custom_class'] ) ? ' '.esc_attr( $atts['custom_class'] ) : '';
 $url = ( isset($atts['url'] ) ) ? $atts['url'] : '';
 $placement = ( isset($atts['placement'] ) ) ? $atts['placement'] : '';
-
+$placeholder_icon = ( isset($atts['placeholder_icon'] ) ) ? $atts['placeholder_icon'] : 'on';
 
 $image = '';
-if( isset( $atts['image'] ) && !is_array( $atts['image'] ) ) :
+if( jevelin_is_url( $atts['image'] ) ) :
+	$image = $atts['image'];
+elseif( isset( $atts['image'] ) && !is_array( $atts['image'] ) ) :
 	$image = jevelin_get_small_thumb( $atts['image'], 'large' );
 elseif( isset( $atts['image'] ) ) :
 	$image = jevelin_get_image( $atts['image'] );
 endif;
 
 if( $image ) :
-	if( !isset( $atts['id'] ) && $atts['placeholder_icon'] ) :
+	if( !isset( $atts['id'] ) && $placeholder_icon == 'on' ) :
 		$atts['placeholder_icon'] = 'on';
 	endif;
 

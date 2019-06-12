@@ -205,12 +205,18 @@ $options = array(
 				)
 			),
 
-			'margin'   => array(
-				'label' => esc_html__( 'Margin', 'jevelin' ),
-				'desc'  => wp_kses( __( 'Enter your custom margin (<b>top right bottom left</b>)', 'jevelin' ), jevelin_allowed_html() ),
+			'height'   => array(
+				'label' => esc_html__( 'Button Height', 'jevelin' ),
+				'desc'  => wp_kses( __( 'Enter your custom button height (with px)', 'jevelin' ), jevelin_allowed_html() ),
 				'type'  => 'text',
-				'value' => '0px 0px 15px 0px',
-				'help'  => esc_html__( 'Example: 0px 0px 15px 0px', 'jevelin' ),
+				'help'  => esc_html__( 'Example: 20px', 'jevelin' ),
+			),
+
+			'leftright_padding'   => array(
+				'label' => esc_html__( 'Button Left/Right Padding', 'jevelin' ),
+				'desc'  => wp_kses( __( 'Enter your custom button left/right padding (with px)', 'jevelin' ), jevelin_allowed_html() ),
+				'type'  => 'text',
+				'help'  => esc_html__( 'Example: 30px', 'jevelin' ),
 			),
 
 		),
@@ -346,6 +352,17 @@ $options = array(
 			    'label' => esc_html__('Animation Delay', 'jevelin'),
 			    'desc'  => esc_html__('Choose animation delay (seconds', 'jevelin'),
 			),
+
+		),
+	),
+
+	'position_box' => array(
+		'title'   => esc_html__( 'Position', 'jevelin' ),
+		'type'    => 'tab',
+		'options' => array(
+
+			'inline_element' => jevelin_element_inline_option(),
+			'margin' => jevelin_element_margin_option(),
 
 		),
 	),

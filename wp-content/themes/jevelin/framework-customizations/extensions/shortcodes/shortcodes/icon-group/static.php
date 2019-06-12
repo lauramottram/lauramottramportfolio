@@ -4,13 +4,18 @@ if( !function_exists( 'jevelin_shortcode_icon_group_css' ) ) :
 		$atts = ( $id_rand ) ? $data : jevelin_shortcode_options( $data, 'icon-group' );
 		$id = ( $id_rand ) ? $id_rand : $atts['id'];
 		$icon_color = ( isset( $atts['icon_color'] ) ) ? $atts['icon_color'] : '';
+		$icon_hover_color = ( isset( $atts['icon_hover_color'] ) ) ? $atts['icon_hover_color'] : '';
 		ob_start(); ?>
 
 			<?php if( $icon_color ) : ?>
 				#icon-group-<?php echo esc_attr( $id ); ?> .sh-icon-group-item i {
-					<?php if( $icon_color ) : ?>
-						color: <?php echo esc_attr( $icon_color ); ?>;
-					<?php endif; ?>
+					color: <?php echo esc_attr( $icon_color ); ?>;
+				}
+			<?php endif; ?>
+
+			<?php if( $icon_hover_color ) : ?>
+				#icon-group-<?php echo esc_attr( $id ); ?> .sh-icon-group-item-container:hover i {
+					color: <?php echo esc_attr( $icon_hover_color ); ?>;
 				}
 			<?php endif; ?>
 

@@ -41,12 +41,12 @@ $general_options = array(
 	    ),
 	    'picker' => array(
 	        'page_layout' => array(
-	            'label'   => esc_html__('Whole Page Layout', 'jevelin'),
+	            'label'   => esc_html__('Boxed Layout', 'jevelin'),
 	            'desc'    => esc_html__('Choose main page layout. Boxed layout will not work together with left header', 'jevelin'),
 	            'type'    => 'radio',
 	            'choices' => array(
-	                'full' => esc_html__('Full Width', 'jevelin'),
-	                'boxed' => esc_html__('Boxed Layout', 'jevelin'),
+	                'full' => esc_html__( 'Disabled', 'jevelin' ),
+	                'boxed' => esc_html__( 'Enabled', 'jevelin' ),
 	            ),
 	        )
 	    ),
@@ -252,6 +252,18 @@ $general_options = array(
 	    'label' => esc_html__('Google Maps API Key', 'jevelin'),
 	    'desc'  => esc_html__('Google Maps requires API Key to work correctly. Therefore please create an application in Google Console and add key here.', 'jevelin').'</a>',
 	),
+
+	'theme_options_stored' => array(
+	    'type'  => 'radio',
+	    'value' => 'file',
+	    'label' => esc_html__('Themes Options Stored In', 'jevelin'),
+	    'desc'  => esc_html__('Choose how theme options are stored', 'jevelin'),
+	    'choices' => array(
+	        'file' => esc_html__( 'Stored in CSS file (inside wp-content/uploads) - faster', 'jevelin' ),
+	        'inline' => esc_html__( 'Generated on fly in HTML HEAD tag as dynamic CSS - slower', 'jevelin' ),
+	    ),
+	),
+
 );
 
 

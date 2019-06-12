@@ -71,4 +71,14 @@ if ( ! defined( 'FW' ) ) { die( 'Forbidden' ); }
 	<div class="sh-column-wrapper">
 		<?php echo do_shortcode($content); ?>
 	</div>
+
+
+	<?php /* Preload background image on hover */ ?>
+	<?php if( jevelin_get_image( $atts['background_image_hover'] ) ) : ?>
+		<div class="preload">
+			<img src="<?php echo esc_url( jevelin_get_image( $atts['background_image_hover'] ) ); ?>" />
+		</div>
+	<?php endif; ?>
+
+
 </div>

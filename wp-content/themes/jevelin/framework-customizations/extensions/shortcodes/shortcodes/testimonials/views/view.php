@@ -24,6 +24,11 @@ endif;
 if( $autoplay == 'on' ) :
 	$autoplay_data = ' data-autoplay="'.intval( $autoplay_atts['animation_speed'] * 1000 ).'"';
 endif; */
+
+$slidesToShow = ($style == 'style4' || $style == 'style5') ? '3' : '1';
+if( is_array( $testimonials ) && count( $testimonials ) < $slidesToShow && count( $testimonials ) > 0 ) :
+	$slidesToShow = count( $testimonials );
+endif;
 ?>
 
 <script type="text/javascript">
@@ -38,7 +43,7 @@ jQuery(document).ready(function ($) {
 		arrows: true,
 		infinite: true,
 		speed: 500,
-		slidesToShow: <?php echo ($style == 'style4' || $style == 'style5') ? '3' : '1'; ?>,
+		slidesToShow: <?php echo $slidesToShow; ?>,
 		fade: <?php echo ($style != 'style4' && $style != 'style5') ? 'true' : 'false'; ?>,
 		responsive: [
 			{
@@ -131,12 +136,17 @@ jQuery(document).ready(function ($) {
 		<?php else : ?>
 			<?php foreach( $testimonials as $item ) :
 				$item_avatar = ( isset( $item['avatar'] ) ) ? $item['avatar'] : '';
+				$item_avatar2 = ( isset( $item['avatar2'] ) ) ? $item['avatar2'] : '';
 				$item_name =  ( isset( $item['name'] ) ) ? $item['name'] : '';
 				$item_job = ( isset( $item['job'] ) ) ? $item['job'] : '';
 				$item_quote = ( isset( $item['quote'] ) ) ? $item['quote'] : '';
 
 				if( $item_avatar ) :
 					$item_avatar = ( $item_avatar && !is_array( $item_avatar ) ) ? jevelin_get_small_thumb( $item_avatar, 'large' ) : jevelin_get_image( $item_avatar );
+				endif;
+
+				if( $item_avatar2 ) :
+					$item_avatar2 = ( $item_avatar2 && !is_array( $item_avatar2 ) ) ? jevelin_get_small_thumb( $item_avatar2, 'large' ) : jevelin_get_image( $item_avatar2 );
 				endif;
 			?>
 				<div class="sh-testimonials-item">
@@ -145,6 +155,10 @@ jQuery(document).ready(function ($) {
 
 						<div class="sh-testimonials-item-container" style="background-image: url(<?php echo esc_url( $item_avatar ); ?>);">
 							<div class="sh-testimonials-item-top">
+								<div class="sh-testimonials-avatar2">
+									<img src="<?php echo esc_url( $item_avatar2 ); ?>" alt="">
+								</div>
+
 								<div class="sh-testimonials-name">
 									<h3><?php echo esc_attr( $item_name ); ?></h3>
 								</div>

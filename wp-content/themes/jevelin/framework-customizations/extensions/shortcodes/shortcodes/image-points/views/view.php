@@ -12,10 +12,20 @@ $points = ( isset( $atts['points'] ) ) ? $atts['points'] : '';
 if( isset( $points ) && $points && !is_array( $points ) ) :
 	$points = vc_param_group_parse_atts( $points );
 endif;
+
+
+// Get Image
+if( jevelin_is_url( $atts['image'] ) ) :
+	$image = $atts['image'];
+elseif( $atts['image'] && !is_array( $atts['image'] ) ) :
+	$image = jevelin_get_small_thumb( $atts['image'], $source );
+else :
+	$image = jevelin_get_image_size( $atts['image'], $source );
+endif;
 ?>
 
 <div id="image-points-<?php echo esc_attr( $id ); ?>" class="sh-image-points sh-image-points-<?php echo esc_attr( $style ); ?>">
-	<img class="sh-image-url" src="<?php echo ( $atts['image'] && !is_array( $atts['image'] ) ) ? jevelin_get_small_thumb($atts['image'],$source) : jevelin_get_image_size($atts['image'],$source); ?>" alt="" />
+	<img class="sh-image-url" src="<?php echo esc_url( $image ); ?>" alt="" />
 	<?php
 	$i = 0;
 	if( is_array( $points ) && count( $points ) ) :

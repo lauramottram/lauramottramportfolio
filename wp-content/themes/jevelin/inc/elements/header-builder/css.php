@@ -12,7 +12,41 @@ $css['.sh-header-builder-topbar i'] = array(
     'font-size' => $topbar_icon_size,
 );
 
-// var_dump( $css );
+
+
+// Preset
+if( $header_preset == 'dark-transparent' ) :
+    $colors = (object)array(
+        'header_nav_text_color' => '#7e7e7e',
+        'header_background_color' => 'transparent',
+    );
+elseif( $header_preset == 'light-transparent' ) :
+    $colors = (object)array(
+        'header_nav_text_color' => '#ffffff',
+        'header_background_color' => 'transparent',
+    );
+elseif( $header_preset == 'light' ) :
+    $colors = (object)array(
+        'header_nav_text_color' => '#ffffff',
+        'header_background_color' => '#23282d',
+    );
+else :
+    $colors = (object)array(
+        'header_nav_text_color' => '#7e7e7e',
+        'header_background_color' => '#ffffff',
+    );
+endif;
+
+
+// Colors
+if( $header_nav_text_color ) :
+    $colors->header_nav_text_color = $header_nav_text_color;
+endif;
+
+if( $header_background_color ) :
+    $colors->header_background_color = $header_background_color;
+endif;
+
 ?>
 
 
@@ -127,13 +161,16 @@ $css['.sh-header-builder-topbar i'] = array(
 
 #<?php echo esc_attr( $id ); ?> .sh-header-builder-main ul.sh-nav > li > a {
     color: <?php echo esc_attr( $colors->header_nav_text_color ); ?>!important;
-    letter-spacing: <?php echo esc_attr( $header_nav_letter_spacing ); ?>!important;
+
+    <?php if( $header_nav_letter_spacing ) : ?>
+        letter-spacing: <?php echo esc_attr( $header_nav_letter_spacing ); ?>!important;
+    <?php endif; ?>
+
     <?php if( $header_nav_font_family == 'heading' ) : ?>
         font-family: '<?php echo jevelin_option_value('styling_headings','family'); ?>'!important;
     <?php endif; ?>
-    <?php if( $header_nav_font_weight != '400' ) : ?>
-        font-weight: <?php echo intval( $header_nav_font_weight ); ?>!important;
-    <?php endif; ?>
+
+    font-weight: <?php echo intval( $header_nav_font_weight ); ?>!important;
 }
 
 #<?php echo esc_attr( $id ); ?> .sh-header-builder-main ul.sh-nav > li:hover > a {
@@ -152,9 +189,22 @@ $css['.sh-header-builder-topbar i'] = array(
     color: <?php echo esc_attr( $header_icon_color ); ?>
 }
 
+#<?php echo esc_attr( $id ); ?> .sh-header-builder-mobile .c-hamburger span,
+#<?php echo esc_attr( $id ); ?> .sh-header-builder-mobile .c-hamburger span::before,
+#<?php echo esc_attr( $id ); ?> .sh-header-builder-mobile .c-hamburger span::after {
+    background-color: <?php echo esc_attr( $header_icon_color ); ?>;
+}
+
 #<?php echo esc_attr( $id ); ?> i.sh-header-builder-main-element-icon:hover {
     color: <?php echo esc_attr( $header_icon_hover_color ); ?>
 }
+
+#<?php echo esc_attr( $id ); ?> .sh-header-builder-mobile .c-hamburger:hover span,
+#<?php echo esc_attr( $id ); ?> .sh-header-builder-mobile .c-hamburger:hover span::before,
+#<?php echo esc_attr( $id ); ?> .sh-header-builder-mobile .c-hamburger:hover span::after {
+    background-color: <?php echo esc_attr( $header_icon_hover_color ); ?>;
+}
+
 
 <?php if( $header_cart_bubble_color ) : ?>
     #<?php echo esc_attr( $id ); ?> .sh-header-builder-main-element-cart .cart-icon span {
@@ -217,8 +267,12 @@ $css['.sh-header-builder-topbar i'] = array(
 
 /* Header - Sticky */
 <?php if( $header_sticky == 'enabled' ) : ?>
-    #<?php echo esc_attr( $id ); ?> .sh-header-builder-main-sticky-fixed .sh-header-builder-main-container {
+    #<?php echo esc_attr( $id ); ?> .sh-header-builder-main-sticky-fixed .sh-header-builder-main-container,
+    #<?php echo esc_attr( $id ); ?> .sh-header-builder-mobile-sticky-fixed {
         background-color: <?php echo esc_attr( $sticky_background_color ); ?>;
+    }
+
+    #<?php echo esc_attr( $id ); ?> .sh-header-builder-main-sticky-fixed .sh-header-builder-main-container {
         min-height: <?php echo esc_attr( $sticky_height ); ?>;
     }
 
@@ -229,7 +283,66 @@ $css['.sh-header-builder-topbar i'] = array(
     #<?php echo esc_attr( $id ); ?> .sh-header-builder-main-sticky-fixed ul.sh-nav > li:hover > a {
         color: <?php echo esc_attr( $sticky_nav_text_hover_color ); ?>!important;
     }
+
+    <?php if( $sticky_icon_color ) : ?>
+        #<?php echo esc_attr( $id ); ?> .sh-header-builder-main-sticky-fixed i.sh-header-builder-main-element-icon {
+            color: <?php echo esc_attr( $sticky_icon_color ); ?>!important;
+        }
+
+        #<?php echo esc_attr( $id ); ?> .sh-header-builder-mobile-sticky-fixed .c-hamburger:not(:hover) span,
+        #<?php echo esc_attr( $id ); ?> .sh-header-builder-mobile-sticky-fixed .c-hamburger:not(:hover) span::before,
+        #<?php echo esc_attr( $id ); ?> .sh-header-builder-mobile-sticky-fixed .c-hamburger:not(:hover) span::after {
+            background-color: <?php echo esc_attr( $sticky_icon_color ); ?>!important;
+        }
+    <?php endif; ?>
 <?php endif; ?>
+
+
+
+
+/* Header - Buttons */
+<?php if( $header_buttons ) : ?>
+
+    #<?php echo esc_attr( $id ); ?> .sh-header-builder-main-element-button-item {
+        font-weight: <?php echo esc_attr( $header_buttons_weight ); ?>;
+
+        <?php if( $header_buttons_radius ) : ?>
+            border-radius: <?php echo jevelin_addpx( $header_buttons_radius ); ?>;
+        <?php endif; ?>
+
+        <?php if( $header_buttons_leftright_padding ) : ?>
+            padding-left: <?php echo jevelin_addpx( $header_buttons_leftright_padding ); ?>;
+            padding-right: <?php echo jevelin_addpx( $header_buttons_leftright_padding ); ?>;
+        <?php endif; ?>
+
+        <?php if( $header_buttons_height ) : ?>
+            line-height: <?php echo jevelin_addpx( $header_buttons_height ); ?>;
+        <?php endif; ?>
+
+        <?php if( $header_button_text_color ) : ?>
+            color: <?php echo esc_attr( $header_button_text_color ); ?>;
+        <?php endif; ?>
+
+        <?php if( $header_button_background_color ) : ?>
+            background-color: <?php echo esc_attr( $header_button_background_color ); ?>;
+        <?php endif; ?>
+    }
+
+
+    #<?php echo esc_attr( $id ); ?> .sh-header-builder-main-element-button-item:hover,
+    #<?php echo esc_attr( $id ); ?> .sh-header-builder-main-element-button-item:focus {
+        <?php if( $header_button_text_hover_color ) : ?>
+            color: <?php echo esc_attr( $header_button_text_hover_color ); ?>;
+        <?php endif; ?>
+
+        <?php if( $header_button_background_hover_color ) : ?>
+            background-color: <?php echo esc_attr( $header_button_background_hover_color ); ?>;
+        <?php endif; ?>
+    }
+
+<?php endif; ?>
+
+
 
 
 /* Header - Search */
@@ -280,6 +393,7 @@ $css['.sh-header-builder-topbar i'] = array(
 }
 
 #<?php echo esc_attr( $id ); ?> .sh-header-builder-mobile {
+    border-bottom: 1px solid <?php echo esc_attr( $mobile_border_color ); ?>;
     background-color: <?php echo esc_attr( $mobile_background_color ); ?>
 }
 #<?php echo esc_attr( $id ); ?> i.sh-header-builder-mobile-element-icon {

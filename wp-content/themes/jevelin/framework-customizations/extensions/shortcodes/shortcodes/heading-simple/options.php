@@ -70,16 +70,36 @@ $options = array(
 	            'value' => 'heading'
 	        ),
 
-			'margin'   => array(
-				'label' => esc_html__( 'Margin', 'jevelin' ),
-				'desc'  => wp_kses( __( 'Enter your custom margin (<b>top right bottom left</b>)', 'jevelin' ), jevelin_allowed_html() ),
+		),
+	),
+
+
+	'likn_options' => array(
+		'title'   => esc_html__( 'Link', 'jevelin' ),
+		'type'    => 'tab',
+		'options' => array(
+
+			'link'   => array(
+				'label' => esc_html__( 'Link', 'jevelin' ),
+				'desc'  => wp_kses( __( 'Enter heading link', 'jevelin' ), jevelin_allowed_html() ),
 				'type'  => 'text',
-				'value' => '0px 0px 15px 0px',
-				'help'  => esc_html__( 'Example: 0px 0px 15px 0px', 'jevelin' ),
+				'value' => '',
+			),
+
+			'link_target'   => array(
+				'label' => esc_html__( 'Link Target', 'jevelin' ),
+				'desc'  => wp_kses( __( 'Enter heading link', 'jevelin' ), jevelin_allowed_html() ),
+				'type'    => 'select',
+	            'choices' => array(
+	                '_self' => esc_html__('Open in current window', 'jevelin'),
+	                '_blank' => esc_html__('Open in new tab', 'jevelin'),
+	            ),
+	            'value' => '_self',
 			),
 
 		),
 	),
+
 
 	'typography_options' => array(
 		'title'   => esc_html__( 'Typography', 'jevelin' ),
@@ -277,6 +297,17 @@ $options = array(
 			    'label' => esc_html__('Animation Delay', 'jevelin'),
 			    'desc'  => esc_html__('Choose animation delay (seconds', 'jevelin'),
 			),
+
+		),
+	),
+
+	'position_box' => array(
+		'title'   => esc_html__( 'Position', 'jevelin' ),
+		'type'    => 'tab',
+		'options' => array(
+
+			'inline_element' => jevelin_element_inline_option(),
+			'margin' => jevelin_element_margin_option(),
 
 		),
 	),

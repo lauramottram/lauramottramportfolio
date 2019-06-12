@@ -101,8 +101,8 @@ class vcj_partners extends WPBakeryShortCode {
     4 => 
     array (
       'param_name' => 'padding',
-      'heading' => 'Additional padding',
-      'description' => 'Enable or disable additional padding',
+      'heading' => 'Vertical Additional padding',
+      'description' => 'Enable or disable additional vertical padding',
       'value' => 
       array (
         'Off' => false,
@@ -111,6 +111,21 @@ class vcj_partners extends WPBakeryShortCode {
       'type' => 'dropdown',
       'class' => '',
       'std' => false,
+      'group' => 'Styling',
+    ),
+    5 => 
+    array (
+      'param_name' => 'padding_horizontal',
+      'heading' => 'Horizontal Additional padding',
+      'description' => 'Enable or disable additional horizontal padding',
+      'value' => 
+      array (
+        'Off' => false,
+        'On' => true,
+      ),
+      'type' => 'dropdown',
+      'class' => '',
+      'std' => true,
       'group' => 'Styling',
     ),
   ),

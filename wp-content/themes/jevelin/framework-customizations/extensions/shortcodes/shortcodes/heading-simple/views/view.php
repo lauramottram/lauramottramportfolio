@@ -6,6 +6,11 @@ if ( ! defined( 'FW' ) ) { die( 'Forbidden' ); }
 $id = ( isset( $atts['id'] ) ) ? $atts['id'] : $id_rand;
 $heading = ( isset( $atts['heading'] ) ) ? $atts['heading'] : 'h2';
 $alignment = ( isset( $atts['alignment'] ) ) ? $atts['alignment'] : 'center';
+$inline_element = ( isset( $atts['inline_element'] ) && $atts['inline_element'] == 'enabled' ) ? ' sh-element-inline' : false;
+
+$link = ( isset( $atts['link'] ) ) ? $atts['link'] : '';
+$link_target = ( isset( $atts['link_target'] ) ) ? $atts['link_target'] : '_self';
+
 $animated = ( isset( $atts['animation'] ) && $atts['animation'] != 'none' ) ? ' sh-animated '. $atts['animation'] : '';
 $animated_delay = ( $animated && $atts['animation_delay'] ) ? 'data-wow-delay="'. $atts['animation_delay'] .'s"' : '';
 $animated_speed = ( $animated && $atts['animation_speed'] ) ? 'data-wow-duration="'. $atts['animation_speed'] .'s"' : '';
@@ -27,8 +32,16 @@ endif;
 $size_class = ' size-'.$size;
 ?>
 
-<div class="sh-heading<?php echo esc_attr( $animated ); ?>" id="heading-<?php echo esc_attr( $id ); ?>"<?php echo wp_kses_post( $animated_speed ) . wp_kses_post( $animated_delay ); ?>>
-	<<?php echo esc_attr( $heading ); ?> class="sh-heading-content<?php echo esc_attr( $size_class ); ?> text-<?php echo esc_attr( $alignment ); ?>">
-		<?php echo jevelin_remove_p( $content ); ?>
-	</<?php echo esc_attr( $heading ); ?>>
+<div class="sh-heading <?php echo $inline_element; ?> <?php echo esc_attr( $animated ); ?>" id="heading-<?php echo esc_attr( $id ); ?>"<?php echo wp_kses_post( $animated_speed ) . wp_kses_post( $animated_delay ); ?>>
+	<div class="sh-element-margin">
+
+		<?php echo $link ? '<a href="'.esc_url( $link ).'" target="'.esc_attr( $link_target ).'">' : ''; ?>
+
+			<<?php echo esc_attr( $heading ); ?> class="sh-heading-content<?php echo esc_attr( $size_class ); ?> text-<?php echo esc_attr( $alignment ); ?>">
+				<?php echo jevelin_remove_p( $content ); ?>
+			</<?php echo esc_attr( $heading ); ?>>
+
+		<?php echo $link ? '</a>' : ''; ?>
+
+	</div>
 </div>

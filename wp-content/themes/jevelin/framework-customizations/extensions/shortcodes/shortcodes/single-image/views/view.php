@@ -4,16 +4,14 @@ if ( ! defined( 'FW' ) ) { die( 'Forbidden' ); }
 /* Single Image HTML
 /*-----------------------------------------------------------------------------------*/
 $id = ( isset( $atts['id'] ) ) ? $atts['id'] : $id_rand;
+$inline_element = ( isset( $atts['inline_element'] ) && $atts['inline_element'] == 'enabled' ) ? ' sh-element-inline' : false;
+
 $animated = ( isset( $atts['animation'] ) && $atts['animation'] != 'none' ) ? ' sh-animated '. $atts['animation'] : '';
 $animated_delay = ( $animated && $atts['animation_delay'] ) ? 'data-wow-delay="'. $atts['animation_delay'] .'s"' : '';
 $animated_speed = ( $animated && $atts['animation_speed'] ) ? 'data-wow-duration="'. $atts['animation_speed'] .'s"' : '';
 
 /* Lazy Loading */
-if( isset( $atts['lazy'] ) && $atts['lazy'] == 'default' ) :
-	$lazy = ( jevelin_option('lazy_loading') == 'enabled' ) ? 1 : 0;
-else :
-	$lazy = ( isset( $atts['lazy'] ) && $atts['lazy'] == 'enabled' ) ? 1 : 0;
-endif;
+$lazy = jevelin_element_lazy_option( $atts );
 
 /* Overlay */
 if( !isset( $atts['id'] ) ) :
@@ -95,76 +93,101 @@ if( $lazy ) :
 		$ratio = ( $image_height / $image_width ) * 100;
 	endif;
 endif;
+
+
+// Get image
+if( isset( $wpbakery_image ) && jevelin_is_url( $wpbakery_image ) ) :
+	$image_url = $wpbakery_image;
+	$image_alt = '';
+elseif( jevelin_get_image( $atts['image'] ) ) :
+	$image_url = jevelin_get_image_size( $atts['image'], $size );
+	$image_alt = jevelin_get_image_alt( $atts['image'] );
+else :
+	$image_url = '';
+	$image_alt = '';
+endif;
+
+
+// Get hover image
+if( isset( $wpbakery_image_hover ) && jevelin_is_url( $wpbakery_image_hover ) ) :
+	$image_hover_url = $wpbakery_image_hover;
+elseif( jevelin_get_image( $atts['image_hover'] ) ) :
+	$image_hover_url = jevelin_get_image_size( $atts['image_hover'], $size );
+else :
+	$image_hover_url = '';
+endif;
 ?>
 
-<div id="single-image-<?php echo esc_attr( $id ); ?>" class="sh-single-image<?php echo esc_attr( $class ) . esc_attr( $animated ); ?>"<?php echo wp_kses_post( $animated_speed ) . wp_kses_post( $animated_delay ); ?>>
-	<?php if( isset($atts['popover']) && $atts['popover']) : ?>
-		<div class="sh-popover-mini"><?php echo esc_attr( $atts['popover'] ); ?></div>
-	<?php endif; ?>
+<div id="single-image-<?php echo esc_attr( $id ); ?>" class="sh-single-image <?php echo $inline_element; ?> <?php echo esc_attr( $class ) . esc_attr( $animated ); ?>"<?php echo wp_kses_post( $animated_speed ) . wp_kses_post( $animated_delay ); ?>>
+	<div class="sh-element-margin">
+		<?php if( isset($atts['popover']) && $atts['popover']) : ?>
+			<div class="sh-popover-mini"><?php echo esc_attr( $atts['popover'] ); ?></div>
+		<?php endif; ?>
 
-	<?php if( $lazy && $image_width > 0 ) : ?>
-		<div class="sh-image-lazy-loading" style="max-width: <?php echo esc_attr( $image_width ); ?>px;">
-	<?php endif; ?>
+		<?php if( $lazy && $image_width > 0 ) : ?>
+			<div class="sh-image-lazy-loading" style="max-width: <?php echo esc_attr( $image_width ); ?>px;">
+		<?php endif; ?>
 
-		<div class="sh-single-image-container<?php echo ( $lazy) ? ' sh-single-image-container-lazy' : ''; ?>">
-			<?php if( jevelin_get_image( $atts['image'] ) ) : ?>
-				<?php if( $atts['url'] ) : ?>
-					<a href="<?php echo esc_url( $atts['url'] ); ?>">
-				<?php elseif( $atts['lightbox'] == true ) : ?>
-					<a href="<?php echo esc_url( jevelin_get_image( $atts['image'] ) ); ?>" rel="lightbox">
+			<div class="sh-single-image-container<?php echo ( $lazy) ? ' sh-single-image-container-lazy' : ''; ?>">
+				<?php if( $image_url ) : ?>
+					<?php if( $atts['url'] ) : ?>
+						<a href="<?php echo esc_url( $atts['url'] ); ?>">
+					<?php elseif( $atts['lightbox'] == true ) : ?>
+						<a href="<?php echo esc_url( jevelin_get_image( $atts['image'] ) ); ?>" rel="lightbox">
+					<?php endif; ?>
+
+						<?php if( $lazy ) :?>
+							<?php if( $image_width > 0 ) : ?>
+								<div class="ratio-container" style="padding-top: <?php echo esc_attr( $ratio ); ?>%;">
+									<div class="ratio-content">
+										<img class="sh-image-url lazy" data-src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" />
+									</div>
+								</div>
+							<?php else : ?>
+								<img class="sh-image-url lazy" data-src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" />
+							<?php endif; ?>
+
+							<?php if( $image_hover_url ) : ?>
+								<img class="sh-image-hover lazy" data-src="<?php echo esc_url( $image_hover_url ); ?>" zalt="<?php echo esc_attr( $image_alt ); ?>" />
+							<?php endif; ?>
+						<?php else :?>
+							<img class="sh-image-url" src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" />
+							<?php if( $image_hover_url ) : ?>
+								<img class="sh-image-hover" src="<?php echo esc_url( $image_hover_url ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" />
+							<?php endif; ?>
+						<?php endif; ?>
+
+					<?php if( $atts['lightbox'] == true || $atts['url'] ) : ?>
+						</a>
+					<?php endif; ?>
 				<?php endif; ?>
 
-					<?php if( $lazy ) :?>
-						<?php if( $image_width > 0 ) : ?>
-							<div class="ratio-container" style="padding-top: <?php echo esc_attr( $ratio ); ?>%;">
-								<div class="ratio-content">
-									<img class="sh-image-url lazy" data-src="<?php echo esc_url( jevelin_get_image_size($atts['image'], $size ) ); ?>" alt="<?php echo esc_attr( jevelin_get_image_alt( $atts['image'] ) ); ?>" />
-								</div>
+				<?php if( $overlay == 'overlay1' || $overlay == 'overlay2' ) : ?>
+					<?php if( $atts['lightbox'] == true ) : ?>
+						<a class="sh-single-image-overlay" href="<?php echo esc_url( $image_url ); ?>" rel="lightbox" class="sh-single-image-overlay">
+					<?php elseif( $atts['url'] ) : ?>
+						<a class="sh-single-image-overlay" href="<?php echo esc_url( $atts['url'] ); ?>">
+					<?php else : ?>
+						<a class="sh-single-image-overlay">
+					<?php endif; ?>
+						<?php if( $overlay == 'overlay1' ) : ?>
+							<div class="sh-custom-button-preset1">
+								<span><?php echo esc_attr( $overlay_atts['button_name'] ); ?></span>
+								<?php if( $overlay_atts['button_icon'] ) : ?>
+									<i class="<?php echo esc_attr( $overlay_atts['button_icon'] ); ?>"></i>
+								<?php endif; ?>
 							</div>
 						<?php else : ?>
-							<img class="sh-image-url lazy" data-src="<?php echo esc_url( jevelin_get_image_size($atts['image'], $size ) ); ?>" alt="<?php echo esc_attr( jevelin_get_image_alt( $atts['image'] ) ); ?>" />
+							<div class="sh-custom-button-preset2">
+							</div>
 						<?php endif; ?>
-
-						<?php if( jevelin_get_image($atts['image_hover']) ) : ?>
-							<img class="sh-image-hover lazy" data-src="<?php echo esc_url( jevelin_get_image_size($atts['image_hover'], $size ) ); ?>" zalt="<?php echo esc_attr( jevelin_get_image_alt( $atts['image'] ) ); ?>" />
-						<?php endif; ?>
-					<?php else :?>
-						<img class="sh-image-url" src="<?php echo esc_url( jevelin_get_image_size($atts['image'], $size ) ); ?>" alt="<?php echo esc_attr( jevelin_get_image_alt( $atts['image'] ) ); ?>" />
-						<?php if( jevelin_get_image($atts['image_hover']) ) : ?>
-							<img class="sh-image-hover" src="<?php echo esc_url( jevelin_get_image_size($atts['image_hover'], $size ) ); ?>" alt="<?php echo esc_attr( jevelin_get_image_alt( $atts['image'] ) ); ?>" />
-						<?php endif; ?>
-					<?php endif; ?>
-
-				<?php if( $atts['lightbox'] == true || $atts['url'] ) : ?>
 					</a>
 				<?php endif; ?>
-			<?php endif; ?>
+			</div>
 
-			<?php if( $overlay == 'overlay1' || $overlay == 'overlay2' ) : ?>
-				<?php if( $atts['lightbox'] == true ) : ?>
-					<a class="sh-single-image-overlay" href="<?php echo esc_url( jevelin_get_image($atts['image']) ); ?>" rel="lightbox" class="sh-single-image-overlay">
-				<?php elseif( $atts['url'] ) : ?>
-					<a class="sh-single-image-overlay" href="<?php echo esc_url( $atts['url'] ); ?>">
-				<?php else : ?>
-					<a class="sh-single-image-overlay">
-				<?php endif; ?>
-					<?php if( $overlay == 'overlay1' ) : ?>
-						<div class="sh-custom-button-preset1">
-							<span><?php echo esc_attr( $overlay_atts['button_name'] ); ?></span>
-							<?php if( $overlay_atts['button_icon'] ) : ?>
-								<i class="<?php echo esc_attr( $overlay_atts['button_icon'] ); ?>"></i>
-							<?php endif; ?>
-						</div>
-					<?php else : ?>
-						<div class="sh-custom-button-preset2">
-						</div>
-					<?php endif; ?>
-				</a>
-			<?php endif; ?>
-		</div>
+		<?php if( $lazy && $image_width > 0 ) : ?>
+			</div>
+		<?php endif; ?>
 
-	<?php if( $lazy && $image_width > 0 ) : ?>
-		</div>
-	<?php endif; ?>
-
+	</div>
 </div>

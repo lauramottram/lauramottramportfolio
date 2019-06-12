@@ -21,8 +21,13 @@ class vcj_contact_form_7 extends WPBakeryShortCode {
             'base' => 'vcj_contact_form_7',
             'description' => 'Place Contact Form 7',
             'category' => 'Jevelin Elements',
+            'icon' => get_template_directory_uri().'/img/builder-icon.png',
             'params' => array(
 
+
+                /*
+                ** General
+                */
                 array (
                     'param_name' => 'form_id',
                     'heading' => 'Select Form',
@@ -38,6 +43,7 @@ class vcj_contact_form_7 extends WPBakeryShortCode {
                     'value' =>
                     array (
                         'Standard' => 'style1',
+                        'Standard (round corners)' => 'style1 round',
                         'Input Round Edges (2px border)' => 'style2',
                         'Input Center Text' => 'style3',
                         'Bottom Line with simple submit button' => 'style4',
@@ -48,6 +54,255 @@ class vcj_contact_form_7 extends WPBakeryShortCode {
                     'std' => 'style1',
                 ),
 
+                array (
+                    'param_name' => 'layout',
+                    'heading' => 'Layout',
+                    'description' => 'Select form layout',
+                    'value' =>
+                    array (
+                        'Default' => 'default',
+                        'Inline (all fields in one line)' => 'inline',
+                    ),
+                    'type' => 'dropdown',
+                    'std' => 'default',
+                ),
+
+
+
+
+                /*
+                ** Text
+                */
+                array (
+                    'param_name' => 'label_text_alignment',
+                    'heading' => 'Text Alignment',
+                    'value' => array (
+                        'Default' => 'default',
+                        'Left' => 'left',
+                        'Center' => 'center',
+                        'Right' => 'right',
+                    ),
+                    'type' => 'dropdown',
+                    'std' => 'default',
+                    //'edit_field_class' => 'vc_col-xs-6',
+                    'group' => __( 'Text', 'jevelin' ),
+                ),
+
+                array (
+                    'param_name' => 'label_font_size',
+                    'heading' => __( 'Font Size', 'jevelin' ),
+                    'description' => __( 'Enter top margin (Note: CSS measurement units allowed).', 'jevelin' ),
+                    'type' => 'textfield',
+                    'std' => '',
+                    'edit_field_class' => 'vc_col-xs-6',
+                    'group' => __( 'Text', 'jevelin' ),
+                ),
+
+                array (
+                    'param_name' => 'label_font_color',
+                    'heading' => 'Text Color',
+                    'type' => 'colorpicker',
+                    'group' => __( 'Text', 'jevelin' ),
+                    'edit_field_class' => 'vc_col-xs-6',
+                ),
+
+                array (
+                    'param_name' => 'label_font_weight',
+                    'heading' => 'Font Weight',
+                    'description' => 'Choose heading font weight',
+                    'value' => array (
+                        'Default' => 'default',
+                        'Extra Light' => 200,
+                        'Light' => 300,
+                        'Regular' => 400,
+                        'Semi-Bold' => 600,
+                        'Bold' => 700,
+                        'Extra Bold' => 900,
+                    ),
+                    'type' => 'dropdown',
+                    'class' => '',
+                    'group' => __( 'Text', 'jevelin' ),
+                ),
+
+                array (
+                    'param_name' => 'label_letter_spacing',
+                    'heading' => __( 'Letter Spacing', 'jevelin' ),
+                    'description' => __( 'Enter text letter spacing (Note: CSS measurement units allowed).', 'jevelin' ),
+                    'type' => 'textfield',
+                    'std' => '',
+                    'group' => __( 'Text', 'jevelin' ),
+                ),
+
+                array (
+                    'param_name' => 'input_margin_top',
+                    'heading' => __( 'Bottom Margin', 'jevelin' ),
+                    'description' => __( 'Enter text bottom margin (Note: CSS measurement units allowed).', 'jevelin' ),
+                    'type' => 'textfield',
+                    'std' => '',
+                    'group' => __( 'Text', 'jevelin' ),
+                ),
+
+
+
+                /*
+                ** Input fields
+                */
+                array (
+                    'param_name' => 'input_text_alignment',
+                    'heading' => 'Text Alignment',
+                    'value' => array (
+                        'Default' => 'default',
+                        'Left' => 'left',
+                        'Center' => 'center',
+                        'Right' => 'right',
+                    ),
+                    'type' => 'dropdown',
+                    'std' => 'default',
+                    //'edit_field_class' => 'vc_col-xs-6',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                ),
+
+                array (
+                    'param_name' => 'input_height',
+                    'heading' => __( 'Input Field Height', 'jevelin' ),
+                    'description' => __( 'Enter input field height (Note: CSS measurement units allowed).', 'jevelin' ),
+                    'type' => 'textfield',
+                    'std' => '',
+                    //'edit_field_class' => 'vc_col-xs-6',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                ),
+
+                array (
+                    'param_name' => 'textarea_height',
+                    'heading' => __( 'Textarea Field Height', 'jevelin' ),
+                    'description' => __( 'Enter textarea field height (Note: CSS measurement units allowed).', 'jevelin' ),
+                    'type' => 'textfield',
+                    'std' => '',
+                    // 'edit_field_class' => 'vc_col-xs-6',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                ),
+
+                array (
+                    'param_name' => 'input_leftright_padding',
+                    'heading' => 'Horizontal Padding (left/right)',
+                    'type' => 'textfield',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                ),
+
+                array (
+                    'param_name' => 'input_text_color',
+                    'heading' => 'Text Color',
+                    'type' => 'colorpicker',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                    'edit_field_class' => 'vc_col-xs-4',
+                ),
+
+                array (
+                    'param_name' => 'input_text_hover_color',
+                    'heading' => 'Text Hover Color',
+                    'type' => 'colorpicker',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                    'edit_field_class' => 'vc_col-xs-4',
+                ),
+
+                array (
+                    'param_name' => 'input_text_focus_color',
+                    'heading' => 'Text Focus Color',
+                    'type' => 'colorpicker',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                    'edit_field_class' => 'vc_col-xs-4',
+                ),
+
+                array (
+                    'param_name' => 'input_background_color',
+                    'heading' => 'Background Color',
+                    'type' => 'colorpicker',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                    'edit_field_class' => 'vc_col-xs-4',
+                ),
+
+                array (
+                    'param_name' => 'input_background_hover_color',
+                    'heading' => 'Background Hover Color',
+                    'type' => 'colorpicker',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                    'edit_field_class' => 'vc_col-xs-4',
+                ),
+
+                array (
+                    'param_name' => 'input_background_focus_color',
+                    'heading' => 'Background Focus Color',
+                    'type' => 'colorpicker',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                    'edit_field_class' => 'vc_col-xs-4',
+                ),
+
+                array (
+                    'param_name' => 'input_border_color',
+                    'heading' => 'Border Color',
+                    'type' => 'colorpicker',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                    'edit_field_class' => 'vc_col-xs-4',
+                ),
+
+                array (
+                    'param_name' => 'input_border_hover_color',
+                    'heading' => 'Border Hover Color',
+                    'type' => 'colorpicker',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                    'edit_field_class' => 'vc_col-xs-4',
+                ),
+
+                array (
+                    'param_name' => 'input_border_focus_color',
+                    'heading' => 'Border Focus Color',
+                    'type' => 'colorpicker',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                    'edit_field_class' => 'vc_col-xs-4',
+                ),
+
+                array (
+                    'param_name' => 'input_border_width',
+                    'heading' => 'Border Width',
+                    'type' => 'textfield',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                    'edit_field_class' => 'vc_col-xs-6',
+                ),
+
+                array (
+                    'param_name' => 'input_border_radius',
+                    'heading' => __( 'Border Radius', 'jevelin' ),
+                    //'description' => __( 'Enter input field border radius (Note: CSS measurement units allowed).', 'jevelin' ),
+                    'type' => 'textfield',
+                    'edit_field_class' => 'vc_col-xs-6',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                ),
+
+                array (
+                    'param_name' => 'input_letter_spacing',
+                    'heading' => __( 'Input Letter Spacing', 'jevelin' ),
+                    'description' => __( 'Enter text letter spacing (Note: CSS measurement units allowed).', 'jevelin' ),
+                    'type' => 'textfield',
+                    'std' => '',
+                    'group' => __( 'Text', 'jevelin' ),
+                ),
+
+                array (
+                    'param_name' => 'input_margin',
+                    'heading' => __( 'Bottom Margin', 'jevelin' ),
+                    'description' => __( 'Enter bottom margin (Note: CSS measurement units allowed).', 'jevelin' ),
+                    'type' => 'textfield',
+                    'std' => '',
+                    // 'edit_field_class' => 'vc_col-xs-6',
+                    'group' => __( 'Input Fields', 'jevelin' ),
+                ),
+
+
+
+
+                /*
+                ** Submit Button
+                */
                 array(
                     'param_name' => 'submit_font_size',
                     'heading' => __( 'Font Size', 'jevelin' ),
@@ -58,7 +313,7 @@ class vcj_contact_form_7 extends WPBakeryShortCode {
 
                 array (
                     'param_name' => 'submit_text_transform',
-                    'heading' => 'Submit Text Transformation',
+                    'heading' => 'Text Transformation',
                     'value' => array (
                         'Default' => 'default',
                         'None' => 'none',
@@ -119,47 +374,330 @@ class vcj_contact_form_7 extends WPBakeryShortCode {
                     'edit_field_class' => 'vc_col-xs-6',
                 ),
 
+                array (
+                    'param_name' => 'submit_alignment',
+                    'heading' => 'Alignment',
+                    'value' => array (
+                        'Default' => 'default',
+                        'Left' => 'left',
+                        'Center' => 'center',
+                        'Right' => 'right',
+                    ),
+                    'type' => 'dropdown',
+                    'std' => 'default',
+                    'edit_field_class' => 'vc_col-xs-6',
+                    'group' => __( 'Submit Button', 'jevelin' ),
+                ),
+
+                array (
+                    'param_name' => 'submit_mobile_alignment',
+                    'heading' => 'Mobile Alignment',
+                    'value' => array (
+                        'Default' => 'default',
+                        'Left' => 'left',
+                        'Center' => 'center',
+                        'Right' => 'right',
+                    ),
+                    'type' => 'dropdown',
+                    'std' => 'default',
+                    'edit_field_class' => 'vc_col-xs-6',
+                    'group' => __( 'Submit Button', 'jevelin' ),
+                ),
+
+
+                array (
+                    'param_name' => 'submit_width',
+                    'heading' => 'Width',
+                    'value' => array (
+                        'Default' => 'default',
+                        'Inline' => 'inline',
+                        'Full' => 'full',
+                    ),
+                    'type' => 'dropdown',
+                    'std' => 'default',
+                    'edit_field_class' => 'vc_col-xs-6',
+                    'group' => __( 'Submit Button', 'jevelin' ),
+                ),
+
+                array (
+                    'param_name' => 'submit_height',
+                    'heading' => 'Submit Height',
+                    'type' => 'textfield',
+                    'group' => __( 'Submit Button', 'jevelin' ),
+                ),
+
+                array (
+                    'param_name' => 'submit_leftright_padding',
+                    'heading' => 'Horizontal Padding (left/right)',
+                    'type' => 'textfield',
+                    'group' => __( 'Submit Button', 'jevelin' ),
+                ),
+
+                array (
+                    'param_name' => 'submit_letter_spacing',
+                    'heading' => 'Letter Spacing',
+                    'type' => 'textfield',
+                    'group' => __( 'Submit Button', 'jevelin' ),
+                ),
+
             ),
         ));
     }
 
     public function _html( $atts, $content ) {
-        $style = ( isset( $atts['style'] ) && $atts['style'] ) ? $atts['style'] : 'style1';
-        $form_id = ( isset( $atts['form_id'] ) && $atts['form_id'] > 0 ) ? $atts['form_id'] : '';
+        // Params extraction
+        extract( shortcode_atts( array(
+            'style' => 'style1',
+            'layout' => 'default',
+            'form_id' => '',
 
-        $submit_background_color = ( isset( $atts['submit_background_color'] ) && $atts['submit_background_color'] ) ? $atts['submit_background_color'] : '';
-        $submit_background_hover_color = ( isset( $atts['submit_background_hover_color'] ) && $atts['submit_background_hover_color'] ) ? $atts['submit_background_hover_color'] : '';
-        $submit_text_color = ( isset( $atts['submit_text_color'] ) && $atts['submit_text_color'] ) ? $atts['submit_text_color'] : '';
-        $submit_text_hover_color = ( isset( $atts['submit_text_hover_color'] ) && $atts['submit_text_hover_color'] ) ? $atts['submit_text_hover_color'] : '';
-        $submit_border_color = ( isset( $atts['submit_border_color'] ) && $atts['submit_border_color'] ) ? $atts['submit_border_color'] : '';
-        $submit_border_hover_color = ( isset( $atts['submit_border_hover_color'] ) && $atts['submit_border_hover_color'] ) ? $atts['submit_border_hover_color'] : '';
+            // Text
+            'label_text_alignment' => 'default',
+            'label_font_size' => '',
+            'label_font_color' => '',
+            'label_font_weight' => '',
+            'input_margin_top' => '',
+            'label_letter_spacing' => '',
 
-        $submit_font_size = ( isset( $atts['submit_font_size'] ) && $atts['submit_font_size'] ) ? $atts['submit_font_size'] : '';
-        $submit_text_transform = ( isset( $atts['submit_text_transform'] ) && $atts['submit_text_transform'] ) ? $atts['submit_text_transform'] : 'default';
+            // Input fields
+            'input_border_width' => '',
+            'input_text_color' => '',
+            'input_text_hover_color' => '',
+            'input_text_focus_color' => '',
+            'input_background_color' => '',
+            'input_background_hover_color' => '',
+            'input_background_focus_color' => '',
+            'input_border_color' => '',
+            'input_border_hover_color' => '',
+            'input_border_focus_color' => '',
+            'input_text_alignment' => 'default',
+            'submit_width' => 'default',
+            'input_margin' => '',
+            'input_height' => '',
+            'textarea_height' => '',
+            'input_leftright_padding' => '',
+            'input_border_radius' => '',
+            'input_letter_spacing' => '',
+
+            // Submit button
+            'submit_height' => '',
+            'submit_alignment' => 'default',
+            'submit_mobile_alignment' => 'default',
+            'submit_background_color' => '',
+            'submit_background_hover_color' => '',
+            'submit_text_color' => '',
+            'submit_text_hover_color' => '',
+            'submit_border_color' => '',
+            'submit_border_hover_color' => '',
+            'submit_font_size' => '',
+            'submit_text_transform' => 'default',
+            'submit_leftright_padding' => '',
+            'submit_letter_spacing' => '',
+        ), $atts ) );
+
+
+        // HTML
+        $element_class = array();
+        if( $input_text_alignment != 'default' ) :
+            $element_class[] = 'sh-cf7-text-align-'.$input_text_alignment;
+        endif;
+
+        if( $label_text_alignment != 'default' ) :
+            $element_class[] = 'sh-cf7-text-align-label-'.$label_text_alignment;
+        endif;
+
+        if( $submit_alignment != 'default' ) :
+            $element_class[] = 'sh-cf7-submit-align-'.$submit_alignment;
+        endif;
+
+        if( $submit_mobile_alignment != 'default' ) :
+            $element_class[] = 'sh-cf7-text-mobile-align-'.$submit_mobile_alignment;
+        endif;
+
+        if( $submit_width != 'default' ) :
+            $element_class[] = 'sh-cf7-submit-width-'.$submit_width;
+        endif;
         ob_start(); ?>
 
-            <?php if( $submit_background_color || $submit_text_color ) : ?>
-                <style media="screen">
-                    #cf7-<?php echo intval( $form_id ); ?> .wpcf7-submit {
-                        <?php if( $submit_text_color )  :?>
-                            color: <?php echo esc_attr( $submit_text_color ); ?>!important;
+            <style media="screen">
+                <?php
+                    /*
+                    ** Text
+                    */
+                ?>
+                #cf7-<?php echo intval( $form_id ); ?> label {
+                    <?php if( $label_font_size ) : ?>
+                        font-size: <?php echo esc_attr( $label_font_size ); ?>;
+                    <?php endif; ?>
+
+                    <?php if( $label_font_color ) : ?>
+                        color: <?php echo esc_attr( $label_font_color ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $label_font_weight != 'default' ) : ?>
+                        font-weight: <?php echo esc_attr( $label_font_weight ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $label_letter_spacing ) : ?>
+                        letter-spacing: <?php echo jevelin_addpx( $label_letter_spacing ); ?>;
+                    <?php endif; ?>
+                }
+
+
+
+
+                <?php
+                    /*
+                    ** Input fields
+                    */
+                ?>
+                #cf7-<?php echo intval( $form_id ); ?> input:not([type="submit"]),
+                #cf7-<?php echo intval( $form_id ); ?> select,
+                #cf7-<?php echo intval( $form_id ); ?> textarea,
+                #cf7-<?php echo intval( $form_id ); ?> .SumoSelect > .CaptionCont {
+                    <?php if( $input_leftright_padding ) : ?>
+                        padding-left: <?php echo jevelin_addpx( $input_leftright_padding ); ?>!important;
+                        padding-right: <?php echo jevelin_addpx( $input_leftright_padding ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $input_text_color ) : ?>
+                        color: <?php echo esc_attr( $input_text_color ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $input_background_color ) : ?>
+                        background-color: <?php echo esc_attr( $input_background_color ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $input_border_color ) : ?>
+                        border-color: <?php echo esc_attr( $input_border_color ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $input_border_radius ) : ?>
+                        border-radius: <?php echo jevelin_addpx( $input_border_radius ); ?>;
+                    <?php endif; ?>
+
+                    <?php if( $input_border_width ) : ?>
+                        border-width: <?php echo jevelin_addpx( $input_border_width ); ?>!important;
+                    <?php endif; ?>
+
+                    transition: 0.3s all ease-in-out;
+                }
+
+
+                #cf7-<?php echo intval( $form_id ); ?> input:not([type="submit"]):hover,
+                #cf7-<?php echo intval( $form_id ); ?> select:hover,
+                #cf7-<?php echo intval( $form_id ); ?> textarea:hover {
+                    <?php if( $input_text_hover_color ) : ?>
+                        color: <?php echo jevelin_addpx( $input_text_hover_color ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $input_background_hover_color ) : ?>
+                        background-color: <?php echo jevelin_addpx( $input_background_hover_color ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $input_border_hover_color ) : ?>
+                        border-color: <?php echo jevelin_addpx( $input_border_hover_color ); ?>!important;
+                    <?php endif; ?>
+                }
+
+
+                #cf7-<?php echo intval( $form_id ); ?> input:not([type="submit"]):focus,
+                #cf7-<?php echo intval( $form_id ); ?> select:focus,
+                #cf7-<?php echo intval( $form_id ); ?> textarea:focus {
+                    <?php if( $input_text_focus_color ) : ?>
+                        color: <?php echo jevelin_addpx( $input_text_focus_color ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $input_background_focus_color ) : ?>
+                        background-color: <?php echo jevelin_addpx( $input_background_focus_color ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $input_border_focus_color ) : ?>
+                        border-color: <?php echo jevelin_addpx( $input_border_focus_color ); ?>!important;
+                    <?php endif; ?>
+                }
+
+
+                <?php if( $textarea_height ) : ?>
+                    #cf7-<?php echo intval( $form_id ); ?> textarea {
+                        height: <?php echo esc_attr( $textarea_height ); ?>;
+                    }
+                <?php endif; ?>
+
+
+                <?php if( $input_height ) : ?>
+                    #cf7-<?php echo intval( $form_id ); ?> input:not([type="submit"]),
+                    #cf7-<?php echo intval( $form_id ); ?> select,
+                    #cf7-<?php echo intval( $form_id ); ?> .SumoSelect > .CaptionCont {
+                        height: <?php echo jevelin_addpx( $input_height ); ?>!important;
+                        line-height: <?php echo jevelin_addpx( $input_height ); ?>!important;
+                    }
+
+                    #cf7-<?php echo intval( $form_id ); ?> .SumoSelect.open > .optWrapper {
+                        top: <?php echo jevelin_addpx( (int)$input_height + 6 ); ?>!important;
+                    }
+
+                    <?php if( is_numeric( strpos( $input_height, "px") ) ) : ?>
+                        #cf7-<?php echo intval( $form_id ); ?> textarea {
+                            padding-top: <?php echo esc_attr( ( intval( $input_height ) / 2 ) - 13 ); ?>px!important;
+                            padding-bottom: <?php echo esc_attr( ( intval( $input_height ) / 2 ) - 13 ); ?>px!important;
+                        }
+                    <?php endif; ?>
+                <?php endif; ?>
+
+                <?php if( $input_margin || $input_margin_top ) : ?>
+                    #cf7-<?php echo intval( $form_id ); ?>:not(.sh-cf7-layout-inline)  .wpcf7-form-control-wrap {
+                        <?php if( $input_margin ) : ?>
+                    	    margin-bottom: <?php echo esc_attr( $input_margin ); ?>!important;
                         <?php endif; ?>
 
-                        <?php if( $submit_background_color )  :?>
-                            background-color: <?php echo esc_attr( $submit_background_color ); ?>!important;
+                        <?php if( $input_margin_top ) : ?>
+                    	    margin-top: <?php echo esc_attr( $input_margin_top ); ?>!important;
                         <?php endif; ?>
+                    }
+                <?php endif; ?>
 
-                        <?php if( $submit_font_size ) : ?>
-                            font-size: <?php echo esc_attr( $submit_font_size ); ?>!important;
-                        <?php endif; ?>
 
-                        <?php if( $submit_text_transform && $submit_text_transform != 'default' ) : ?>
-                            text-transform: <?php echo esc_attr( $submit_text_transform ); ?>;
-                        <?php endif; ?>
 
-                        border-width: 2px;
-                        border-style: solid;
 
+                <?php
+                    /*
+                    ** Submit form
+                    */
+                ?>
+                #cf7-<?php echo intval( $form_id ); ?> .wpcf7-submit {
+
+                    <?php if( $submit_leftright_padding ) : ?>
+                        padding-left: <?php echo jevelin_addpx( $submit_leftright_padding ); ?>!important;
+                        padding-right: <?php echo jevelin_addpx( $submit_leftright_padding ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $submit_letter_spacing ) : ?>
+                        letter-spacing: <?php echo jevelin_addpx( $submit_letter_spacing ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $submit_height ) : ?>
+                        height: <?php echo jevelin_addpx( $submit_height ); ?>!important;
+                        line-height: <?php echo jevelin_addpx( $submit_height ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $submit_text_color ) : ?>
+                        color: <?php echo esc_attr( $submit_text_color ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $submit_background_color ) : ?>
+                        background-color: <?php echo esc_attr( $submit_background_color ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $submit_font_size ) : ?>
+                        font-size: <?php echo esc_attr( $submit_font_size ); ?>!important;
+                    <?php endif; ?>
+
+                    <?php if( $submit_text_transform && $submit_text_transform != 'default' ) : ?>
+                        text-transform: <?php echo esc_attr( $submit_text_transform ); ?>;
+                    <?php endif; ?>
+
+                    <?php if( $submit_border_color || $submit_background_color ) : ?>
                         <?php if( $submit_border_color ) : ?>
                             border-color: <?php echo esc_attr( $submit_border_color ); ?>;
                         <?php elseif( $submit_background_color ) : ?>
@@ -167,9 +705,14 @@ class vcj_contact_form_7 extends WPBakeryShortCode {
                         <?php else : ?>
                             border-color: inherit;
                         <?php endif; ?>
-                    }
+
+                        border-width: 2px;
+                        border-style: solid;
+                    <?php endif; ?>
+                }
 
 
+                <?php if( $submit_text_hover_color || $submit_background_hover_color || $submit_border_hover_color ) : ?>
                     #cf7-<?php echo intval( $form_id ); ?> .wpcf7-submit:hover,
                     #cf7-<?php echo intval( $form_id ); ?> .wpcf7-submit:focus {
                         <?php if( $submit_text_hover_color ) : ?>
@@ -184,10 +727,11 @@ class vcj_contact_form_7 extends WPBakeryShortCode {
                             border-color: <?php echo esc_attr( $submit_border_hover_color ); ?>;
                         <?php endif; ?>
                     }
-                </style>
-            <?php endif; ?>
+                <?php endif; ?>
+            </style>
 
-            <div id="cf7-<?php echo intval( $form_id ); ?>" class="sh-cf7 sh-cf7-wpbakery sh-cf7-<?php echo esc_attr( $style ); ?>">
+
+            <div id="cf7-<?php echo intval( $form_id ); ?>" class="sh-cf7 sh-cf7-wpbakery sh-cf7-<?php echo esc_attr( $style ); ?> sh-cf7-layout-<?php echo esc_attr( $layout ); ?> <?php echo esc_attr( implode( ' ', $element_class ) ); ?>">
                 <?php
                     if( $form_id > 0 && shortcode_exists( 'contact-form-7' ) ) :
                         echo do_shortcode( '[contact-form-7 id="'.intval( $form_id ).'" title="Subscribe"]' );

@@ -18,12 +18,17 @@ else :
 	$copyright_text = wp_kses_post( jevelin_remove_p( jevelin_option('copyright_text') ) );
 endif;
 
+$copyrights = '';
 $dev = 'https://shufflehound.com';
+if( jevelin_option( 'copyright_deveveloper_all', true ) == true ) :
+	$copyrights = '<span class="developer-copyrights '.(( jevelin_option('copyright_deveveloper', true) == false ) ? ' sh-hidden' : '' ).'">
+		'.esc_html__( 'WordPress Theme built by', 'jevelin' ).' <a href="'.esc_attr( $dev ).'" target="blank"><strong>'.esc_html__( 'Shufflehound', 'jevelin' ).'</strong>.</a>
+		</span>';
+endif;
+
 $text = '
 <div class="sh-copyrights-text">
-	<span class="developer-copyrights '.(( jevelin_option('copyright_deveveloper', true) == false ) ? ' sh-hidden' : '' ).'">
-		'.esc_html__( 'WordPress Theme built by', 'jevelin' ).' <a href="'.esc_attr( $dev ).'" target="blank"><strong>'.esc_html__( 'Shufflehound', 'jevelin' ).'</strong>.</a>
-	</span>
+	'.$copyrights.'
 	<span>'.$copyright_text.'</span>
 </div>';
 ?>

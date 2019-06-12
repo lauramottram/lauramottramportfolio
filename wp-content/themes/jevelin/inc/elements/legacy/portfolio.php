@@ -60,11 +60,12 @@ class vcj_portfolio extends WPBakeryShortCode {
       'value' => 
       array (
         'Disable' => 'none',
-        'Overlay 1' => 'overlay1',
-        'Overlay 2' => 'overlay2',
-        'Overlay 3' => 'overlay3',
-        'Overlay 4' => 'overlay4',
-        'Overlay 5' => 'overlay4 overlay5',
+        'Overlay 1 - Bottom bar' => 'overlay1',
+        'Overlay 2 - Text with description in top left (with seperation line)' => 'overlay2',
+        'Overlay 3 - Text with description in top left' => 'overlay3',
+        'Overlay 4 - Text and categories with link and view buttons in middle' => 'overlay4',
+        'Overlay 5 - Link and view buttons in middle' => 'overlay4 overlay5',
+        'Overlay 6 - Text and categories in middle' => 'overlay4 overlay6',
       ),
       'type' => 'dropdown',
       'class' => '',
@@ -92,7 +93,7 @@ class vcj_portfolio extends WPBakeryShortCode {
     array (
       'param_name' => 'categories',
       'heading' => 'Categories',
-      'description' => 'Select categories',
+      'description' => 'Enter categories (by names or slugs) and separate them with enter button',
       'value' => '',
       'type' => 'exploded_textarea',
       'class' => '',
@@ -100,6 +101,21 @@ class vcj_portfolio extends WPBakeryShortCode {
       'group' => 'General',
     ),
     5 => 
+    array (
+      'param_name' => 'categories_order',
+      'heading' => 'Category Order',
+      'description' => 'Choose category order',
+      'value' => 
+      array (
+        'Ascending' => 'asc',
+        'Descending' => 'desc',
+      ),
+      'type' => 'dropdown',
+      'class' => '',
+      'std' => 'asc',
+      'group' => 'General',
+    ),
+    6 => 
     array (
       'param_name' => 'limit',
       'heading' => 'Limit',
@@ -110,7 +126,18 @@ class vcj_portfolio extends WPBakeryShortCode {
       'std' => '6',
       'group' => 'General',
     ),
-    6 => 
+    7 => 
+    array (
+      'param_name' => 'spacing',
+      'heading' => 'Spacing',
+      'description' => 'Enter portfolio item spacing (with px)',
+      'value' => '',
+      'type' => 'textfield',
+      'class' => '',
+      'std' => '',
+      'group' => 'General',
+    ),
+    8 => 
     array (
       'param_name' => 'order_by',
       'heading' => 'Order By',
@@ -128,7 +155,7 @@ class vcj_portfolio extends WPBakeryShortCode {
       'std' => 'date',
       'group' => 'General',
     ),
-    7 => 
+    9 => 
     array (
       'param_name' => 'order',
       'heading' => 'Order',
@@ -143,7 +170,7 @@ class vcj_portfolio extends WPBakeryShortCode {
       'std' => 'desc',
       'group' => 'General',
     ),
-    8 => 
+    10 => 
     array (
       'param_name' => 'page_link',
       'heading' => 'Page Link',
@@ -158,7 +185,7 @@ class vcj_portfolio extends WPBakeryShortCode {
       'std' => true,
       'group' => 'General',
     ),
-    9 => 
+    11 => 
     array (
       'param_name' => 'layout',
       'heading' => 'Layout',
@@ -173,7 +200,7 @@ class vcj_portfolio extends WPBakeryShortCode {
       'std' => 'masonry',
       'group' => 'General',
     ),
-    10 => 
+    12 => 
     array (
       'param_name' => 'filter',
       'heading' => 'Filter',
@@ -191,7 +218,7 @@ class vcj_portfolio extends WPBakeryShortCode {
       'std' => 'default',
       'group' => 'Filter',
     ),
-    11 => 
+    13 => 
     array (
       'param_name' => 'filter_icon',
       'heading' => 'Filter Icon',
@@ -207,7 +234,7 @@ class vcj_portfolio extends WPBakeryShortCode {
         'type' => 'jevelin_vc_icons',
       ),
     ),
-    12 => 
+    14 => 
     array (
       'param_name' => 'filter_all_limit',
       'heading' => 'Limit All tab items',
@@ -218,7 +245,7 @@ class vcj_portfolio extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Filter',
     ),
-    13 => 
+    15 => 
     array (
       'param_name' => 'pagination',
       'heading' => 'Pagination',
@@ -233,7 +260,7 @@ class vcj_portfolio extends WPBakeryShortCode {
       'std' => false,
       'group' => 'Pagination',
     ),
-    14 => 
+    16 => 
     array (
       'param_name' => 'pagination_filters',
       'heading' => 'Pagination Filters',
@@ -248,7 +275,7 @@ class vcj_portfolio extends WPBakeryShortCode {
       'std' => false,
       'group' => 'Pagination',
     ),
-    15 => 
+    17 => 
     array (
       'param_name' => 'pagination_per_page',
       'heading' => 'Projects Per Page',

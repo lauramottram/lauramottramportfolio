@@ -95,6 +95,7 @@ $max_width_alignment = ( isset( $max_width_alignment ) && $max_width_alignment &
 $max_width_alignment_mobile = ( isset( $max_width_alignment_mobile ) && $max_width_alignment_mobile && in_array( $max_width_alignment, array( 'left', 'center', 'right' ) ) ) ? $max_width_alignment_mobile : '';
 $responsive_border = ( isset( $responsive_border ) ) ? $responsive_border : '';
 $mobile_element_alignment = ( isset( $mobile_element_alignment ) ) ? $mobile_element_alignment : '';
+$overflow = ( isset( $overflow ) ) ? $overflow : 'default';
 $element_id = 'vc_column_'.rand();
 $style_element = '';
 $element_css = '';
@@ -137,6 +138,10 @@ if( $max_width ) :
 	endif;
 endif;
 
+if( $overflow != 'default' ) :
+	$element_css.= ' .'.$element_id.':not(.vc_parallax):not(.jarallax) { overflow: '.$overflow.'!important; position: relative; }';
+endif;
+
 if( $zindex ) :
 	$wrapper_attributes[] = 'style="z-index: '.$zindex.';"';
 endif;
@@ -146,7 +151,7 @@ if( $style_element ) :
 endif;
 
 if( $padding ) :
-	$element_css.= '@media (max-width: 800px) {.'.$element_id.' > .vc_column-inner { padding: '.$padding.'!important;}}';
+	$element_css.= '@media (max-width: 800px) { .'.$element_id.' > .vc_column-inner { padding: '.$padding.'!important;}}';
 endif;
 
 if( $background_image_hover ) :

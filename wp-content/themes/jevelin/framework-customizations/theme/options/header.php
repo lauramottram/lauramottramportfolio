@@ -2,38 +2,6 @@
 	die( 'Forbidden' );
 }
 
-/* Get headers */
-$header_layout_choices = array(
-	'1' => esc_html__( 'Header 1', 'jevelin' ),
-	'2' => esc_html__( 'Header 2', 'jevelin' ),
-	'3' => esc_html__( 'Header 3', 'jevelin' ),
-	'4' => esc_html__( 'Header 4', 'jevelin' ),
-	'5' => esc_html__( 'Header 5', 'jevelin' ),
-	'6' => esc_html__( 'Header 6 (side navigation)', 'jevelin' ),
-	'7' => esc_html__( 'Header 7 (side navigation)', 'jevelin' ),
-	'8' => esc_html__( 'Header 8', 'jevelin' ),
-	'9' => esc_html__( 'Header 9', 'jevelin' ),
-	'10' => esc_html__( 'Header 10', 'jevelin' ),
-	'left-1' => esc_html__( 'Left Header 11', 'jevelin' ),
-	'left-2' => esc_html__( 'Left Header 12', 'jevelin' ),
-);
-
-$header_layout_choices2 = array();
-$headers = new WP_Query( array(
-    'post_type' => 'shufflehound_header',
-    'post_status' => 'publish',
-    'posts_per_page' => 20
-));
-if( $headers->have_posts() ) :
-    while( $headers->have_posts() ) : $headers->the_post();
-
-		$header_id = 'header-'.get_the_ID();
-        $header_layout_choices[ $header_id ] = html_entity_decode( get_the_title() ).' (from WPbakery page builder)';
-
-    endwhile;
-endif;
-wp_reset_postdata();
-
 $header_options = array(
 
 	'header_layout' => array(
@@ -41,9 +9,8 @@ $header_options = array(
 	    'value' => '1',
 	    'label' => esc_html__('Header Template', 'jevelin'),
 	    'desc'  => esc_html__('Choose header template', 'jevelin'),
-	    'choices' => $header_layout_choices,
+	    'choices' => jevelin_get_headers(),
 	),
-
 
 	'title_header_logo_settings' => array(
 	    'type'  => 'html-full',
@@ -54,21 +21,21 @@ $header_options = array(
 
 	'logo' => array(
 		'label' => esc_html__( 'Standard Logo', 'jevelin' ),
-		'desc'  => esc_html__( 'Upload a logo image (max height 250px) ', 'jevelin' ),
-		'type'  => 'upload',
-		'images_only' => true,
-	),
-
-	'logo_sticky' => array(
-		'label' => esc_html__( 'Sticky Logo (optional)', 'jevelin' ),
-		'desc'  => esc_html__( 'Upload a sticky logo image (max height 250px) ', 'jevelin' ),
+		'desc'  => esc_html__( 'Upload a logo image (max height 250px) used in posts, portfolio and other pages', 'jevelin' ),
 		'type'  => 'upload',
 		'images_only' => true,
 	),
 
 	'logo_light' => array(
 		'label' => esc_html__( 'Light Logo Version (optional)', 'jevelin' ),
-		'desc'  => esc_html__( 'Upload a light logo version (max height 250px) ', 'jevelin' ),
+		'desc'  => esc_html__( 'Upload a light logo version (max height 250px) used only when light style is activated or is above slide', 'jevelin' ),
+		'type'  => 'upload',
+		'images_only' => true,
+	),
+
+	'logo_sticky' => array(
+		'label' => esc_html__( 'Sticky Logo (optional)', 'jevelin' ),
+		'desc'  => esc_html__( 'Upload a sticky logo image (max height 250px) used only when sticky header is activated', 'jevelin' ),
 		'type'  => 'upload',
 		'images_only' => true,
 	),
@@ -384,7 +351,8 @@ $header_options = array(
 	    'label' => esc_html__('Header Search Results', 'jevelin'),
 	    'desc'  => esc_html__('Choose Header Search Results', 'jevelin'),
 	    'choices' => array(
-	        'posts' => esc_html__( 'Blog posts', 'jevelin' ),
+	        'posts' => esc_html__( 'Blog posts and pages', 'jevelin' ),
+			'onlyposts' => esc_html__( 'Blog posts only', 'jevelin' ),
 	        'products' => esc_html__( 'Products', 'jevelin' ),
 			'adaptive' => esc_html__( 'Adaptive', 'jevelin' ),
 	    ),
@@ -512,7 +480,23 @@ $header_options = array(
 	        'easeOutBounce' => esc_html__( 'Bounce', 'jevelin' ),
 	    ),
 	    'inline' => false,
-	)
+	),
+
+
+	'header_title1' => array( 'type'  => 'html-full', 'value' => '', 'label' => false, 'html'  =>
+		'<h3 class="hndle sh-custom-group-divder"><span>'.esc_html__('Header Responsive', 'jevelin').'</span></h3>',
+	),
+
+	'header_mobile_spacing' => array(
+	    'type'  => 'radio',
+	    'label' => esc_html__('Mobile Spacing', 'jevelin'),
+	    'desc'  => esc_html__('Choose header mobile spacing', 'jevelin'),
+	    'choices' => array(
+	    	'default' => esc_html__( 'Default', 'jevelin' ),
+	        'compact' => esc_html__( 'Compact', 'jevelin' ),
+	    ),
+	    'value' => 'compact',
+	),
 );
 
 

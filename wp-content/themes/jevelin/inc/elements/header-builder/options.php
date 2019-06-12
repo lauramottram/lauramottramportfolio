@@ -24,6 +24,10 @@ $html = '
         <i class="ti-crown"></i>
         Sticky
     </div>
+    <div data-id="buttons">
+        <i class="ti-link"></i>
+        Buttons
+    </div>
 </div>';
 
 
@@ -33,7 +37,7 @@ vc_map(
         'base' => 'vcj_header_builder',
         'description' => __('Build your header in WPbakery', 'jevelin'),
         'category' => __('Jevelin Elements', 'jevelin'),
-        'icon' => get_template_directory_uri().'/img/VC_ES_icon.svg',
+        'icon' => get_template_directory_uri().'/img/builder-icon.png',
         'params' => array(
 
 
@@ -123,21 +127,6 @@ vc_map(
             ),
 
             array (
-                'param_name' => 'header_above_content',
-                'heading' => 'Above Content',
-                'description' => 'Can be useful when using transparent background to place it above content like a slider (will be applied only when viewing actual pages)',
-                'value' =>
-                array (
-                    'Disabled' => 'disabled',
-                    'Enabled' => 'enabled',
-                ),
-                'type' => 'dropdown',
-                'std' => 'disabled',
-                'group' => 'Header',
-                'edit_field_class' => $tab.'main'
-            ),
-
-            array (
                 'param_name' => 'header_shadow',
                 'heading' => 'Shadow',
                 'value' =>
@@ -193,23 +182,25 @@ vc_map(
                 'edit_field_class' => $tab.'logo'.$hidden
             ),*/
 
+            /*array(
+                'param_name' => 'header_logo_light',
+                'heading' => __( 'Above Content Logo (optional)', 'jevelin' ),
+                'description' => __( 'Upload your above content logo. Sometimes when using above content option its background color is dark and it is useful to upload light logo', 'jevelin' ),
+                'type' => 'attach_image',
+                'group' => 'Header',
+                'edit_field_class' => $tab.'logo'.$hidden
+            ),*/
+
+
             array(
                 'param_name' => 'header_logo_sticky',
-                'heading' => __( 'Sticky Logo', 'jevelin' ),
+                'heading' => __( 'Sticky Logo (optional)', 'jevelin' ),
                 'description' => __( 'Upload your logo', 'jevelin' ),
                 'type' => 'attach_image',
                 'group' => 'Header',
                 'edit_field_class' => $tab.'logo'.$hidden
             ),
 
-            array(
-                'param_name' => 'header_logo_responsive',
-                'heading' => __( 'Responsive Logo', 'jevelin' ),
-                'description' => __( 'Upload your responsive logo', 'jevelin' ),
-                'type' => 'attach_image',
-                'group' => 'Header',
-                'edit_field_class' => $tab.'logo'.$hidden
-            ),
 
             /*array (
                 'param_name' => 'header_logo_text',
@@ -448,6 +439,22 @@ vc_map(
                 'edit_field_class' => $tab.'navigation'.$hidden.' vc_col-xs-4'
             ),
 
+            array (
+                'param_name' => 'header_nav_language_hidden',
+                'heading' => 'Hide Language',
+                'type' => 'checkbox',
+                'group' => 'Header',
+                'edit_field_class' => $tab.'navigation'.$hidden.' vc_col-xs-4'
+            ),
+
+            array (
+                'param_name' => 'header_nav_buttons_hidden',
+                'heading' => 'Hide Buttons',
+                'type' => 'checkbox',
+                'group' => 'Header',
+                'edit_field_class' => $tab.'navigation'.$hidden.' vc_col-xs-4'
+            ),
+
 
             // Dropdown
             array (
@@ -543,6 +550,137 @@ vc_map(
             ),
 
 
+
+            // Buttons
+            array (
+                'param_name' => 'header_buttons',
+                'heading' => 'Buttons',
+                'type' => 'param_group',
+                'params' => array(
+                    array (
+                        'param_name' => 'name',
+                        'type' => 'textfield',
+                        'heading' => 'Name',
+                        'description' => 'Enter your button name',
+                        'value' => 'Button Name',
+                    ),
+                    array (
+                        'param_name' => 'link',
+                        'type' => 'textfield',
+                        'heading' => 'Link',
+                        'description' => 'Enter your button link',
+                        'value' => get_home_url(),
+                    ),
+                ),
+                'group' => 'Header',
+                'edit_field_class' => $tab.'buttons'.$hidden
+            ),
+
+            array (
+                'param_name' => 'header_buttons_style',
+                'heading' => 'Style',
+                'value' => array (
+                    'Dark Text' => 'dark',
+                    'Light Text' => 'light',
+                ),
+                'type' => 'dropdown',
+                'std' => 'dark',
+                'group' => 'Header',
+                'edit_field_class' => $tab.'buttons'.$hidden
+            ),
+
+            array (
+                'param_name' => 'header_buttons_weight',
+                'heading' => 'Font Weight',
+                'value' => array (
+                    'Light' => '300',
+                    'Normal' => '400',
+                    'Medium' => '500',
+                    'Semi-Bold' => '600',
+                    'Bold' => '700',
+                    'Extra-Bold' => '800',
+                    'Black' => '900',
+                ),
+                'type' => 'dropdown',
+                'std' => '400',
+                'group' => 'Header',
+                'edit_field_class' => $tab.'buttons'.$hidden
+            ),
+
+            array (
+                'param_name' => 'header_buttons_radius',
+                'heading' => __( 'Border Radius', 'jevelin' ),
+                'description' => __( 'Enter top bar buttons border radius size in PX', 'jevelin' ),
+                'type' => 'textfield',
+                'std' => '8px',
+                'group' => 'Header',
+                'edit_field_class' => $tab.'buttons'.$hidden
+            ),
+
+            array (
+                'param_name' => 'header_buttons_height',
+                'heading' => __( 'Height', 'jevelin' ),
+                'description' => __( 'Enter button height size in px', 'jevelin' ),
+                'type' => 'textfield',
+                'std' => '',
+                'group' => 'Header',
+                'edit_field_class' => $tab.'buttons'.$hidden
+            ),
+
+            array (
+                'param_name' => 'header_buttons_leftright_padding',
+                'heading' => __( 'Left/right Padding', 'jevelin' ),
+                'description' => __( 'Enter left/right padding size in px', 'jevelin' ),
+                'type' => 'textfield',
+                'std' => '',
+                'group' => 'Header',
+                'edit_field_class' => $tab.'buttons'.$hidden
+            ),
+
+            array (
+                'param_name' => 'header_button_uppercase',
+                'heading' => 'Text Uppercase',
+                'type' => 'checkbox',
+                'group' => 'Header',
+                'edit_field_class' => $tab.'buttons'.$hidden
+            ),
+
+            array (
+                'param_name' => 'header_button_text_color',
+                'heading' => 'Text Color',
+                'type' => 'colorpicker',
+                'group' => 'Header',
+                'edit_field_class' => $tab.'buttons'.$hidden.$half_width
+            ),
+
+            array (
+                'param_name' => 'header_button_text_hover_color',
+                'heading' => 'Text Hover Color',
+                'type' => 'colorpicker',
+                'group' => 'Header',
+                'edit_field_class' => $tab.'buttons'.$hidden.$half_width
+            ),
+
+            array (
+                'param_name' => 'header_button_background_color',
+                'heading' => 'Background Color',
+                'type' => 'colorpicker',
+                'group' => 'Header',
+                'edit_field_class' => $tab.'buttons'.$hidden.$half_width
+            ),
+
+            array (
+                'param_name' => 'header_button_background_hover_color',
+                'heading' => 'Background Hover Color',
+                'type' => 'colorpicker',
+                'group' => 'Header',
+                'edit_field_class' => $tab.'buttons'.$hidden.$half_width
+            ),
+
+
+
+
+
             array (
                 'param_name' => 'sticky_background_color',
                 'heading' => 'Background Color',
@@ -563,6 +701,14 @@ vc_map(
             array (
                 'param_name' => 'sticky_nav_text_hover_color',
                 'heading' => 'Link Hover Color',
+                'type' => 'colorpicker',
+                'group' => 'Header',
+                'edit_field_class' => $tab.'sticky'.$hidden.$half_width
+            ),
+
+            array (
+                'param_name' => 'sticky_icon_color',
+                'heading' => 'Icon Color',
                 'type' => 'colorpicker',
                 'group' => 'Header',
                 'edit_field_class' => $tab.'sticky'.$hidden.$half_width
@@ -1005,6 +1151,19 @@ vc_map(
                 'group' => 'Responsive',
             ),
 
+            array (
+                'param_name' => 'mobile_sticky_header',
+                'heading' => 'Sticky Header',
+                'description' => 'Enable or disable mobile sticky header',
+                'value' => array(
+                    'Default as desktop header option' => 'default',
+                    'Disabled' => 'disabled',
+                    'Enabled' => 'enabled',
+                ),
+                'type' => 'dropdown',
+                'std' => 'default',
+                'group' => 'Responsive',
+            ),
 
             array (
                 'param_name' => 'mobile_dropdown_search_hidden',
@@ -1020,12 +1179,12 @@ vc_map(
                 'group' => 'Responsive',
             ),
 
-            array (
+            /*array (
                 'param_name' => 'mobile_background_color',
                 'heading' => 'Background Color',
                 'type' => 'colorpicker',
                 'group' => 'Responsive',
-            ),
+            ),*/
 
             array (
                 'param_name' => 'mobile_icon_size',
@@ -1035,11 +1194,12 @@ vc_map(
                 'group' => 'Responsive',
             ),
 
-            array (
+            /*array (
                 'param_name' => 'mobile_icon_color',
                 'heading' => 'Icon Color',
                 'type' => 'colorpicker',
                 'group' => 'Responsive',
+                'edit_field_class' => $half_width,
             ),
 
             array (
@@ -1047,7 +1207,17 @@ vc_map(
                 'heading' => 'Icon Hover Color',
                 'type' => 'colorpicker',
                 'group' => 'Responsive',
+                'edit_field_class' => $half_width,
             ),
+
+            array (
+                'param_name' => 'mobile_border_color',
+                'heading' => 'Border Color',
+                'type' => 'colorpicker',
+                'value' => '#e4e4e4',
+                'group' => 'Responsive',
+                'edit_field_class' => $half_width,
+            ),*/
 
 
 

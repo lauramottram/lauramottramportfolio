@@ -33,7 +33,7 @@ class vcj_header_builder extends WPBakeryShortCode {
 
 
             <?php /* Element Output */ ?>
-            <div<?php echo $id ? ' id="'.$id.'" ' : ''; ?> class="sh-header-builder <?php echo implode( ' ', $element_class ); ?>">
+            <header<?php echo $id ? ' id="'.$id.'" ' : ''; ?> class="sh-header-builder <?php echo implode( ' ', $element_class ); ?>">
                 <?php
                     /* Topbar CSS */
                     if( $topbar_hidden == false ) :
@@ -44,7 +44,7 @@ class vcj_header_builder extends WPBakeryShortCode {
                     include ( trailingslashit( get_template_directory() ) . '/inc/elements/header-builder/header.php' );
                     include ( trailingslashit( get_template_directory() ) . '/inc/elements/header-builder/mobile.php' );
                 ?>
-            </div>
+            </header>
 
         <?php return ob_get_clean();
     }

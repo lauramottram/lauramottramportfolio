@@ -33,8 +33,8 @@
 	}
 
 	/* WooCommerce - Products */
-	.sh-recent-products .woocommerce.columns-5 .products li,
-	.sh-recent-products .woocommerce.columns-6 .products li {
+	.sh-recent-products:not(.sh-recent-products-carousel) .woocommerce.columns-5 .products li,
+	.sh-recent-products:not(.sh-recent-products-carousel) .woocommerce.columns-6 .products li {
 		width: 33.3%!important;
 	}
 
@@ -96,8 +96,8 @@
 	/* WooCommerce - Products */
 	.woocommerce .woocomerce-styling .products li,
 	.sh-recent-products:not(.sh-recent-products-carousel) .woocommerce .products li,
-	.sh-recent-products .woocommerce.columns-5 .products li,
-	.sh-recent-products .woocommerce.columns-6 .products li {
+	.sh-recent-products:not(.sh-recent-products-carousel) .woocommerce.columns-5 .products li,
+	.sh-recent-products:not(.sh-recent-products-carousel) .woocommerce.columns-6 .products li {
 		width: 48%!important;
 	}
 
@@ -221,7 +221,7 @@
 	}
 
 	.sh-column,
-	.vc_column_container {
+	.vc_column_container:not(.vc_col-xs-1):not(.vc_col-xs-10):not(.vc_col-xs-11):not(.vc_col-xs-12):not(.vc_col-xs-2):not(.vc_col-xs-3):not(.vc_col-xs-4):not(.vc_col-xs-5):not(.vc_col-xs-6):not(.vc_col-xs-7):not(.vc_col-xs-8):not(.vc_col-xs-9) {
 	    width: 100%;
 	}
 
@@ -334,8 +334,8 @@
 	/* WooCommerce - Products */
 	.woocommerce .woocomerce-styling .products li,
 	.sh-recent-products:not(.sh-recent-products-carousel) .woocommerce .products li,
-	.sh-recent-products .woocommerce.columns-5 .products li,
-	.sh-recent-products .woocommerce.columns-6 .products li {
+	.sh-recent-products:not(.sh-recent-products-carousel) .woocommerce.columns-5 .products li,
+	.sh-recent-products:not(.sh-recent-products-carousel) .woocommerce.columns-6 .products li {
 		width: 100%!important;
 	}
 

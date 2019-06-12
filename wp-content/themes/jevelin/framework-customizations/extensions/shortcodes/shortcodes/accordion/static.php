@@ -10,6 +10,7 @@ if( !function_exists( 'jevelin_shortcode_accordion_css' ) ) :
 		$icon_size = ( isset( $atts['icon_size'] ) ) ? $atts['icon_size'] : '14px';
 		$icon_position = ( isset( $atts['icon_position'] ) ) ? $atts['icon_position'] : '';
 		$icon_color = ( isset( $atts['icon_color'] ) ) ? $atts['icon_color'] : '#505050';
+		$border_radius = ( isset( $atts['border_radius'] ) ) ? $atts['border_radius'] : '';
 
 		/* If Visual Composer */
 		if( !isset( $atts['id'] ) ) :
@@ -91,6 +92,13 @@ if( !function_exists( 'jevelin_shortcode_accordion_css' ) ) :
 					background-color: <?php echo esc_attr($accent_color); ?>;
 				<?php endif; ?>
 			}
+
+
+			<?php if( $border_radius ) : ?>
+				#accordion-<?php echo esc_attr( $id ); ?>.sh-accordion .panel-title a {
+					border-radius: <?php echo jevelin_addpx( $border_radius ); ?>!important;
+				}
+			<?php endif; ?>
 
 
 		<?php $css = ob_get_contents(); ob_end_clean();

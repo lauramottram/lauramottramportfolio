@@ -9,6 +9,7 @@ if( !function_exists( 'jevelin_shortcode_icon_css' ) ) :
 		$icon_second_color = ( isset( $atts['icon_second_color'] ) ) ? $atts['icon_second_color'] : '';
 		$icon_hover_color = ( isset( $atts['icon_hover_color'] ) ) ? $atts['icon_hover_color'] : '';
 		$icon_hover_second_color = ( isset( $atts['icon_hover_second_color'] ) ) ? $atts['icon_hover_second_color'] : '';
+		$margin = ( isset( $atts['margin'] ) ) ? $atts['margin'] : '';
 		ob_start(); ?>
 
 			<?php if( $icon_size || $icon_color ) : ?>
@@ -55,6 +56,11 @@ if( !function_exists( 'jevelin_shortcode_icon_css' ) ) :
 				}
 			<?php endif; ?>
 
+			<?php if( $margin ) : ?>
+				#icon-<?php echo esc_attr( $id ); ?> .sh-element-margin {
+					margin: <?php echo esc_attr( $margin ); ?>;
+				}
+			<?php endif; ?>
 
 		<?php $css = ob_get_contents(); ob_end_clean();
 		if( $id_rand ) : echo jevelin_echo_style( $css ); else : wp_add_inline_style( 'jevelin-responsive', jevelin_compress( $css ) ); endif;

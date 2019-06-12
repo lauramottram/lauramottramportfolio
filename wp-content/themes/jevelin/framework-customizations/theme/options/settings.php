@@ -24,10 +24,12 @@ $options = array(
 	fw()->theme->get_options( 'blog' ),
 	fw()->theme->get_options( 'portfolio' ),
 	fw()->theme->get_options( 'lightbox' ),
+	fw()->theme->get_options( 'carousel' ),
 	fw()->theme->get_options( 'woocommerce' ),
 	fw()->theme->get_options( 'lazy_loading' ),
 	fw()->theme->get_options( 'page_loader' ),
 	fw()->theme->get_options( '404_page' ),
 	fw()->theme->get_options( 'notice' ),
 	fw()->theme->get_options( 'custom_code' ),
+	fw()->theme->get_options( 'import_export' ),
 );

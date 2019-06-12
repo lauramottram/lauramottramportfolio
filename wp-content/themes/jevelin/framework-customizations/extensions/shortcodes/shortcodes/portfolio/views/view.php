@@ -19,9 +19,11 @@ if( function_exists('fw_ext_portfolio_get_gallery_images') ) :
 	$orderby = ( isset( $atts['order_by'] ) && $atts['order_by'] ) ? esc_attr( $atts['order_by'] ) : 'post_date';
 	$order = ( isset( $atts['order'] ) && $atts['order'] ) ? esc_attr( $atts['order'] ) : 'desc';
 	$limit = ( isset( $atts['limit'] ) && is_numeric( $atts['limit'] ) ) ? intval( $atts['limit'] ) : 6;
+	$spacing = ( isset( $atts['spacing'] ) && $atts['spacing'] && is_numeric( $atts['spacing'] ) ) ? intval( $atts['spacing'] ) : '';
 	$filter = ( isset( $atts['filter'] ) ) ? $atts['filter'] : 'default';
 	$filter_icon = ( isset( $atts['filter_icon'] ) ) ? $atts['filter_icon'] : '';
 	$atts_categories = ( isset( $atts['categories'] ) ) ? $atts['categories'] : array();
+	$categories_order = ( isset( $atts['categories_order'] ) && $atts['categories_order'] ) ? esc_attr( $atts['categories_order'] ) : 'asc';
 	$style = ( isset( $atts['style'] ) ) ? $atts['style'] : 'default';
 	$overlay = ( isset( $atts['overlay'] ) ) ? $atts['overlay'] : 'overlay4';
 	$columns = ( isset( $atts['columns'] ) ) ? $atts['columns'] : '3';
@@ -29,11 +31,17 @@ if( function_exists('fw_ext_portfolio_get_gallery_images') ) :
 
 	/* Portfolios */
 	$categories_query = array();
-	if( count( $atts_categories ) > 0 ) :
+	if( is_array( $atts_categories ) && count( $atts_categories ) ) :
 		$categories_query[] = array(
 			'taxonomy' => 'fw-portfolio-category',
 			'field' => 'id',
 			'terms' => $atts_categories
+		);
+	elseif( $atts_categories ) :
+		$categories_query = array(
+		   	'taxonomy' => 'fw-portfolio-category',
+		   	'field' => 'slug',
+		   	'terms' => $atts_categories
 		);
 	endif;
 
@@ -51,9 +59,9 @@ if( function_exists('fw_ext_portfolio_get_gallery_images') ) :
 	/* Pagination */
 	if( $pagination ) :
 		if( is_front_page() ) :
-			$page = (get_query_var('page')) ? get_query_var('page') : 1;
+			$page = ( get_query_var('page') ) ? get_query_var('page') : 1;
 		else :
-			$page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+			$page = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 		endif;
 
 		$categories_query = array();
@@ -90,11 +98,11 @@ if( function_exists('fw_ext_portfolio_get_gallery_images') ) :
 
 
 	/* WPbakery Page Builder */
-	if( !isset( $atts['id'] ) ) :
+	if( !isset( $atts['id'] ) && !is_array( $atts_categories ) ) :
 		$atts_categories_data = explode( ',', $atts_categories );
 		$atts_categories = array();
 		foreach( $atts_categories_data as $item ) :
-			 $this_item = get_term_by( 'name', $item, 'fw-portfolio-category' );
+			 $this_item = get_term_by( 'slug', $item, 'fw-portfolio-category' );
 			 if( isset( $this_item->term_id ) && $this_item->term_id > 0 ) :
 				$atts_categories[] = (int)$this_item->term_id;
 			 endif;
@@ -104,47 +112,79 @@ if( function_exists('fw_ext_portfolio_get_gallery_images') ) :
 
 
 <?php /* Visual Composer Optimization */ ?>
-<?php if( jevelin_is_vc_front() ) : ?>
+<?php if( jevelin_is_vc_front() && $layout != 'grid' ) : ?>
 	<script type="text/javascript">
 		jQuery(document).ready(function ($) {
-			if( $.isFunction( $.fn.isotope ) ) {
+			var portfolio_isotope_loaded_times = 0;
+			var portfolio_isotope_loaded = setInterval(function() {
+			    if( $.isFunction( $.fn.isotope ) ) {
 
-		        var portfolio_filter = '*';
-		        if( $('#portfolio-<?php echo esc_attr( $id ); ?>').attr( 'data-all-filter' ) ) {
-		            portfolio_filter = $('#portfolio-<?php echo esc_attr( $id ); ?>').attr( 'data-all-filter' );
-		        }
-		        var $portfolio2 = $('#portfolio-<?php echo esc_attr( $id ); ?>').isotope({
-		            itemSelector: '.sh-portfolio-item',
-		            columnWidth: 0,
-		            gutter: 0,
-		            filter: portfolio_filter
-		        }).isotope('reloadItems').css( 'opacity', 1 );
+					/* Portfolio Items */
+					var $portfolio_element = $('#portfolio-<?php echo esc_attr( $id ); ?>');
+					$portfolio_element.css( 'height', '0px' );
+			        var $portfolio_filter = $portfolio_element.attr( 'data-all-filter' ) ? $portfolio_element.attr( 'data-all-filter' ) : '*';
+			        var $portfolio = $portfolio_element.isotope({
+			            itemSelector: '.sh-portfolio-item',
+			            columnWidth: 0,
+						percentPosition: true,
+			            gutter: 0,
+			            filter: $portfolio_filter,
+			        }).isotope('reloadItems');
+					$portfolio.imagesLoaded( function() {
+							$portfolio.isotope('reloadItems');
+						$portfolio.isotope('layout');
 
-		        $(window).load(function (){
-		            $portfolio2.imagesLoaded( function() {
-		                $portfolio2.isotope('layout');
-		            });
-		        });
+						if( $portfolio_element.height() > 0 ) {
+							$portfolio.css( 'opacity', 1 );
+						} else {
+							// If isotope fails then create backup layout
+							$portfolio_element.find('.sh-portfolio-item').css( 'display', 'inline-block' ).css( 'position', 'static' ).css( 'margin-right', '-4px' ).css( 'vertical-align', 'top' );
+							$portfolio_element.css( 'height', 'auto' ).css( 'opacity', 1 );
+						}
+					});
 
 
-			    /* Portfolio filter */
-			    $('#portfolio-filter-<?php echo esc_attr( $id ); ?>').on( 'click', 'span', function() {
+				    /* Portfolio filter */
+					var $portfolio_filter_element = $('#portfolio-filter-<?php echo esc_attr( $id ); ?>');
+				    $portfolio_filter_element.on( 'click', 'span', function() {
+				        var $filterValue = $(this).attr('data-filter');
+				        if( $(this).parent().attr('data-type') != 'woocommerce' ) {
+				            $(this).parent().parent().parent().find('.sh-portfolio').isotope({ filter: $filterValue });
+				        } else {
+				            $(this).parent().parent().parent().find('ul.products').isotope({ filter: $filterValue });
+				        }
 
-			        var filterValue = $(this).attr('data-filter');
-			        if( $(this).parent().attr('data-type') != 'woocommerce' ) {
-			            $(this).parent().parent().parent().find('.sh-portfolio').isotope({ filter: filterValue });
-			        } else {
-			            $(this).parent().parent().parent().find('ul.products').isotope({ filter: filterValue });
-			        }
+				        $(this).parent().children().removeClass('active');
+				        $(this).addClass('active');
+				    });
 
-			        $(this).parent().children().removeClass('active');
-			        $(this).addClass('active');
+					clearInterval( portfolio_isotope_loaded );
+				}
 
-			    });
 
-			}
+				// Close loop if not closed
+				portfolio_isotope_loaded_times++;
+				if( portfolio_isotope_loaded_times > 5 ) {
+					clearInterval( portfolio_isotope_loaded );
+				}
+			}, 500);
 		});
 	</script>
+<?php endif; ?>
+
+
+<?php if( $spacing ) : ?>
+	<style media="screen">
+		#portfolio-<?php echo esc_attr( $id ); ?> {
+			margin: 0 -<?php echo jevelin_addpx( $spacing ); ?>;
+		}
+
+		#portfolio-<?php echo esc_attr( $id ); ?> .sh-portfolio-item {
+			padding: 0 <?php echo jevelin_addpx( $spacing ); ?>;
+			margin-top: <?php echo jevelin_addpx( $spacing ); ?>;
+			margin-bottom: <?php echo jevelin_addpx( $spacing ); ?>;
+		}
+	</style>
 <?php endif; ?>
 
 
@@ -160,9 +200,11 @@ if( function_exists('fw_ext_portfolio_get_gallery_images') ) :
 			<span class="sh-filter-item<?php echo ( !isset( $cat_slug ) ) ? ' active' : ''; ?>" data-filter="<?php echo esc_attr( $filter_all_limit ); ?>" data-href="<?php echo esc_url( get_permalink( $post_id ) ); ?>">
 				<div class="sh-filter-item-content"><?php esc_html_e( 'All', 'jevelin' ); ?></div>
 			</span>
-			<?php if( count($atts_categories) > 0 ) : ?>
+			<?php if( count( $atts_categories ) > 0 ) :
+				$filter_category = ( $categories_order == 'desc' ) ? array_reverse( $categories ) : $categories;
+			?>
 
-				<?php foreach( $categories as $cat ) : ?>
+				<?php foreach( $filter_category as $cat ) : ?>
 					<?php if( in_array( $cat->term_id, $atts_categories ) && in_array( $cat->name, $categories_used ) ) : ?>
 						<span class="sh-filter-item<?php echo ( isset( $cat_slug ) && $cat_slug == $cat->slug ) ? ' active' : ''; ?>" data-filter=".category-<?php echo esc_js( $cat->slug ); ?>" data-href="<?php echo esc_url( get_permalink( $post_id ) ); ?>?category=<?php echo esc_js( $cat->slug ); ?>">
 							<div class="sh-filter-item-content"><?php echo esc_attr( $cat->name ); ?></div>
@@ -170,9 +212,11 @@ if( function_exists('fw_ext_portfolio_get_gallery_images') ) :
 					<?php endif; ?>
 				<?php endforeach; ?>
 
-			<?php else : ?>
+			<?php else :
+				$filter_category = ( $categories_order == 'desc' ) ? array_reverse( get_terms('fw-portfolio-category') ) : get_terms('fw-portfolio-category');
+			?>
 
-				<?php foreach( get_terms('fw-portfolio-category') as $cat ) : ?>
+				<?php foreach( $filter_category as $cat ) : ?>
 					<?php if( in_array( $cat->name, $categories_used ) ) : ?>
 						<span class="sh-filter-item<?php echo ( isset( $cat_slug ) && $cat_slug == $cat->slug ) ? ' active' : ''; ?>" data-filter=".category-<?php echo esc_js( $cat->slug ); ?>" data-href="<?php echo esc_url( get_permalink( $post_id ) ); ?>?category=<?php echo esc_js( $cat->slug ); ?>">
 							<div class="sh-filter-item-content"><?php echo esc_attr( $cat->name ); ?></div>
@@ -232,7 +276,25 @@ if( function_exists('fw_ext_portfolio_get_gallery_images') ) :
 					<?php endif; ?>
 
 						<?php if( $overlay != 'none') : ?>
-							<?php if( $overlay == 'overlay4' || $overlay == 'overlay4 overlay5' ) : ?>
+							<?php if( $overlay == 'overlay4 overlay6' ) : ?>
+
+								<div class="sh-portfolio-overlay4-container">
+									<div class="sh-portfolio-overlay4-title">
+										<?php the_title(); ?>
+									</div>
+									<div class="sh-portfolio-overlay4-categories">
+										<?php
+											foreach($categories2 as $category) :
+												echo '<span href="'.esc_attr( get_home_url('/') ).'/'.esc_attr( $portfolio_categories_url ).'/'.esc_attr( $category->slug ).'/" class="sh-portfolio-category">'.esc_attr( $category->name ).'</span>';
+												if( $category !== end($categories) ) :
+													echo '<span class="sh-whitespace-small"></span>';
+												endif;
+											endforeach;
+										?>
+									</div>
+								</div>
+
+							<?php elseif( $overlay == 'overlay4' || $overlay == 'overlay4 overlay5' ) : ?>
 
 								<div class="sh-portfolio-overlay4-container">
 
@@ -262,7 +324,7 @@ if( function_exists('fw_ext_portfolio_get_gallery_images') ) :
 							                </a>
 						                <?php endif; ?>
 
-						                <a href="<?php echo jevelin_get_thumb( get_the_ID(), $image_ratio ); ?>" class="sh-overlay-item sh-table-cell" rel="lightbox">
+						                <a href="<?php echo jevelin_get_thumb( get_the_ID(), $image_ratio ); ?>" class="sh-overlay-item sh-table-cell" data-rel="lightcase:portfilio<?php echo esc_attr( $id ); ?>">
 						                    <div class="sh-overlay-item-container">
 						                        <i class="icon-magnifier-add"></i>
 						                    </div>
@@ -388,8 +450,8 @@ if( function_exists('fw_ext_portfolio_get_gallery_images') ) :
 			<?php endif; ?>
 
 			<?php if( $style == 'minimalistic' ) : ?>
-				<div class="sh-portfolio-content-container sh-columns">
-					<div>
+				<div class="sh-portfolio-content-container">
+					<div class="sh-portfolio-content-container-left">
 						<?php if( $page_link ) : ?>
 							<a href="<?php the_permalink(); ?>">
 								<h3 class="sh-portfolio-title">

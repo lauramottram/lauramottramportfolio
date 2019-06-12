@@ -174,4 +174,15 @@ $options = array(
 		),
 	),
 
+	'position_box' => array(
+		'title'   => esc_html__( 'Position', 'jevelin' ),
+		'type'    => 'tab',
+		'options' => array(
+
+			'inline_element' => jevelin_element_inline_option(),
+			'margin' => jevelin_element_margin_option(),
+
+		),
+	),
+
 );

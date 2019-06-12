@@ -24,7 +24,7 @@ class vcj_blog_posts extends WPBakeryShortCode {
       'type' => 'textfield',
       'class' => '',
       'std' => 6,
-      'group' => '',
+      'group' => 'General',
       'admin_label' => true,
     ),
     1 => 
@@ -38,6 +38,10 @@ class vcj_blog_posts extends WPBakeryShortCode {
         'Masonry Shadow' => 'masonry masonry-shadow',
         'Masonry Standard' => 'masonry',
         'Grid' => 'grid',
+        'Mix' => 'mix masonry2',
+        'Large Images' => 'large',
+        'Medium Images' => 'medium',
+        'Small Images' => 'small',
         'Date only' => 'largedate',
         'Image only' => 'largeimage',
         'Minimalistic' => 'minimalistic',
@@ -45,7 +49,7 @@ class vcj_blog_posts extends WPBakeryShortCode {
       'type' => 'dropdown',
       'class' => '',
       'std' => 'masonry',
-      'group' => '',
+      'group' => 'General',
       'admin_label' => true,
     ),
     2 => 
@@ -63,7 +67,7 @@ class vcj_blog_posts extends WPBakeryShortCode {
       'type' => 'dropdown',
       'class' => '',
       'std' => '3',
-      'group' => '',
+      'group' => 'General',
       'admin_label' => true,
     ),
     3 => 
@@ -79,7 +83,7 @@ class vcj_blog_posts extends WPBakeryShortCode {
       'type' => 'dropdown',
       'class' => '',
       'std' => false,
-      'group' => '',
+      'group' => 'General',
     ),
     4 => 
     array (
@@ -90,7 +94,7 @@ class vcj_blog_posts extends WPBakeryShortCode {
       'type' => 'exploded_textarea',
       'class' => '',
       'std' => '',
-      'group' => '',
+      'group' => 'General',
     ),
     5 => 
     array (
@@ -101,7 +105,7 @@ class vcj_blog_posts extends WPBakeryShortCode {
       'type' => 'exploded_textarea',
       'class' => '',
       'std' => '',
-      'group' => '',
+      'group' => 'General',
     ),
     6 => 
     array (
@@ -119,7 +123,7 @@ class vcj_blog_posts extends WPBakeryShortCode {
       'type' => 'dropdown',
       'class' => '',
       'std' => 'date',
-      'group' => '',
+      'group' => 'General',
     ),
     7 => 
     array (
@@ -134,7 +138,37 @@ class vcj_blog_posts extends WPBakeryShortCode {
       'type' => 'dropdown',
       'class' => '',
       'std' => 'desc',
-      'group' => '',
+      'group' => 'General',
+    ),
+    8 => 
+    array (
+      'param_name' => 'pagination',
+      'heading' => 'Pagination',
+      'description' => 'Enable or disable element pagination',
+      'value' => 
+      array (
+        'Off' => 'off',
+        'On' => 'on',
+      ),
+      'type' => 'dropdown',
+      'class' => '',
+      'std' => 'off',
+      'group' => 'Pagination',
+    ),
+    9 => 
+    array (
+      'param_name' => 'categories_switch',
+      'heading' => 'Categories Switch',
+      'description' => 'Enable or disable element categories switch',
+      'value' => 
+      array (
+        'Off' => 'off',
+        'On' => 'on',
+      ),
+      'type' => 'dropdown',
+      'class' => '',
+      'std' => 'off',
+      'group' => 'Categories Switch',
     ),
   ),
 ) );

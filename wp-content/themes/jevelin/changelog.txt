@@ -1,6 +1,155 @@
+Version 4.3.1
+* Fixed - OCDI plugin theme demos not available
+
+Version 4.3.0
+* Added - Digital Media Agency demo
+* Added - Lazy loading for some new elements
+* Added - Sticky option for header builder in mobile layout
+* Added - Inline option for button, heading, icon and single image elements so they can be added in one line together
+* Updated - WPbakery Page builder to the latest version
+* Improved - Unyson builder coliumn hover background image loading issue
+* Fixed - Unyson builder crops bottom sections in some cases
+* Fixed - Portfolio element spacing causes column width related issues
+* Fixed - Portfolio element spacing issue with default value
+* Fixed - The Thrive Leads plugin button added in the menu doesn't work in mobile.
+* Fixed - Portfolio category order doesn't work
+* Fixed - Header builder mobile styling doesn't work as expected
+* Fixed - Theme lazy loading doesn't work in some cases
+
+Version 4.2.4
+* Added - Option to choose header builder for individual pages
+* Fixed - Header adds horizontal scrollbar
+* Fixed - Single portfolio page categories links doesn't work in some cases
+* Fixed - WooCommerce Categories elements notice when updateing to WooCommerce 3.6 version
+* Fixed - Page layout option not working in some cases
+* Fixed - Portfolio element categories selection doesn't work in WPbakery page builder
+
+Version 4.2.3
+* Addded - compatibility with WooCommerce 3.6 version
+* Updated - Yellow Pencil Pro to 7.2.1 version
+* Fixed - Portfolio custom fields options doesn't work when block editor is activated
+
+Version 4.2.2
+* Updated - Yellow Pencil Editor to 7.2.0 version. Please update as all version bellow have security issues!
+* Added - Import / export option for theme settings
+* Added - Carousel settings with style, spacing, size and options in theme settings
+* Added - Portfolio single project option to set full screen width
+* Added - Portfolio single project option set gallery columns and enable slider
+* Added - Portfolio element new overlay (improved naming for old ones ) and category order option
+* Added - Header builder option to add button in standard header block too
+* Added - List (WPbakery) element option to add link and change icon/text font size
+* Added - Header builder main header buttons options
+* Improved - Header builder element building and preview pages for better experience
+
+Version 4.2.1
+* Improved - Theme dashboard page
+* Fixed - Carousel dots alignment issue in some cases
+* Fixed - Javascript error in latest chrome versions (Unable to preventDefault inside passive event listener)
+
+Version 4.2.0
+* Added - Creative Agency demo
+* Added - Option to set overflow for column element
+* Added - Icon group element new style option
+* Added - Icon group element option to set icon hover color and new style
+* Added - Portfolio element spacing option
+* Added - Footer widgets element option to set heading font weight
+* Added - Button element option to set custom height and horizontal padding
+* Added - Header builder element option to change sticky icon color
+* Added - Instagram element for WPbakery page builder
+* Improved - WPbakery page builder Jevelin element icons
+* Improved - Jevelin theme settings page loading animation
+* Updated - Theme settings color scheme and logo
+* Updated - Revolution Slider to the latest version
+* Fixed - Contact Form 7 style 1 dropdown styling issue
+* Fixed - Woocommerce related product element responsive issue when using carousel
+* Fixed - Portfolio featured image not saving
+* Fixed - On startup in admin panel new post/page/portfolio showing unstyled information
+* Fixed - Portfolio/portfolio fancy elements WPbakery Page Builder frontend mode not working correctly
+* Fixed - Portfolio/portfolio fancy elements lightbox gallery mode not working
+* Fixed - Footer builder element column responsive padding option not working
+
+Version 4.1.5
+* Fixed - JavaScript issue (lazy is not a function)
+* Fixed - JavaScript issue (Cannot read property 'replace' of undefined)
+* Fixed - Bootstrap.min.css.map file not found
+
+Version 4.1.4
+* Added - Portfolio items now have option to add widgets to the sidebar
+* Added - Option in theme settings to disable single blog post featured image lightbox
+* Fixed - Footer Builder CSS not working when using Polylang languages
+
+Version 4.1.3
+* Added - WPbakery demo installation support for Event, Nature, Fitness, Landing,
+Landing 2, Corporative, Shop, Autospot, Medical, Startup and Beauty demos
+* Added - Option to set links for heading element
+* Improved - Theme settings header logo descriptions and order for better ease of use
+* Improved - Header builder mobile topbar responsiveness
+* Updated - Yellow Pencil plugin to the latest version
+* Fixed - Fatal error in some cases related to get_current_screen function
+
+Version 4.1.2
+* Added - New notices in both Unyson and OCDI demo installer pages
+* Improved - Updated default Jevelin logo
+* Improved - Jevelin > One Click Install link now reddirects to installation page if not installed
+* Fixed - Can't update new pages after update
+* Fixed - Cookies notices is shown immediately after theme first activation (should be disabled by default)
+* Fixed - Default accent color not working immediately after theme first activation
+
+Version 4.1.1
+* Added - Medical demo
+* Added - New avatar option in Testimonials for style 5
+* Added - All vailable layouts to blog posts element
+* Added - Pagination and categories wtich options for blog posts element
+* Added - CSS Animation for Inner Columns in WPbakery
+* Added - New option in theme settings under header search results
+* Added - Text group element to WPbakery page builder
+* Added - Portfolio fancy element WPbakery page builder
+* Added - Responsive margin (1025px and bellow) option for WPbakery page builder rows
+* Improved - Portfolio minimalistic style responsiveness
+* Improved - Header and footer builders now work with multi language plugins
+* Updated - WPbakery Page builder to the latest version
+* Updated - Revolution Slider to the latest version
+* Fixed - Pulse animation doesn't work for image points element in WPbakery
+* Fixed - Search results page padding issue in some cases
+* Fixed - Video player element placholder icon can't be disabled
+* Fixed - WPbakery column custom width in phone not working in some cases
+* Fixed - Header builder text weight regular setting doesn't work
+* Fixed - Header builder sticky header strange behaver
+* Fixed - WPbakery row and column responsive padding option doesn't work with CSS/JS minify plugins
+* Fixed - Header and footer builders fatal error in some specific cases
+
+Version 4.1.0
+* Added - Option to set default portfolio page title
+* Added - WPbakery CF7 element input fields border color, bottom margin and height options
+* Added - WPbakery CF7 element submit button various options
+* Added - WPbakery Row element option to change mobile background image and background position
+* Added - Compact spacing option for both titlebar and header in mobile layout
+* Added - WPbakery partners option to disable horizontal spacing
+* Added - Option to choose how themes settings are stored (to fix some caching issues)
+* Improved - Loading performance
+* Fixed - Footer developer copyrights issue by adding new option
+* Fixed - WPbakery empty space element ID option not working
+* Fixed - Header and footer WPbakery content related issue
+* Fixed - Portfolio notice in some cases
+* Fixed - Google maps API key not working in some cases
+* Fixed - Inner row PHP notice issue in some cases
+* Fixed - Adding new Contact Form 7 replaces previous form
+* Fixed - Portfolio notice issue when using categories in PHP 7.2
+
+Version 4.0.3
+* Fixed - Fatal error: call to undefined function is_plugin_active()
+
+Version 4.0.2
+* Added - WordPress 5.0 compatibility
+* Improved - Customizer options ease of use
+* Fixed - Page and post settings accent color options isn't working
+* Fixed - Shop cart icon incorrect color
+* Fixed - WPbakery "My Templates" tab isn't scrollable
+
 Version 4.0.1
-* Updated - Theme cover image
+* Improved - Theme settings page with sticky header for better ease of use
 * Improved - Google maps element for Unyson page builder
+* Updated - Theme cover image
 * Fixed - "Comment author must fill out name and email" doesn't change comment required fields
 * Fixed - Portfolio categories selection doesn't work as expected in some cases
 * Fixed - Shufflehound Information widget PHP notice issue

@@ -20,7 +20,7 @@ class vcj_google_maps extends WPBakeryShortCode {
                 'base' => 'vcj_google_maps',
                 'description' => __('Add map to your website', 'jevelin'),
                 'category' => __('Jevelin Elements', 'jevelin'),
-                'icon' => get_template_directory_uri().'/img/VC_ES_icon.svg',
+                'icon' => get_template_directory_uri().'/img/builder-icon.png',
                 'params' => array(
 
                     array (
@@ -128,9 +128,24 @@ class vcj_google_maps extends WPBakeryShortCode {
 
     public function _html( $atts ) {
 
+        // API key
+        if( function_exists( 'shufflehound_google_maps_api_key' ) ) :
+            $key = shufflehound_google_maps_api_key();
+        elseif( jevelin_option('api_key') ) :
+            $key = jevelin_option( 'api_key' );
+        else :
+            $key = '';
+        endif;
+
+        $enqueue_key = '';
+        if( $key ) :
+            $enqueue_key = '?key='.$key;
+        endif;
+
         // Enqueue scripts
-        wp_enqueue_script( 'google-maps-api', '//maps.google.com/maps/api/js' );
+        wp_enqueue_script( 'google-maps-api', 'https://maps.googleapis.com/maps/api/js'.$enqueue_key, array(), null );
         wp_enqueue_script( 'gmap3', '//cdn.jsdelivr.net/gmap3/7.2.0/gmap3.min.js' );
+
 
         // Params extraction
         extract( shortcode_atts( array(
@@ -144,6 +159,7 @@ class vcj_google_maps extends WPBakeryShortCode {
             'class' => '',
         ), $atts ) );
 
+
         // HTML
         $id = 'sh-google-maps-'.jevelin_rand();
         $element_class = array();
@@ -154,17 +170,15 @@ class vcj_google_maps extends WPBakeryShortCode {
         endif;
 
 
-        // API key
-        if( function_exists( 'shufflehound_google_maps_api_key' ) ) :
-            $key = shufflehound_google_maps_api_key();
-        elseif( jevelin_option('api_key') ) :
-            $key = jevelin_option( 'api_key' );
+        // Get image
+        if( jevelin_is_url( $image ) ) :
+            $marker_image = $image;
+        elseif( $image ) :
+            $marker_image = jevelin_get_small_thumb( $image );
         else :
-            $key = '';
+            $marker_image = get_template_directory_uri().'/img/google-maps-marker.png';
         endif;
 
-
-        $marker_image = ( $image ) ? jevelin_get_small_thumb( $image ) : get_template_directory_uri().'/img/google-maps-marker.png';
 
         if( $zoom > 19 ) :
             $zoom = 19;

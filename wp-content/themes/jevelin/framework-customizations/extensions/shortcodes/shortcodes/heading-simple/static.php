@@ -27,7 +27,7 @@ if( !function_exists( 'jevelin_shortcode_heading_simple_css' ) ) :
 		ob_start(); ?>
 
 
-			#heading-<?php echo esc_attr( $id ); ?>  {
+			#heading-<?php echo esc_attr( $id ); ?> .sh-element-margin {
 				<?php if( $margin ) : ?>
 					margin: <?php echo esc_attr( $margin ); ?>;
 				<?php endif; ?>

@@ -74,9 +74,10 @@ class vcj_icon_group extends WPBakeryShortCode {
       'description' => 'Choose icon style',
       'value' => 
       array (
-        'Style 1' => 'style1',
-        'Style 2' => 'style2',
-        'Style 3' => 'style3',
+        'Style 1 (background on hover)' => 'style1',
+        'Style 2 (with line)' => 'style2',
+        'Style 3 (without background color)' => 'style3',
+        'Style 4 (without padding)' => 'style4',
       ),
       'type' => 'dropdown',
       'class' => '',
@@ -86,7 +87,18 @@ class vcj_icon_group extends WPBakeryShortCode {
     3 => 
     array (
       'param_name' => 'icon_color',
-      'heading' => 'Color',
+      'heading' => 'Icon Color',
+      'description' => 'Select icon color or leave blank for default body color',
+      'value' => '',
+      'type' => 'colorpicker',
+      'class' => '',
+      'std' => '',
+      'group' => '',
+    ),
+    4 => 
+    array (
+      'param_name' => 'icon_hover_color',
+      'heading' => 'Icon Hover Color',
       'description' => 'Select icon color or leave blank for default body color',
       'value' => '',
       'type' => 'colorpicker',

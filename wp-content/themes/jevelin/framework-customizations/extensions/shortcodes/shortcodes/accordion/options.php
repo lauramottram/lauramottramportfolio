@@ -176,6 +176,12 @@ $options = array(
 			    ),
 			),
 
+			'border_radius'   => array(
+				'label' => esc_html__( 'Border Radius', 'jevelin' ),
+				'desc'  => esc_html__( 'Enter border radius in px', 'jevelin' ),
+				'type'  => 'text',
+			),
+
 			'icon_color' => array(
 			    'type'  => 'color-picker',
 			    'label' => esc_html__( 'Icon Color', 'jevelin' ),

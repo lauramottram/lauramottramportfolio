@@ -248,16 +248,27 @@ class vcj_button extends WPBakeryShortCode {
     ),
     16 => 
     array (
-      'param_name' => 'margin',
-      'heading' => 'Margin',
-      'description' => 'Enter your custom margin (<b>top right bottom left</b>)',
-      'value' => '0px 0px 15px 0px',
+      'param_name' => 'height',
+      'heading' => 'Button Height',
+      'description' => 'Enter your custom button height (with px)',
+      'value' => '',
       'type' => 'textfield',
       'class' => '',
-      'std' => '0px 0px 0px 0px',
+      'std' => '',
       'group' => 'Styling',
     ),
     17 => 
+    array (
+      'param_name' => 'leftright_padding',
+      'heading' => 'Button Left/Right Padding',
+      'description' => 'Enter your custom button left/right padding (with px)',
+      'value' => '',
+      'type' => 'textfield',
+      'class' => '',
+      'std' => '',
+      'group' => 'Styling',
+    ),
+    18 => 
     array (
       'param_name' => 'text_color',
       'heading' => 'Text Color',
@@ -268,7 +279,7 @@ class vcj_button extends WPBakeryShortCode {
       'std' => '#ffffff',
       'group' => 'Colors',
     ),
-    18 => 
+    19 => 
     array (
       'param_name' => 'text_hover_color',
       'heading' => 'Text Hover Color',
@@ -279,7 +290,7 @@ class vcj_button extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Colors',
     ),
-    19 => 
+    20 => 
     array (
       'param_name' => 'background_color',
       'heading' => 'Background Color',
@@ -290,7 +301,7 @@ class vcj_button extends WPBakeryShortCode {
       'std' => '#3f3f3f',
       'group' => 'Colors',
     ),
-    20 => 
+    21 => 
     array (
       'param_name' => 'background_hover_color',
       'heading' => 'Background Hover Color',
@@ -301,7 +312,7 @@ class vcj_button extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Colors',
     ),
-    21 => 
+    22 => 
     array (
       'param_name' => 'border_color',
       'heading' => 'Border Color',
@@ -312,7 +323,7 @@ class vcj_button extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Colors',
     ),
-    22 => 
+    23 => 
     array (
       'param_name' => 'border_hover_color',
       'heading' => 'Border Hover Color',
@@ -323,7 +334,7 @@ class vcj_button extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Colors',
     ),
-    23 => 
+    24 => 
     array (
       'param_name' => 'animation',
       'heading' => 'Animation',
@@ -380,7 +391,7 @@ class vcj_button extends WPBakeryShortCode {
       'std' => 'none',
       'group' => 'Show Animation',
     ),
-    24 => 
+    25 => 
     array (
       'param_name' => 'animation_speed',
       'heading' => 'Animation Speed',
@@ -391,7 +402,7 @@ class vcj_button extends WPBakeryShortCode {
       'std' => 2,
       'group' => 'Show Animation',
     ),
-    25 => 
+    26 => 
     array (
       'param_name' => 'animation_delay',
       'heading' => 'Animation Delay',
@@ -401,6 +412,32 @@ class vcj_button extends WPBakeryShortCode {
       'class' => '',
       'std' => 0,
       'group' => 'Show Animation',
+    ),
+    27 => 
+    array (
+      'param_name' => 'inline_element',
+      'heading' => 'Inline Element',
+      'description' => 'Enable for multiple elements to add them in one line Doesnt work in WPbakery page builder front-end mode',
+      'value' => 
+      array (
+        'Disabled' => 'disabled',
+        'Enabled' => 'enabled',
+      ),
+      'type' => 'dropdown',
+      'class' => '',
+      'std' => 'disabled',
+      'group' => 'Position',
+    ),
+    28 => 
+    array (
+      'param_name' => 'margin',
+      'heading' => 'Margin',
+      'description' => 'Enter your custom margin (<b>top right bottom left</b>)',
+      'value' => '0px 0px 15px 0px',
+      'type' => 'textfield',
+      'class' => '',
+      'std' => '0px 0px 0px 0px',
+      'group' => 'Position',
     ),
   ),
 ) );

@@ -43,6 +43,12 @@ $options = array(
 						'type'  => 'upload',
 					),
 
+					'avatar2' => array(
+						'label' => esc_html__( 'Avater (for Style 4)', 'jevelin' ),
+						'desc'  => esc_html__( 'Upload avatar', 'jevelin' ),
+						'type'  => 'upload',
+					),
+
 				)
 			),
 

@@ -57,6 +57,7 @@ $blog_options = array(
 	),
 
 
+
 	'post_title' => array(
 	    'type'  => 'html-full',
 	    'value' => '',
@@ -128,6 +129,21 @@ $blog_options = array(
 		),
 	),
 
+	'post_main_image_lightbiox' => array(
+		'type' => 'switch',
+		'label' => esc_html__( 'Post Featured Image Lightbox', 'jevelin' ),
+		'desc' => esc_html__( 'Enable or disable single blog post featured image lightbox', 'jevelin' ),
+		'value' => 'on',
+		'left-choice' => array(
+			'value' => 'off',
+			'label' => esc_html__('Off', 'jevelin'),
+		),
+		'right-choice' => array(
+			'value' => 'on',
+			'label' => esc_html__('On', 'jevelin'),
+		),
+	),
+
 	'post_desc' => array(
 	    'type'  => 'slider',
 	    'value' => 45,
@@ -135,7 +151,7 @@ $blog_options = array(
 	        'min' => 10,
 	        'max' => 250,
 	    ),
-	    'label' => esc_html__('Description Length', 'jevelin'),
+	    'label' => esc_html__('Description Length (words)', 'jevelin'),
 	    'desc'  => esc_html__('Choose post description preview length', 'jevelin'),
 	),
 );

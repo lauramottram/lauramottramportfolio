@@ -3,6 +3,35 @@
 }
 
 $portfilio_options = array(
+
+	'portfolio_main_page' => array(
+		'type'  => 'text',
+		'value' => '',
+		'label' => esc_html__('Portfolio Main Page ID', 'jevelin'),
+		'desc'  => esc_html__('Enter portfolio main page ID, useful to change default portfolio breadcrumbs page', 'jevelin'),
+	),
+
+
+
+
+	'portfolio_archive_title2' => array(
+	    'type'  => 'html-full',
+	    'value' => '',
+	    'label' => false,
+	    'html'  => '<h3 class="hndle sh-custom-group-divder"><span>'.esc_html__('Portfolio Single Page', 'jevelin').'</span></h3>',
+	),
+
+	'portfolio_single_page_layout' => array(
+		'type' => 'radio',
+		'label' => esc_html__( 'Layout', 'jevelin' ),
+		'desc' => esc_html__( 'Choose portfolio single page layout', 'jevelin' ),
+		'choices' => array(
+            'default' => esc_html__( 'Default', 'jevelin' ),
+            'full' => esc_html__( 'Full Width', 'jevelin' ),
+	    ),
+	    'inline' => false,
+	),
+
 	'portfolio_related' => array(
 		'type' => 'switch',
 		'label' => esc_html__( 'Related items', 'jevelin' ),
@@ -50,7 +79,7 @@ $portfilio_options = array(
 
 	'portfolio_single_image' => array(
 		'type' => 'switch',
-		'label' => esc_html__( 'Opened Portfolio Image Size', 'jevelin' ),
+		'label' => esc_html__( 'Image Size', 'jevelin' ),
 		'desc' => esc_html__( 'Use full size image, if image quality is lower than expected.', 'jevelin' ),
 		'value' => 'large',
 		'left-choice' => array(
@@ -65,7 +94,7 @@ $portfilio_options = array(
 
 	'portfolio_gallery_autoplay' => array(
 		'type' => 'switch',
-		'label' => esc_html__( 'Portfolio Gallery Autoplay', 'jevelin' ),
+		'label' => esc_html__( 'Gallery Autoplay', 'jevelin' ),
 		'desc' => esc_html__( 'Enable or disable gallery autoplay in single portfolio page', 'jevelin' ),
 		'value' => 'off',
 		'left-choice' => array(
@@ -78,12 +107,10 @@ $portfilio_options = array(
 		),
 	),
 
-	'portfolio_main_page' => array(
-		'type'  => 'text',
-		'value' => '',
-		'label' => esc_html__('Portfolio Main Page ID', 'jevelin'),
-		'desc'  => esc_html__('Enter portfolio main page ID, useful to change default portfolio breadcrumbs page', 'jevelin'),
-	),
+
+
+
+
 
 	'portfolio_archive_title' => array(
 	    'type'  => 'html-full',
@@ -140,6 +167,35 @@ $portfilio_options = array(
 			'13' => esc_html__( '13 items', 'jevelin' ),
 			'14' => esc_html__( '14 items', 'jevelin' ),
 	        '15' => esc_html__( '15 items', 'jevelin' ),
+	    ),
+	    'inline' => false,
+	),
+
+	'portfolio_gallery_columns' => array(
+	    'type'  => 'radio',
+	    'value' => 'columns3',
+	    'label' => esc_html__('Portfolio Project Gallery Columns', 'jevelin'),
+	    'desc'  => esc_html__('Choose portfolio project columns for gallery layout', 'jevelin'),
+	    'choices' => array(
+			'columns3' => esc_html__( 'Columns 3', 'jevelin' ),
+	        'columns4' => esc_html__( 'Columns 4', 'jevelin' ),
+	        'columns5' => esc_html__( 'Columns 5', 'jevelin' ),
+	    ),
+	    'inline' => false,
+	),
+
+
+
+
+
+	'portfolio_gallery_slider' => array(
+	    'type'  => 'radio',
+	    'value' => 'off',
+	    'label' => esc_html__('Portfolio Project Gallery Slider', 'jevelin'),
+	    'desc'  => esc_html__('Enable or disable portfolio project gallery slider', 'jevelin'),
+	    'choices' => array(
+			'off' => esc_html__( 'Off', 'jevelin' ),
+	        'on' => esc_html__( 'On', 'jevelin' ),
 	    ),
 	    'inline' => false,
 	),

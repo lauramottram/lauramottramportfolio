@@ -44,11 +44,12 @@ $options = array(
 				'desc'  => esc_html__('Select overlat style or disable it', 'jevelin'),
 				'choices' => array(
 					'none' => esc_html__('Disable', 'jevelin'),
-					'overlay1' => esc_html__('Overlay 1', 'jevelin'),
-					'overlay2' => esc_html__('Overlay 2', 'jevelin'),
-					'overlay3' => esc_html__('Overlay 3', 'jevelin'),
-					'overlay4' => esc_html__('Overlay 4', 'jevelin'),
-					'overlay4 overlay5' => esc_html__('Overlay 5', 'jevelin'),
+					'overlay1' => esc_html__('Overlay 1 - Bottom bar', 'jevelin'),
+					'overlay2' => esc_html__('Overlay 2 - Text with description in top left (with seperation line)', 'jevelin'),
+					'overlay3' => esc_html__('Overlay 3 - Text with description in top left', 'jevelin'),
+					'overlay4' => esc_html__('Overlay 4 - Text and categories with link and view buttons in middle', 'jevelin'),
+					'overlay4 overlay5' => esc_html__('Overlay 5 - Link and view buttons in middle', 'jevelin'),
+					'overlay4 overlay6' => esc_html__('Overlay 6 - Text and categories in middle', 'jevelin'),
 				),
 				'value'	  => 'overlay4',
 			),
@@ -68,11 +69,22 @@ $options = array(
 			'categories' => array(
 			    'type'  => 'multi-select',
 			    'label' => esc_html__('Categories', 'jevelin'),
-			    'desc'  => esc_html__('Select categories', 'jevelin'),
+			    'desc'  => esc_html__('Enter categories (by names or slugs) and separate them with enter button', 'jevelin'),
 			    'population' => 'taxonomy',
 			    'source' => 'fw-portfolio-category',
 			    'prepopulate' => 200,
 			    'limit' => 100,
+			),
+
+			'categories_order' => array(
+				'type'    => 'radio',
+				'label'   => esc_html__('Category Order', 'jevelin'),
+				'desc'  => esc_html__( 'Choose category order', 'jevelin' ),
+				'value'	  => 'asc',
+				'choices' => array(
+					'asc' => esc_html__('Ascending', 'jevelin'),
+					'desc' => esc_html__('Descending', 'jevelin'),
+				)
 			),
 
 			'limit' => array(
@@ -90,6 +102,14 @@ $options = array(
 				'value' => '0',
 				'attr'  => array( 'style' => 'max-width: 60px;' ),
 			),*/
+
+			'spacing' => array(
+				'label' => esc_html__( 'Spacing', 'jevelin' ),
+				'desc'  => esc_html__( 'Enter portfolio item spacing (with px)', 'jevelin' ),
+				'type'  => 'text',
+				'value' => '',
+				'attr'  => array( 'style' => 'max-width: 60px;' ),
+			),
 
 			'order_by' => array(
 				'type'    => 'radio',

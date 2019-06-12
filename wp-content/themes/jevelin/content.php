@@ -3,10 +3,9 @@
  * Post format - Standard
  */
 
-if( !isset($style) ) :
+if( !isset( $style ) ) :
 	$style = jevelin_post_option( get_queried_object_id(), 'page-blog-style' );
 endif;
-
 /* Layout for masonry style */
 if ( $style == 'masonry' || $style == 'masonry masonry-shadow' ) :
 ?>
@@ -16,7 +15,44 @@ if ( $style == 'masonry' || $style == 'masonry masonry-shadow' ) :
 			<?php jevelin_popover( jevelin_post_option( get_the_ID(), 'post-popover' ) ); ?>
 
 			<div class="post-meta-thumb">
-				<?php echo the_post_thumbnail( 'post-thumbnail' ); ?>
+				<?php
+				$ratio = 0;
+
+				if( jevelin_option('lazy_loading') == 'enabled' ) :
+					$attachment_id = get_post_thumbnail_id( get_the_ID() );
+					$image_ratio = 'large';
+
+					if( $attachment_id ) :
+						$image_media = wp_get_attachment_metadata( $attachment_id );
+
+						if( $image_ratio ) :
+							$image_width = ( isset( $image_media['sizes'][$image_ratio]['width'] ) ) ? $image_media['sizes'][$image_ratio]['width'] : 0;
+							$image_height = ( isset( $image_media['sizes'][$image_ratio]['height'] ) ) ? $image_media['sizes'][$image_ratio]['height'] : 0;
+						endif;
+						if( !isset( $image_width ) || !$image_width ) :
+							$image_width = ( isset( $image_media['width'] ) ) ? $image_media['width'] : 0;
+							$image_height = ( isset( $image_media['height'] ) ) ? $image_media['height'] : 0;
+						endif;
+
+						if( $image_width && $image_height ) :
+							$ratio = ( $image_height / $image_width ) * 100;
+						endif;
+					endif;
+				?>
+				<?php endif; ?>
+
+				<?php if( $ratio ) : ?>
+
+					<div class="ratio-container" style="padding-top: <?php echo esc_attr( $ratio ); ?>%;">
+						<div class="ratio-content">
+							<img class="sh-image-url lazy" data-src="<?php echo jevelin_get_thumb( get_the_ID(), 'large' ); ?>" alt="" />
+						</div>
+					</div>
+
+				<?php else : ?>
+					<?php echo the_post_thumbnail( 'large' ); ?>
+				<?php endif; ?>
+
 				<?php echo jevelin_blog_overlay( jevelin_get_thumb( get_the_ID() ) ); ?>
 			</div>
 
@@ -55,7 +91,44 @@ if ( $style == 'masonry' || $style == 'masonry masonry-shadow' ) :
 			<?php jevelin_popover( jevelin_post_option( get_the_ID(), 'post-popover' ) ); ?>
 
 			<div class="post-meta-thumb">
-				<?php echo the_post_thumbnail( 'large' ); ?>
+				<?php
+				$ratio = 0;
+
+				if( jevelin_option('lazy_loading') == 'enabled' ) :
+					$attachment_id = get_post_thumbnail_id( get_the_ID() );
+					$image_ratio = 'large';
+
+					if( $attachment_id ) :
+						$image_media = wp_get_attachment_metadata( $attachment_id );
+
+						if( $image_ratio ) :
+							$image_width = ( isset( $image_media['sizes'][$image_ratio]['width'] ) ) ? $image_media['sizes'][$image_ratio]['width'] : 0;
+							$image_height = ( isset( $image_media['sizes'][$image_ratio]['height'] ) ) ? $image_media['sizes'][$image_ratio]['height'] : 0;
+						endif;
+						if( !isset( $image_width ) || !$image_width ) :
+							$image_width = ( isset( $image_media['width'] ) ) ? $image_media['width'] : 0;
+							$image_height = ( isset( $image_media['height'] ) ) ? $image_media['height'] : 0;
+						endif;
+
+						if( $image_width && $image_height ) :
+							$ratio = ( $image_height / $image_width ) * 100;
+						endif;
+					endif;
+				?>
+				<?php endif; ?>
+
+				<?php if( $ratio ) : ?>
+
+					<div class="ratio-container" style="padding-top: <?php echo esc_attr( $ratio ); ?>%;">
+						<div class="ratio-content">
+							<img class="sh-image-url lazy" data-src="<?php echo jevelin_get_thumb( get_the_ID(), 'large' ); ?>" alt="" />
+						</div>
+					</div>
+
+				<?php else : ?>
+					<?php echo the_post_thumbnail( 'large' ); ?>
+				<?php endif; ?>
+
 				<?php echo jevelin_blog_overlay( jevelin_get_thumb( get_the_ID() ) ); ?>
 			</div>
 
@@ -280,7 +353,14 @@ if ( $style == 'masonry' || $style == 'masonry masonry-shadow' ) :
 			<?php if( jevelin_post_option( get_the_ID(), 'hide-image', false ) == false && jevelin_get_thumb( get_the_ID() ) ) : ?>
 				<div class="post-meta-thumb">
 					<?php echo the_post_thumbnail( 'jevelin-landscape-large' ); ?>
-					<?php echo jevelin_blog_overlay( jevelin_get_thumb( get_the_ID() ), $show_link, 1 ); ?>
+
+					<?php
+						if( is_single() && jevelin_option( 'post_main_image_lightbiox', 'on' ) == 'off' ) :
+							//
+						else :
+							echo jevelin_blog_overlay( jevelin_get_thumb( get_the_ID() ), $show_link, 1 );
+						endif;
+					?>
 				</div>
 			<?php endif; ?>
 

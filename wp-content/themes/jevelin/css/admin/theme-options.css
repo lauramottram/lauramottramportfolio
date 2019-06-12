@@ -9,7 +9,7 @@
 }
 
 .fw-backend-side-tabs .fw-options-tabs-first-level > .fw-options-tabs-contents > .fw-inner {
-	min-height: 812px!important;
+	min-height: 868px!important;
 }
 
 #wpwrap {
@@ -46,10 +46,12 @@ h3 span.initialized {
 
 .fw-settings-form-header {
 	background-color: #3f3f3f!important;
-	padding: 10px 0;!important;
-	background-image: url(../../img/admin_background.jpg)!important;
-	background-position: 50% 50%!important;
+	padding: 10px 0;
+	background-image: url(../../img/admin-background.png)!important;
+	background-position: 0% 0%!important;
 	background-size: cover!important;
+	border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 @media (min-width: 1025px) {
@@ -79,11 +81,12 @@ h3 span.initialized {
 	color: #a5a1a9!important;
 	font-weight: 400!important;
 	opacity: 1!important;
-	width: 223px;
-	height: 37px;
+	width: 95px;
+	height: 23px;
 	display: block;
-	margin-left: -5px!important;
-	background-image: url(../../img/admin_logo.png)!important;
+	margin-left: 5px!important;
+	margin-top: -3px;
+	background-image: url(../../img/admin-logo.png)!important;
 }
 
 
@@ -156,7 +159,6 @@ h3 span.initialized {
 .form-footer-buttons .button-primary {
 	position: relative;
 	color: #fff!important;
-	text-transform: uppercase;
 	font-weight: 600!important;
 	border-radius: 100px!important;
 	height: 45px!important;
@@ -206,7 +208,7 @@ h3 span.initialized {
 	color: #fff!important;
 	font-weight: 600!important;
 	font-size: 14px!important;
-	background-color: #334644!important;
+	background-color: #0b78d0!important;
 }
 
 .ui-state-default.ui-tabs-active .fw-wp-link::after {
@@ -294,46 +296,45 @@ h3 span.initialized {
 	content: "\e654";
 }
 
-/* WooCoommerce */
+/* Carousel */
 .ui-state-default:nth-child(10) .fw-wp-link:before {
+	content: "\e711";
+}
+
+/* WooCoommerce */
+.ui-state-default:nth-child(11) .fw-wp-link:before {
 	content: "\e60d";
 }
 
 /* Lazy loading */
-.ui-state-default:nth-child(11) .fw-wp-link:before {
+.ui-state-default:nth-child(12) .fw-wp-link:before {
 	content: "\e652";
 }
 
 /* Page Loader */
-.ui-state-default:nth-child(12) .fw-wp-link:before {
+.ui-state-default:nth-child(13) .fw-wp-link:before {
 	content: "\e698";
 }
 
 /* 404 Page */
-.ui-state-default:nth-child(13) .fw-wp-link:before {
+.ui-state-default:nth-child(14) .fw-wp-link:before {
 	content: "\e6c5";
 }
 
 /* Notice*/
-.ui-state-default:nth-child(14) .fw-wp-link:before {
+.ui-state-default:nth-child(15) .fw-wp-link:before {
 	content: "\e718";
 }
 
 /* Custom Code */
-.ui-state-default:nth-child(15) .fw-wp-link:before {
+.ui-state-default:nth-child(16) .fw-wp-link:before {
 	content: "\e67c";
 }
 
-/* Theme Documentation */
-.ui-state-default:nth-child(16) .fw-wp-link:before {
-	content: "\e717";
-}
-
-/* Theme Support */
+/* Import / Export */
 .ui-state-default:nth-child(17) .fw-wp-link:before {
-	content: "\e718";
+	content: "\e619";
 }
-
 
 
 
@@ -625,4 +626,42 @@ body .fw-options-tabs-list li a {
 .sh-demo-content-link {
 	position: relative;
 	margin-top: 4px;
+}
+
+
+
+
+/* Import button */
+.sh-theme-settings-import-submit {
+	display: inline-block;
+	position: relative;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 100px;
+    height: 45px;
+    line-height: 43px;
+    text-decoration: none;
+    border: none;
+    font-size: 13px;
+    text-shadow: none;
+    background-color: #c13535;
+    padding: 0 28px;
+    transition: 0.3s all ease-in-out;
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+.sh-theme-settings-import-submit:focus,
+.sh-theme-settings-import-submit:hover {
+	background-color: #a72222;
+}
+
+
+
+
+/*
+** Theme Settings Loading Screen
+*/
+body.appearance_page_fw-settings.sh-adminbody-loading .fw-settings-form.fw-backend-side-tabs {
+	opacity: 0;
 }

@@ -70,7 +70,7 @@ $upload_dir = wp_upload_dir();
 $file_dir   = $upload_dir['basedir'] . '/jevelin-dynamic-styles.css';
 $file_path  = $upload_dir['baseurl'] . '/jevelin-dynamic-styles.css';
 $updated = get_option( 'jevelin_settings_updated' );
-if( !is_customize_preview() && file_exists( $file_dir ) && $updated > 0 ) :
+if( !is_customize_preview() && file_exists( $file_dir ) && $updated > 0 && jevelin_option( 'theme_options_stored', 'file' ) == 'file' ) :
 	if ( is_ssl() ) :
 		$file_path = str_replace( 'http://', 'https://', $file_path );
 	endif;

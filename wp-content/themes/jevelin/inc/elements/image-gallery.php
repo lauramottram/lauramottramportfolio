@@ -20,7 +20,7 @@ class vcj_image_gallery_simple extends WPBakeryShortCode {
                 'base' => 'vcj_image_gallery_simple',
                 'description' => __('Simple image gallery', 'jevelin'),
                 'category' => __('Jevelin Elements', 'jevelin'),
-                'icon' => get_template_directory_uri().'/img/VC_ES_icon.svg',
+                'icon' => get_template_directory_uri().'/img/builder-icon.png',
                 'params' => array(
 
                     array (

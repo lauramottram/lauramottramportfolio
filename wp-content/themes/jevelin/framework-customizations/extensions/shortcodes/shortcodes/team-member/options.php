@@ -179,4 +179,24 @@ $options = array(
 
 		),
 	),
+
+	'lazy_tab' => array(
+		'title'   => esc_html__( 'Lazy Loading', 'jevelin' ),
+		'type'    => 'tab',
+		'options' => array(
+
+			'lazy' => array(
+				'type'    => 'radio',
+				'label'   => esc_html__( 'Lazy Loading', 'jevelin' ),
+				'desc'    => esc_html__( 'Choose to enable to disable lazy loading', 'jevelin' ),
+				'value'	  => 'default',
+				'choices' => array(
+					'default' => esc_html__('Default (from theme settings)', 'jevelin'),
+					'disabled' => esc_html__('Disabled', 'jevelin'),
+					'enabled' => esc_html__('Enabled', 'jevelin'),
+				)
+			),
+
+		),
+	),
 );

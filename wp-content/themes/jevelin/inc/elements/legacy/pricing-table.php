@@ -197,6 +197,94 @@ class vcj_pricing_table extends WPBakeryShortCode {
     ),
     11 => 
     array (
+      'param_name' => 'font_size',
+      'heading' => 'Font Size',
+      'description' => 'Enter font size in px',
+      'value' => '',
+      'type' => 'textfield',
+      'class' => '',
+      'std' => '',
+      'group' => 'Button',
+    ),
+    12 => 
+    array (
+      'param_name' => 'button_border_width',
+      'heading' => 'Button Border Width',
+      'description' => 'Enter button border width',
+      'value' => '1px',
+      'type' => 'textfield',
+      'class' => '',
+      'std' => '1px',
+      'group' => 'Button',
+    ),
+    13 => 
+    array (
+      'param_name' => 'button_text_color',
+      'heading' => 'Text Color',
+      'description' => 'Select text color',
+      'value' => '',
+      'type' => 'colorpicker',
+      'class' => '',
+      'std' => '',
+      'group' => 'Button',
+    ),
+    14 => 
+    array (
+      'param_name' => 'button_text_hover_color',
+      'heading' => 'Text Hover Color',
+      'description' => 'Select text hover color',
+      'value' => '',
+      'type' => 'colorpicker',
+      'class' => '',
+      'std' => '',
+      'group' => 'Button',
+    ),
+    15 => 
+    array (
+      'param_name' => 'button_background_color',
+      'heading' => 'Background Color',
+      'description' => 'Select background colors',
+      'value' => '',
+      'type' => 'colorpicker',
+      'class' => '',
+      'std' => '',
+      'group' => 'Button',
+    ),
+    16 => 
+    array (
+      'param_name' => 'button_background_hover_color',
+      'heading' => 'Background Hover Color',
+      'description' => 'Select background hover color',
+      'value' => '',
+      'type' => 'colorpicker',
+      'class' => '',
+      'std' => '',
+      'group' => 'Button',
+    ),
+    17 => 
+    array (
+      'param_name' => 'button_border_color',
+      'heading' => 'Border Color',
+      'description' => 'Select border color to add border',
+      'value' => '',
+      'type' => 'colorpicker',
+      'class' => '',
+      'std' => '',
+      'group' => 'Button',
+    ),
+    18 => 
+    array (
+      'param_name' => 'button_border_hover_color',
+      'heading' => 'Border Hover Color',
+      'description' => 'Select border hover color',
+      'value' => '',
+      'type' => 'colorpicker',
+      'class' => '',
+      'std' => '',
+      'group' => 'Button',
+    ),
+    19 => 
+    array (
       'param_name' => 'style',
       'heading' => 'Style',
       'description' => 'Choose main style',
@@ -212,7 +300,7 @@ class vcj_pricing_table extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Styling',
     ),
-    12 => 
+    20 => 
     array (
       'param_name' => 'icon',
       'heading' => 'Icon',
@@ -237,7 +325,7 @@ class vcj_pricing_table extends WPBakeryShortCode {
         'type' => 'jevelin_vc_icons',
       ),
     ),
-    13 => 
+    21 => 
     array (
       'param_name' => 'image',
       'heading' => 'Background Image',
@@ -248,7 +336,7 @@ class vcj_pricing_table extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Styling',
     ),
-    14 => 
+    22 => 
     array (
       'param_name' => 'font',
       'heading' => 'Title Font Famility',
@@ -265,7 +353,7 @@ class vcj_pricing_table extends WPBakeryShortCode {
       'std' => 'heading',
       'group' => 'Styling',
     ),
-    15 => 
+    23 => 
     array (
       'param_name' => 'content_alignment',
       'heading' => 'Alignment',
@@ -280,7 +368,7 @@ class vcj_pricing_table extends WPBakeryShortCode {
       'std' => 'center',
       'group' => 'Styling',
     ),
-    16 => 
+    24 => 
     array (
       'param_name' => 'background_text_color',
       'heading' => 'Heading Color',
@@ -291,7 +379,7 @@ class vcj_pricing_table extends WPBakeryShortCode {
       'std' => '#ffffff',
       'group' => 'Colors',
     ),
-    17 => 
+    25 => 
     array (
       'param_name' => 'text_color',
       'heading' => 'Text Color',
@@ -302,7 +390,7 @@ class vcj_pricing_table extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Colors',
     ),
-    18 => 
+    26 => 
     array (
       'param_name' => 'border_color',
       'heading' => 'Border Color',
@@ -313,7 +401,7 @@ class vcj_pricing_table extends WPBakeryShortCode {
       'std' => 'rgba(0,0,0,0.08)',
       'group' => 'Colors',
     ),
-    19 => 
+    27 => 
     array (
       'param_name' => 'border_line',
       'heading' => 'Border Line',
@@ -328,7 +416,7 @@ class vcj_pricing_table extends WPBakeryShortCode {
       'std' => true,
       'group' => 'Colors',
     ),
-    20 => 
+    28 => 
     array (
       'param_name' => 'accent_color',
       'heading' => 'Accent Color',
@@ -339,7 +427,7 @@ class vcj_pricing_table extends WPBakeryShortCode {
       'std' => '',
       'group' => 'Colors',
     ),
-    21 => 
+    29 => 
     array (
       'param_name' => 'background_color',
       'heading' => 'Background Color',

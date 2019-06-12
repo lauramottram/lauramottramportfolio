@@ -3,102 +3,35 @@
  * Unyson Demo Installation Method
  */
 if ( ! function_exists( 'jevelin_remote_demos' ) ) :
-	function jevelin_remote_demos($demos) {
+	function jevelin_remote_demos( $demos ) {
+
+
 	    $demos_array = array(
-	        'basic-full' => array(
-	            'title' => __('Basic', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/basic.jpg',
+
+			'digital-agency' => array(
+	            'title' => __('Digital Media Agency (WPbakery Page Builder)', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/digital_agency.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/digital-media-agency/',
+	        ),
+
+			'creative-agency' => array(
+	            'title' => __('Creative Agency (WPbakery Page Builder)', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/creative_agency.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/creative-agency/',
+	        ),
+
+			'medical' => array(
+	            'title' => __('Medical (WPbakery Page Builder)', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/medical.jpg',
 	            'preview_link' => 'https://jevelin.shufflehound.com/',
 	        ),
 
-	        'wedding-full' => array(
-	            'title' => __('Wedding', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/wedding.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/wedding/',
-	        ),
 
-	        'boxed-full' => array(
-	            'title' => __('Boxed', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/boxed.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/boxed/',
-	        ),
 
-	        'corporate-full' => array(
-	            'title' => __('Corporate', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/corporate.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/corporate/',
-	        ),
-
-	        'landing-full' => array(
-	            'title' => __('Landing', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/landing.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/landing/',
-	        ),
-
-	        'landing2-full' => array(
-	            'title' => __('Landing 2', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/landing2.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/landing2/',
-	        ),
-
-            'shop-full' => array(
-	            'title' => __('Shop', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/shop.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/shop1/',
-	        ),
-
-            'blog-full' => array(
-	            'title' => __('Blog', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/blog.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/blog1/',
-	        ),
-
-            'portfolio-full' => array(
-	            'title' => __('Portfolio', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/portfolio.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/portfolio1/',
-	        ),
-
-            'startup-full' => array(
-	            'title' => __('Startup', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/startup.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/startup/',
-	        ),
-
-            'autospot-full' => array(
-	            'title' => __('Autospot', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/autospot.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/autospot/',
-	        ),
-
-            'construction-full' => array(
-	            'title' => __('Construction', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/construction.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/construction/',
-	        ),
-
-			'soon-full' => array(
-	            'title' => __('Coming Soon', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/soon.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/coming-soon/',
-	        ),
-
-			'foodie-full' => array(
-	            'title' => __('Foodie', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/foodie.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/foodie/',
-	        ),
-
-			'beauty-full' => array(
-	            'title' => __('Beauty', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/beauty.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/beauty/',
-	        ),
-
-			'crypto-full' => array(
-	            'title' => __('Beauty', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/crypto.jpg',
-	            'preview_link' => 'https://jevelin.shufflehound.com/crypto/',
+			'basic-home-vc' => array(
+	            'title' => __('Basic Home (WPbakery Page Builder)', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/basic_home.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/',
 	        ),
 
 			'education-full' => array(
@@ -107,13 +40,104 @@ if ( ! function_exists( 'jevelin_remote_demos' ) ) :
 	            'preview_link' => 'https://jevelin.shufflehound.com/education/',
 	        ),
 
-			'basic-home-vc' => array(
-	            'title' => __('Basic Home (WPbakery Page Builder)', 'jevelin'),
-	            'screenshot' => '//api.shufflehound.com/jevelin/files/basic_home.jpg',
+			'crypto-full' => array(
+	            'title' => __('Beauty', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/crypto.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/crypto/',
+	        ),
+
+			'beauty-full' => array(
+	            'title' => __('Beauty', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/beauty.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/beauty/',
+	        ),
+
+			'foodie-full' => array(
+	            'title' => __('Foodie', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/foodie.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/foodie/',
+	        ),
+
+			'soon-full' => array(
+	            'title' => __('Coming Soon', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/soon.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/coming-soon/',
+	        ),
+
+			'construction-full' => array(
+	            'title' => __('Construction', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/construction.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/construction/',
+	        ),
+
+			'autospot-full' => array(
+	            'title' => __('Autospot', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/autospot.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/autospot/',
+	        ),
+
+			'startup-full' => array(
+	            'title' => __('Startup', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/startup.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/startup/',
+	        ),
+
+			'portfolio-full' => array(
+	            'title' => __('Portfolio', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/portfolio.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/portfolio1/',
+	        ),
+
+            'blog-full' => array(
+	            'title' => __('Blog', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/blog.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/blog1/',
+	        ),
+
+			'shop-full' => array(
+	            'title' => __('Shop', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/shop.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/shop1/',
+	        ),
+
+			'landing2-full' => array(
+	            'title' => __('Landing 2', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/landing2.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/landing2/',
+	        ),
+
+			'landing-full' => array(
+	            'title' => __('Landing', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/landing.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/landing/',
+	        ),
+
+			'corporate-full' => array(
+	            'title' => __('Corporate', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/corporate.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/corporate/',
+	        ),
+
+			'boxed-full' => array(
+	            'title' => __('Boxed', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/boxed.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/boxed/',
+	        ),
+
+			'wedding-full' => array(
+	            'title' => __('Wedding', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/wedding.jpg',
+	            'preview_link' => 'https://jevelin.shufflehound.com/wedding/',
+	        ),
+
+	        'basic-full' => array(
+	            'title' => __('Basic', 'jevelin'),
+	            'screenshot' => '//api.shufflehound.com/jevelin/files/basic.jpg',
 	            'preview_link' => 'https://jevelin.shufflehound.com/',
 	        ),
+
 	    );
-		$demos_array = array_reverse( $demos_array );
+		//$demos_array = array_reverse( $demos_array );
 
 
 	    $download_url = 'https://api.shufflehound.com/jevelin/';
